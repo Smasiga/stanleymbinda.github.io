@@ -173,7 +173,56 @@
         .protocol-link span { position:relative; z-index:1; }
         .protocol-link:hover::after { transform:translateX(4px); }
 
-        /* AETERNUM GATEWAY */
+        /* BIO GATEWAY */
+        .bio-gateway {
+            display:flex; align-items:center; justify-content:space-between;
+            flex-wrap:wrap; gap:16px;
+            padding:28px 32px;
+            border:1px solid var(--border);
+            background:var(--plate);
+            text-decoration:none;
+            position:relative; overflow:hidden;
+            transition:border-color .3s ease, background .3s ease;
+        }
+        .bio-gateway::after {
+            content:''; position:absolute;
+            bottom:0; left:0; right:0; height:1px;
+            background: linear-gradient(to right, var(--gold-line), transparent);
+        }
+        .bio-gateway::before {
+            content:''; position:absolute; inset:0;
+            background:var(--gold-glow); opacity:0; transition:opacity .4s ease;
+        }
+        .bio-gateway:hover { border-color:var(--gold-line); background:#131313; }
+        .bio-gateway:hover::before { opacity:1; }
+        .bio-gateway-left { display:flex; flex-direction:column; gap:8px; position:relative; z-index:1; }
+        .bio-gateway-label {
+            font-size:9px; font-weight:700; letter-spacing:.28em;
+            text-transform:uppercase; color:var(--gold); opacity:.8;
+        }
+        .bio-gateway-title {
+            font-family:var(--font-display);
+            font-size:clamp(22px,3.5vw,32px);
+            letter-spacing:.04em; text-transform:uppercase;
+            color:var(--text-bright); line-height:1;
+        }
+        .bio-gateway-desc {
+            font-size:11px; font-weight:300; color:var(--text-mid); letter-spacing:.06em;
+        }
+        .bio-gateway-cta {
+            display:inline-flex; align-items:center; gap:10px;
+            font-size:11px; font-weight:700; letter-spacing:.2em; text-transform:uppercase;
+            color:var(--void); background:var(--gold); padding:12px 22px;
+            position:relative; z-index:1; overflow:hidden; white-space:nowrap;
+        }
+        .bio-gateway-cta::before {
+            content:''; position:absolute; inset:0; background:var(--gold-hot);
+            transform:translateX(-101%); transition:transform .35s cubic-bezier(.22,1,.36,1);
+        }
+        .bio-gateway:hover .bio-gateway-cta::before { transform:translateX(0); }
+        .bio-gateway-cta span  { position:relative; z-index:1; }
+        .bio-gateway-cta-arrow { position:relative; z-index:1; transition:transform .3s ease; }
+        .bio-gateway:hover .bio-gateway-cta-arrow { transform:translateX(4px); }
         .aeternum-gateway {
             display:flex; align-items:center; justify-content:space-between;
             flex-wrap:wrap; gap:16px;
@@ -261,6 +310,23 @@
                 <span class="divider">/</span>
                 <span class="founding">Founder of Æternum</span>
             </div>
+            <a href="aeternum.html" style="
+                display:inline-flex;
+                align-items:center;
+                gap:12px;
+                margin-top:8px;
+                padding:14px 28px;
+                background:#c8963c;
+                color:#060606;
+                font-family:'JetBrains Mono',monospace;
+                font-size:11px;
+                font-weight:700;
+                letter-spacing:0.22em;
+                text-transform:uppercase;
+                text-decoration:none;
+                border:none;
+                cursor:pointer;
+            ">ENTER ÆTERNUM &nbsp;→</a>
         </section>
 
         <section class="architectural-logic">
@@ -283,6 +349,17 @@
             <div class="aeternum-gateway-cta">
                 <span>Enter Æternum</span>
                 <span class="aeternum-gateway-cta-arrow">→</span>
+            </div>
+        </a>
+
+        <a href="bio.html" class="bio-gateway">
+            <div class="bio-gateway-left">
+                <div class="bio-gateway-label">The Architect</div>
+                <div class="bio-gateway-desc">Architect. Builder. Guardian of civilisation-grade visions.</div>
+            </div>
+            <div class="bio-gateway-cta">
+                <span>Read Biography</span>
+                <span class="bio-gateway-cta-arrow">→</span>
             </div>
         </a>
 
