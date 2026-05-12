@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stanley Masiga Mbinda | Biography</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --void:        #060606;
+            --plate:       #111111;
+            --border:      #1f1f1f;
+            --text-dim:    #3a3a3a;
+            --text-mid:    #888888;
+            --text-base:   #c8c8c8;
+            --text-bright: #efefef;
+            --gold:        #c8963c;
+            --gold-hot:    #f0b040;
+            --gold-glow:   rgba(200,150,60,0.12);
+            --gold-line:   rgba(200,150,60,0.35);
+            --font-display:'Bebas Neue', sans-serif;
+            --font-mono:   'JetBrains Mono', monospace;
+            --gap:         clamp(24px, 4vw, 56px);
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html {
+            background: var(--void);
+            color: var(--text-base);
+            font-family: var(--font-mono);
+            font-size: 14px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        body { min-height: 100vh; overflow-x: hidden; position: relative; }
+
+        .noise-floor {
+            position: fixed; inset: 0; pointer-events: none; z-index: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            background-size: 256px 256px; opacity: 0.6; mix-blend-mode: overlay;
+        }
+        .noise-floor::after {
+            content: ''; position: absolute; inset: 0;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px);
+        }
+
+        body::before {
+            content: ''; position: fixed; left: 0; top: 0; bottom: 0; width: 2px;
+            background: linear-gradient(to bottom, transparent 0%, var(--gold-line) 20%, var(--gold) 50%, var(--gold-line) 80%, transparent 100%);
+            animation: rulePulse 6s ease-in-out infinite; z-index: 10;
+        }
+        @keyframes rulePulse { 0%,100%{opacity:.3} 50%{opacity:.9} }
+
+        .foundry {
+            position: relative; z-index: 1; max-width: 780px; margin: 0 auto;
+            padding: var(--gap) clamp(20px,5vw,48px) calc(var(--gap) * 2);
+            display: flex; flex-direction: column; gap: var(--gap);
+        }
+
+        /* NAV */
+        .nav-back {
+            display: inline-flex; align-items: center; gap: 10px;
+            font-size: 10px; font-weight: 700; letter-spacing: .22em;
+            text-transform: uppercase; text-decoration: none;
+            color: var(--text-dim); transition: color .3s ease;
+        }
+        .nav-back::before { content: '←'; font-size: 13px; transition: transform .3s ease; }
+        .nav-back:hover { color: var(--gold); }
+        .nav-back:hover::before { transform: translateX(-4px); }
+
+        /* MASTHEAD */
+        .masthead {
+            display: flex; flex-direction: column; gap: 16px;
+            padding-bottom: var(--gap);
+            border-bottom: 1px solid var(--border);
+        }
+        .masthead-label {
+            font-size: 9px; font-weight: 700; letter-spacing: .3em;
+            text-transform: uppercase; color: var(--gold);
+            display: flex; align-items: center; gap: 12px;
+        }
+        .masthead-label::after {
+            content: ''; flex: 1; height: 1px;
+            background: linear-gradient(to right, var(--gold-line), transparent);
+        }
+        .masthead h1 {
+            font-family: var(--font-display);
+            font-size: clamp(44px, 8vw, 92px);
+            line-height: .92; letter-spacing: .01em; text-transform: uppercase;
+            background: linear-gradient(105deg, var(--text-bright) 0%, var(--text-bright) 38%, var(--gold-hot) 50%, var(--text-bright) 62%, var(--text-bright) 100%);
+            background-size: 300% auto;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            animation: shimmer 8s linear infinite;
+        }
+        @keyframes shimmer { 0%{background-position:200% center} 100%{background-position:-100% center} }
+
+        /* BIO PROSE */
+        .bio-body {
+            display: flex; flex-direction: column; gap: 28px;
+            max-width: 660px;
+        }
+        .bio-body p {
+            font-size: 13px; font-weight: 300; line-height: 2.1;
+            color: var(--text-mid);
+        }
+        .bio-body p.lead {
+            font-size: clamp(15px, 2.2vw, 18px);
+            color: var(--text-base);
+            line-height: 1.9;
+        }
+        .bio-body p.closing {
+            font-size: 13px;
+            color: var(--text-base);
+            font-weight: 400;
+            border-left: 2px solid var(--gold);
+            padding-left: 20px;
+            line-height: 2;
+        }
+
+        /* FOOTER */
+        .page-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 16px;
+            padding-top: 28px; border-top: 1px solid var(--border);
+        }
+        .page-footer span {
+            font-size: 10px; font-weight: 300; letter-spacing: .14em;
+            text-transform: uppercase; color: var(--text-dim);
+        }
+        .back-link {
+            display: inline-flex; align-items: center; gap: 10px;
+            font-size: 11px; font-weight: 700; letter-spacing: .2em;
+            text-transform: uppercase; text-decoration: none;
+            color: var(--void); background: var(--gold);
+            padding: 13px 24px; position: relative; overflow: hidden;
+        }
+        .back-link::before {
+            content: ''; position: absolute; inset: 0; background: var(--gold-hot);
+            transform: translateX(-101%); transition: transform .35s cubic-bezier(.22,1,.36,1);
+        }
+        .back-link:hover::before { transform: translateX(0); }
+        .back-link span { position: relative; z-index: 1; }
+        .back-link::after {
+            content: '←'; position: relative; z-index: 1;
+            font-size: 14px; transition: transform .3s ease;
+        }
+        .back-link:hover::after { transform: translateX(-4px); }
+
+        @media(max-width:560px){
+            .page-footer { flex-direction: column; align-items: flex-start; }
+            .back-link { width: 100%; justify-content: space-between; }
+        }
+
+        ::selection { background: rgba(200,150,60,.25); color: var(--gold-hot); }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--void); }
+        ::-webkit-scrollbar-thumb { background: var(--text-dim); border-radius: 2px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+    </style>
+</head>
+<body>
+    <div class="noise-floor"></div>
+    <main class="foundry">
+
+        <a href="index.html" class="nav-back">Return to Origin</a>
+
+        <div class="masthead">
+            <div class="masthead-label">Biography</div>
+        </div>
+
+        <div class="bio-body">
+            <p class="lead">My passion is making the impossible possible — by turning ideas into architectures, into systems that define the edge of what can be done.</p>
+
+            <p class="lead">That is my life's work.</p>
+
+            <p>I founded Aeternum Technologies & Innovation Ltd, a Sovereign Architectural Foundry in Nairobi, Kenya, as the vessel for this obsession. It is a perpetual institution designed to take documented architectural logic and translate it into production-grade, sovereign deep-tech systems — without dilution, without feature creep, without compromise.</p>
+
+            <p>The world's defining crisis is Interpretive Intelligence: systems that process everything but understand nothing. I build to close that gap. Across five founding architectures, I turn foundational blueprints into reality — directional forecasting for an uncertain future, incorruptible verification without central authority, code intelligence that sees intent, autonomous attention infrastructure that reaches humanity without permission, and anticipatory intelligence that synthesizes foresight permanently.</p>
+
+            <p>Everything I design is protected by a constitutional framework I built myself — because great visions die a thousand small deaths from dilution, and I refuse to let that happen. The Vault holding my architectures can never be sold, fragmented, or dissolved.</p>
+
+            <p>I anchored this in Kenya out of conviction: technological sovereignty is data on sovereign soil, elite talent cultivated here, intellectual property forged here and deployed globally.</p>
+
+            <p class="closing">I am an architect. A builder. A guardian of the visions entrusted to me. My work is not a startup. It is a civilization-grade institution. And I am only getting started.</p>
+        </div>
+
+        <footer class="page-footer">
+            <span>Stanley Masiga Mbinda &nbsp;·&nbsp; Chief Architect</span>
+            <a href="index.html" class="back-link"><span>Return to Origin</span></a>
+        </footer>
+
+    </main>
+</body>
+</html>
