@@ -1,0 +1,186 @@
+/* --- SOVEREIGN DESIGN SYSTEM --- */
+:root {
+    --black: #000000;
+    --white: #ffffff;
+    --gray-dark: #0a0a0a;
+    --gray-mid: #222222;
+    --gray-text: #666666;
+    --accent: #ffffff;
+    --mono: 'JetBrains Mono', monospace;
+    --transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--black);
+    color: var(--white);
+    font-family: var(--mono);
+    line-height: 1.5;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --- THE FOUNDRY VIEWPORT --- */
+.foundry-container {
+    width: 90%;
+    max-width: 1100px;
+    padding: 4rem;
+    border-left: 1px solid var(--gray-mid);
+    position: relative;
+    z-index: 2;
+}
+
+/* --- SYSTEM HEADER --- */
+.system-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--gray-text);
+    margin-bottom: 5rem;
+}
+
+.pulse {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: #00ff00;
+    border-radius: 50%;
+    margin-right: 10px;
+    box-shadow: 0 0 10px #00ff00;
+    animation: blink 2s infinite;
+}
+
+/* --- BRANDING --- */
+.preamble {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5em;
+    color: var(--gray-text);
+    margin-bottom: 0.5rem;
+}
+
+h1 {
+    font-size: clamp(3.5rem, 10vw, 6rem);
+    font-weight: 200;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1;
+}
+
+.tagline {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-top: 1rem;
+    color: var(--white);
+}
+
+/* --- MANIFESTO SECTION --- */
+.manifesto {
+    max-width: 550px;
+    margin-top: 3rem;
+    padding-left: 2rem;
+    border-left: 1px solid var(--gray-mid);
+}
+
+.manifesto p {
+    font-size: 0.85rem;
+    color: var(--gray-text);
+    line-height: 1.8;
+}
+
+/* --- ARCHITECTURES GRID --- */
+.architectures-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 4rem;
+    border-top: 1px solid var(--gray-mid);
+    padding-top: 2rem;
+}
+
+.arch-item .label {
+    display: block;
+    font-size: 0.6rem;
+    color: var(--gray-text);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.arch-item .desc {
+    font-size: 0.75rem;
+    color: var(--white);
+    text-transform: uppercase;
+}
+
+/* --- SYSTEM FOOTER --- */
+.system-footer {
+    margin-top: 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.metadata {
+    display: flex;
+    gap: 3rem;
+}
+
+.data-block .key {
+    display: block;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    color: var(--gray-text);
+}
+
+.data-block .val {
+    font-size: 0.75rem;
+    color: var(--white);
+}
+
+.initialize-btn {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    border: 1px solid var(--gray-mid);
+    padding: 1rem 2rem;
+    transition: var(--transition);
+}
+
+.initialize-btn:hover {
+    background: var(--white);
+    color: var(--black);
+}
+
+/* --- VISUAL EFFECTS --- */
+.scanline {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
+    background-size: 100% 4px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+@media (max-width: 768px) {
+    .foundry-container { padding: 2rem; }
+    .architectures-grid { grid-template-columns: 1fr; }
+    .system-footer { flex-direction: column; align-items: flex-start; gap: 2rem; }
+}
