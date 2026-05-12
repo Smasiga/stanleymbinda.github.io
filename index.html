@@ -3,65 +3,509 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stanley Mbinda | Chief Architect</title>
-    <link rel="stylesheet" href="Style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <title>Stanley Masiga Mbinda | Chief Architect</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* ── TOKENS ── */
+        :root {
+            --void:        #060606;
+            --surface:     #0d0d0d;
+            --plate:       #111111;
+            --border:      #1f1f1f;
+            --text-dim:    #3a3a3a;
+            --text-mid:    #888888;
+            --text-base:   #c8c8c8;
+            --text-bright: #efefef;
+            --gold:        #c8963c;
+            --gold-hot:    #f0b040;
+            --gold-glow:   rgba(200, 150, 60, 0.12);
+            --gold-line:   rgba(200, 150, 60, 0.35);
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-mono:    'JetBrains Mono', monospace;
+            --gap-unit: clamp(24px, 4vw, 56px);
+        }
+
+        /* ── RESET ── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        /* ── BASE ── */
+        html {
+            background: var(--void);
+            color: var(--text-base);
+            font-family: var(--font-mono);
+            font-size: 14px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ── NOISE FLOOR ── */
+        .noise-floor {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            background-size: 256px 256px;
+            opacity: 0.6;
+            mix-blend-mode: overlay;
+        }
+
+        .noise-floor::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0,0,0,0.08) 2px,
+                rgba(0,0,0,0.08) 4px
+            );
+        }
+
+        /* ── FOUNDRY SHELL ── */
+        .foundry {
+            position: relative;
+            z-index: 1;
+            max-width: 860px;
+            margin: 0 auto;
+            padding: var(--gap-unit) clamp(20px, 5vw, 48px) calc(var(--gap-unit) * 1.5);
+            display: flex;
+            flex-direction: column;
+            gap: var(--gap-unit);
+        }
+
+        .foundry::before {
+            content: '';
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom,
+                transparent 0%,
+                var(--gold-line) 20%,
+                var(--gold) 50%,
+                var(--gold-line) 80%,
+                transparent 100%
+            );
+            animation: rulePulse 6s ease-in-out infinite;
+        }
+
+        @keyframes rulePulse {
+            0%, 100% { opacity: 0.3; }
+            50%       { opacity: 0.9; }
+        }
+
+        /* ── MASTER IDENTITY ── */
+        .master-identity {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            animation: fadeDown 0.7s 0.1s ease both;
+        }
+
+        .designation {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .master-identity h1 {
+            font-family: var(--font-display);
+            font-size: clamp(52px, 9vw, 108px);
+            line-height: 0.92;
+            letter-spacing: 0.01em;
+            text-transform: uppercase;
+            background: linear-gradient(
+                105deg,
+                var(--text-bright) 0%,
+                var(--text-bright) 38%,
+                var(--gold-hot) 50%,
+                var(--text-bright) 62%,
+                var(--text-bright) 100%
+            );
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 8s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0%   { background-position: 200% center; }
+            100% { background-position: -100% center; }
+        }
+
+        .spec-line {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .spec-line .role    { color: var(--text-base); }
+        .spec-line .divider { color: var(--gold); opacity: 0.5; }
+        .spec-line .founding {
+            color: var(--gold);
+            position: relative;
+        }
+
+        .spec-line .founding::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--gold);
+            opacity: 0.4;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .spec-line .founding:hover::after { transform: scaleX(1); }
+
+        /* ── MANIFEST ── */
+        .architectural-logic {
+            padding: 28px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            animation: fadeDown 0.7s 0.2s ease both;
+        }
+
+        .logic-header {
+            font-family: var(--font-mono);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logic-header::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, var(--gold-line), transparent);
+        }
+
+        .architectural-logic p {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            font-weight: 300;
+            line-height: 1.9;
+            color: var(--text-mid);
+            max-width: 660px;
+        }
+
+        .architectural-logic p strong {
+            color: var(--text-bright);
+            font-weight: 700;
+        }
+
+        /* ── INVENTORY GRID ── */
+        .inventory {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 2px;
+            animation: fadeDown 0.7s 0.3s ease both;
+        }
+
+        .item {
+            background: var(--plate);
+            border: 1px solid var(--border);
+            padding: 24px 20px;
+            position: relative;
+            overflow: hidden;
+            cursor: default;
+            transition: border-color 0.3s ease, background 0.3s ease;
+        }
+
+        .item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 16px;
+            height: 16px;
+            border-top: 2px solid var(--gold);
+            border-left: 2px solid var(--gold);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gold-glow);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .item:hover { border-color: var(--gold-line); background: #131313; }
+        .item:hover::before { opacity: 1; }
+        .item:hover::after  { opacity: 1; }
+
+        .item label {
+            display: block;
+            font-family: var(--font-mono);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .item p {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 300;
+            line-height: 1.65;
+            color: var(--text-mid);
+            position: relative;
+            z-index: 1;
+            transition: color 0.3s ease;
+        }
+
+        .item-title {
+            font-size: 13px !important;
+            font-weight: 700 !important;
+            color: var(--text-bright) !important;
+            margin-bottom: 10px !important;
+            line-height: 1.4 !important;
+        }
+
+        .item-title .aka {
+            display: block;
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            opacity: 0.75;
+            margin-top: 3px;
+        }
+
+        .item-domain {
+            font-size: 11px !important;
+            color: var(--text-mid) !important;
+            line-height: 1.65 !important;
+            margin-bottom: 10px !important;
+            border-left: 1px solid var(--border);
+            padding-left: 10px;
+            transition: color 0.3s ease, border-color 0.3s ease !important;
+        }
+
+        .item-layers {
+            font-size: 9px !important;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--gold) !important;
+            opacity: 0.6;
+            margin-bottom: 10px !important;
+            transition: opacity 0.3s ease !important;
+        }
+
+        .item-objective {
+            font-size: 11px !important;
+            color: var(--text-dim) !important;
+            line-height: 1.7 !important;
+            transition: color 0.3s ease !important;
+        }
+
+        .item:hover .item-domain    { color: var(--text-base) !important; border-color: var(--gold-line); }
+        .item:hover .item-objective { color: var(--text-mid) !important; }
+        .item:hover .item-layers    { opacity: 1; }
+
+        .item:nth-child(1) { animation: fadeUp 0.5s 0.35s ease both; }
+        .item:nth-child(2) { animation: fadeUp 0.5s 0.45s ease both; }
+        .item:nth-child(3) { animation: fadeUp 0.5s 0.55s ease both; }
+        .item:nth-child(4) { animation: fadeUp 0.5s 0.65s ease both; }
+        .item:nth-child(5) { animation: fadeUp 0.5s 0.75s ease both; }
+
+        /* ── FOOTER ── */
+        .gate-protocol {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding-top: 28px;
+            border-top: 1px solid var(--border);
+            animation: fadeDown 0.7s 0.5s ease both;
+        }
+
+        .meta-block span {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            font-weight: 300;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+        }
+
+        .protocol-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--void);
+            background: var(--gold);
+            padding: 13px 24px;
+            position: relative;
+            overflow: hidden;
+            transition: color 0.3s ease;
+        }
+
+        .protocol-link::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gold-hot);
+            transform: translateX(-101%);
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .protocol-link:hover::before { transform: translateX(0); }
+
+        .protocol-link::after {
+            content: '→';
+            position: relative;
+            z-index: 1;
+            font-size: 14px;
+            font-weight: 400;
+            transition: transform 0.3s ease;
+        }
+
+        .protocol-link span { position: relative; z-index: 1; }
+        .protocol-link:hover::after { transform: translateX(4px); }
+
+        /* ── KEYFRAMES ── */
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-12px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 540px) {
+            .gate-protocol  { flex-direction: column; align-items: flex-start; }
+            .protocol-link  { width: 100%; justify-content: space-between; }
+            .inventory      { grid-template-columns: 1fr; }
+        }
+
+        /* ── SELECTION ── */
+        ::selection {
+            background: rgba(200, 150, 60, 0.25);
+            color: var(--gold-hot);
+        }
+
+        /* ── SCROLLBAR ── */
+        ::-webkit-scrollbar       { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--void); }
+        ::-webkit-scrollbar-thumb { background: var(--text-dim); border-radius: 2px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+    </style>
 </head>
 <body>
-    <div class="noise"></div>
-    <main class="portal">
-        <header class="verification-header">
-            <div class="registry">Nairobi, Republic of Kenya // Companies Act, 2015</div>
-            <div class="status">Role: Founder & Chief Architect // Verified</div>
-        </header>
+    <div class="noise-floor"></div>
+    <main class="foundry">
 
-        <section class="identity-block">
-            <span class="rank">Constitutional Authority</span>
+        <section class="master-identity">
+            <p class="designation">Builder. Innovator. Founder. Designer. Architect of systems that define the edge of the possible.</p>
             <h1>Stanley Masiga Mbinda</h1>
-            <p class="institution">Æternum Technologies & Innovation Ltd</p>
+            <div class="spec-line">
+                <span class="role">Chief Architect</span>
+                <span class="divider">/</span>
+                <span class="founding">Founder of Æternum</span>
+            </div>
         </section>
 
-        <section class="preamble-manifesto">
-            <h2>The Preamble</h2>
+        <section class="architectural-logic">
+            <div class="logic-header">THE MANIFEST</div>
             <p>
-                Æternum is a Sovereign Architectural Foundry—a permanent institution established to receive documented 
-                architectural logic and translate it into production-grade, uncorrelated, sovereign deep-tech systems. 
-                It exists to close the gap of Interpretive Intelligence: the gap between what information systems can 
-                process and what they can understand.
+                I do not operate within existing frameworks. <strong>I forge new ones.</strong>
+                My work focuses on the creation of <strong>complex, sovereign infrastructure</strong>
+                and production-grade tech derived from raw innovation and previously untested ideas.
+                I build for <strong>permanence</strong>. I design for <strong>absolute sovereignty</strong>.
+                I architect systems that ensure the future is <strong>forged</strong> — not inherited.
             </p>
         </section>
 
-        <div class="architecture-registry">
-            <div class="arch-card">
+        <div class="inventory">
+            <div class="item">
                 <label>Architecture I</label>
-                <p>Macro-structural intelligence system for directional forecasting under irreducible temporal uncertainty.</p>
+                <p class="item-title">Project Parenklisis <span class="aka">aka Clinamen</span></p>
+                <p class="item-domain">Macro-structural intelligence system for directional forecasting under irreducible temporal uncertainty.</p>
+                <p class="item-objective">To map the "swerve" — the 2% of unpredictable deviation — in global systems to provide long-horizon capital allocation certainty.</p>
             </div>
-            <div class="arch-card">
+            <div class="item">
                 <label>Architecture II</label>
-                <p>Decentralised protocol for incorruptible token legitimacy verification without central authority.</p>
+                <p class="item-title">The Aetherion Protocol</p>
+                <p class="item-domain">Decentralised protocol for incorruptible token legitimacy verification without central authority.</p>
+                <p class="item-objective">A fully immutable, decentralized protocol using a four-dimensional utility framework to distinguish legitimate assets from fraudulent schemes in real-time.</p>
             </div>
-            <div class="arch-card">
+            <div class="item">
                 <label>Architecture III</label>
-                <p>Holistic code intelligence platform that understands software as structure, behaviour, and intent.</p>
+                <p class="item-title">HCIP <span class="aka">Holistic Code Intelligence Platform</span></p>
+                <p class="item-domain">Holistic code intelligence platform that understands software as structure, behaviour, and intent.</p>
+                <p class="item-layers">The Skeleton · The Nervous System · The Soul</p>
+                <p class="item-objective">To move beyond forensic code tools and treat codebases as living artifacts — bridging the gap between what code is and why it exists.</p>
             </div>
-            <div class="arch-card">
+            <div class="item">
                 <label>Architecture IV</label>
-                <p>Autonomous attention infrastructure capable of reaching every connected human without gatekeeper permission.</p>
+                <p class="item-title">Project Noema</p>
+                <p class="item-domain">Autonomous attention infrastructure capable of reaching every connected human without gatekeeper permission.</p>
+                <p class="item-objective">A fully autonomous, decentralized Web4 marketing engine — bypassing gatekeepers to deliver messages directly to every mind on Earth.</p>
             </div>
-            <div class="arch-card">
+            <div class="item">
                 <label>Architecture V</label>
-                <p>Anticipatory intelligence architecture that synthesises legally accessible data into permanent, compounding foresight.</p>
+                <p class="item-title">Project Voraci</p>
+                <p class="item-domain">Anticipatory intelligence architecture that synthesises legally accessible data into permanent, compounding foresight.</p>
+                <p class="item-layers">Volumetric Omnidomain Recognition, Anticipation &amp; Cognitive Intelligence</p>
+                <p class="item-objective">To build a system that knows more than any intelligence agency — gathering all legally available data and refining it through machine intelligence until the future becomes visible.</p>
             </div>
         </div>
 
-        <footer class="vault-protocol">
-            <div class="metadata">
-                <span>Jurisdiction: Kenya</span>
-                <span>Founding Date: 2026</span>
-                <span>Infrastructure: Sovereign</span>
+        <footer class="gate-protocol">
+            <div class="meta-block">
+                <span>Status: Operational / In Perpetuity</span>
             </div>
-            <a href="mailto:info@stanleymbinda.com" class="action-btn">Initialize Secure Inquiry &rarr;</a>
+            <a href="mailto:contact@stanleymbinda.com" class="protocol-link">
+                <span>INITIALIZE SECURE CONNECTION</span>
+            </a>
         </footer>
+
     </main>
 </body>
 </html>
