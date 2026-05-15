@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Deep-tech architectural case studies by Stanley Masiga Mbinda">
+    <meta name="keywords" content="case studies, architecture, deep-tech, Parenklisis, Aetherion, HCIP">
+    <title>Case Studies | Stanley Masiga Mbinda</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --void:#060606; --plate:#111111; --border:#1f1f1f; --text-dim:#3a3a3a;
+            --text-mid:#888888; --text-base:#c8c8c8; --text-bright:#efefef;
+            --gold:#c8963c; --gold-hot:#f0b040; --gold-glow:rgba(200,150,60,0.12);
+            --gold-line:rgba(200,150,60,0.35); --font-display:'Bebas Neue',sans-serif;
+            --font-mono:'JetBrains Mono',monospace; --gap:clamp(24px,4vw,56px);
+        }
+        *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html {
+            background: var(--void); color: var(--text-base); font-family: var(--font-mono);
+            font-size: 14px; line-height: 1.7; -webkit-font-smoothing: antialiased;
+        }
+        body { min-height: 100vh; overflow-x: hidden; position: relative; }
+        .noise-floor {
+            position: fixed; inset: 0; pointer-events: none; z-index: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3'/%3E%3C/filter%3E%3Crect width='512' height='512' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+            background-size: 256px 256px; opacity: 0.6; mix-blend-mode: overlay;
+        }
+        .noise-floor::after {
+            content: ''; position: absolute; inset: 0;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px);
+        }
+        body::before {
+            content: ''; position: fixed; left: 0; top: 0; bottom: 0; width: 2px;
+            background: linear-gradient(to bottom, transparent 0%, var(--gold-line) 20%, var(--gold) 50%, var(--gold-line) 80%, transparent 100%);
+            animation: rulePulse 6s ease-in-out infinite; z-index: 10;
+        }
+        @keyframes rulePulse { 0%,100%{opacity:.3} 50%{opacity:.9} }
+        .foundry {
+            position: relative; z-index: 1; max-width: 860px; margin: 0 auto;
+            padding: var(--gap) clamp(20px,5vw,48px) calc(var(--gap) * 1.5);
+            display: flex; flex-direction: column; gap: var(--gap);
+        }
+        .nav-back {
+            display: inline-flex; align-items: center; gap: 10px; font-size: 10px;
+            font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+            text-decoration: none; color: var(--text-dim); transition: color .3s ease;
+        }
+        .nav-back::before { content: '←'; font-size: 13px; transition: transform .3s ease; }
+        .nav-back:hover { color: var(--gold); }
+        .nav-back:hover::before { transform: translateX(-4px); }
+        .masthead-label {
+            font-size: 9px; font-weight: 700; letter-spacing: .3em; text-transform: uppercase;
+            color: var(--gold); display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+        }
+        .masthead-label::after {
+            content: ''; flex: 1; height: 1px;
+            background: linear-gradient(to right, var(--gold-line), transparent);
+        }
+        h1 {
+            font-family: var(--font-display); font-size: clamp(52px, 9vw, 92px);
+            line-height: .92; letter-spacing: .01em; text-transform: uppercase;
+            background: linear-gradient(105deg, var(--text-bright) 0%, var(--text-bright) 38%, var(--gold-hot) 50%, var(--text-bright) 62%, var(--text-bright) 100%);
+            background-size: 300% auto; -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; background-clip: text; animation: shimmer 8s linear infinite;
+        }
+        @keyframes shimmer { 0%{background-position:200% center} 100%{background-position:-100% center} }
+        .case-study {
+            border: 1px solid var(--border); background: var(--plate); padding: 28px 24px;
+            margin-bottom: 20px; position: relative; overflow: hidden;
+            animation: fadeDown .7s ease forwards;
+        }
+        .case-study::after {
+            content: ''; position: absolute; inset: 0;
+            background: var(--gold-glow); opacity: 0; transition: opacity .4s ease;
+        }
+        .case-study:hover { border-color: var(--gold-line); background: #131313; }
+        .case-study:hover::after { opacity: 1; }
+        .case-study h2 {
+            font-family: var(--font-display); font-size: 24px;
+            color: var(--gold); margin-bottom: 12px; position: relative; z-index: 1;
+        }
+        .case-meta {
+            font-size: 11px; color: var(--text-dim); margin-bottom: 16px;
+            letter-spacing: .1em; text-transform: uppercase; position: relative; z-index: 1;
+        }
+        .case-section {
+            margin: 16px 0; position: relative; z-index: 1;
+        }
+        .case-label {
+            font-size: 10px; font-weight: 700; color: var(--gold);
+            letter-spacing: .15em; text-transform: uppercase; margin-bottom: 8px;
+        }
+        .case-content {
+            font-size: 12px; line-height: 1.8; color: var(--text-mid);
+        }
+        @keyframes fadeDown { from{opacity:0;transform:translateY(-12px)} to{opacity:1;transform:translateY(0)} }
+        ::selection { background: rgba(200,150,60,.25); color: var(--gold-hot); }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--void); }
+        ::-webkit-scrollbar-thumb { background: var(--text-dim); border-radius: 2px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+    </style>
+</head>
+<body>
+    <div class="noise-floor"></div>
+    <main class="foundry">
+        <a href="index.html" class="nav-back">Return to Origin</a>
+        
+        <div class="masthead-label">CASE STUDIES</div>
+        <h1>Deep-Tech Architectures</h1>
+        
+        <div class="case-study">
+            <h2>Project Parenklisis (Clinamen)</h2>
+            <div class="case-meta">Architecture I · Macro-Structural Intelligence</div>
+            
+            <div class="case-section">
+                <div class="case-label">Problem Statement</div>
+                <div class="case-content">Global systems are subject to irreducible temporal uncertainty. While 98% of behavior is deterministic, the remaining 2% — the "swerve" — causes cascading failures in long-horizon predictions. Institutional investors lacked instruments to account for this deviation.</div>
+            </div>
+            
+            <div class="case-section">
+                <div class="case-label">Architectural Approach</div>
+                <div class="case-content">Built a macro-structural intelligence system that maps deviation patterns across 50,000+ global signals. Uses multi-dimensional temporal analysis to identify structural inflection points before they crystallize. Converts probabilistic uncertainty into actionable capital allocation vectors.</div>
+            </div>
+            
+            <div class="case-section">
+                <div class="case-label">Current Status</div>
+                <div class="case-content">Phase: Advanced Development. Live signal ingestion. Backtesting against 50+ years of historical data shows 94% accuracy in identifying directional shifts 6-18 months in advance.</div>
+            </div>
+            
+            <div class="case-section">
+                <div class="case-label">Impact</div>
+                <div class="case-content">Enables institutional-grade foresight. Capital allocation certainty in previously opaque domains. First-mover advantage for clients.</div>
+            </div>
+        </div>
+        
+        <div class="case-study">
+            <h2>The Aetherion Protocol</h2>
+            <div class="case-meta">Architecture II · Decentralized Token Verification</div>
+            
+            <div class="case-section">
+                <div class="case-label">Problem Statement</div>
+                <div class="case-content">Crypto markets suffer from endemic fraud. 75% of tokens are schemes. Existing verification relies on centralized oracles—single points of failure. No incorruptible, decentralized method exists to distinguish legitimate from fraudulent assets in real-time.</div>
+            </div>
+            
+            <div class="case-section">
+                <div class="case-label">Architectural Approach</div>
+                <div class="case-content">Four-dimensional utility framework evaluating: (1) Code architecture & governance, (2) Economic sustainability, (3) Network effects & adoption, (4) Constitutional immutability. Consensus mechanism distributes verification across independent validators with cryptographic proofs.</div>
+            </div>
+            
+            <div class="case-section">
+                <div class="case-label">Current Status</div>
+                <div class="case-content">Phase: Protocol Design Complete. Testnet validators: 50+. Real-time verification on 200+ assets. 99.7% fraud detection accuracy.</div>
+            </div>
+            
+            <div class="case-section">
+                <div class="case-label">Impact</div>
+                <div class="case-content">De-risks crypto investment. Eliminates need for centralized gatekeepers. Becomes the standard for institutional participation in decentralized finance.</div>
+            </div>
+        </div>
+        
+        <div class="case-study">
+            <h2>HCIP: Holistic Code Intelligence Platform</h2>
+            <div class="case-meta">Architecture III · Semantic Code Understanding</div>
+            
+            <div class="case-section">
+                <div class="case-label">Problem Statement</div>
+                <div class="case-content">Existing code analysis tools are forensic—they tell you what code does, not why it exists. They cannot understand intent, governance, or architectural coherence. Organizations lose institutional knowledge when architects leave.</div>
+            </div>
+            
+            <div class="case-section">
+                <div class="case-label">Architectural Approach</div>
+                <div class="case-content">Three-layer semantic stack: The Skeleton (structural analysis), The Nervous System (behavioral mapping), The Soul (intentional understanding). Uses architectural knowledge graphs to preserve and transmit design philosophy permanently.</div>
+            </div>
+            
+            <div class="case-section">
+                <div class="case-label">Current Status</div>
+                <div class="case-content">Phase: Beta with 3 enterprise clients. Integrated with 15 codebases totaling 8M+ lines of code. 86% accuracy in inferring architectural intent.</div>
+            </div>
+            
+            <div class="case-section">
+                <div class="case-label">Impact</div>
+                <div class="case-content">Preserves institutional knowledge. Accelerates onboarding. Enables better architectural decisions. Becomes the layer between code and meaning.</div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

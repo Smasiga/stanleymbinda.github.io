@@ -1,0 +1,4 @@
+Contact: mailto:contact@stanleymbinda.com
+Expires: 2027-05-15T00:00:00Z
+Preferred-Languages: en
+Canonical: https://stanleymbinda.com/.well-known/security.txt
