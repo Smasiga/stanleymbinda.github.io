@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — The Way Forward Doesn't Exist Here</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --void:        #060606;
+            --plate:       #111111;
+            --border:      #1f1f1f;
+            --text-dim:    #3a3a3a;
+            --text-mid:    #888888;
+            --text-base:   #c8c8c8;
+            --text-bright: #efefef;
+            --gold:        #c8963c;
+            --gold-hot:    #f0b040;
+            --gold-glow:   rgba(200,150,60,0.12);
+            --font-display:'Bebas Neue', sans-serif;
+            --font-mono:   'JetBrains Mono', monospace;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html {
+            background: var(--void);
+            color: var(--text-base);
+            font-family: var(--font-mono);
+            font-size: 14px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+        .error-container {
+            max-width: 600px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+        .error-code {
+            font-family: var(--font-display);
+            font-size: 144px;
+            line-height: 1;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            animation: pulse 3s ease-in-out infinite;
+        }
+        @keyframes pulse { 0%, 100% { opacity: .6 } 50% { opacity: 1 } }
+        .error-title {
+            font-family: var(--font-display);
+            font-size: 48px;
+            color: var(--text-bright);
+            text-transform: uppercase;
+            letter-spacing: .02em;
+            line-height: 1.2;
+        }
+        .error-message {
+            font-size: 14px;
+            color: var(--text-mid);
+            line-height: 1.9;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+        .error-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 13px 28px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            text-decoration: none;
+            background: var(--gold);
+            color: var(--void);
+            position: relative;
+            overflow: hidden;
+            transition: color .3s ease;
+        }
+        .action-link::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gold-hot);
+            transform: translateX(-101%);
+            transition: transform .35s cubic-bezier(.22,1,.36,1);
+        }
+        .action-link:hover::before { transform: translateX(0); }
+        .action-link span { position: relative; z-index: 1; }
+        .action-secondary {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-code">404</div>
+        <div>
+            <h1 class="error-title">The Way Forward Doesn't Exist Here</h1>
+            <p class="error-message">
+                You've ventured into uncharted territory. This path leads nowhere.
+                The architecture you're looking for either never existed, or has been moved to another location.
+            </p>
+        </div>
+        <div class="error-actions">
+            <a href="/" class="action-link"><span>Return to Origin</span></a>
+            <a href="/bio.html" class="action-secondary action-link"><span>Biography</span></a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+# Allow all search engines
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://stanleymbinda.com/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 1
+
+# Specify search engines can access everything
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
