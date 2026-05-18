@@ -645,33 +645,81 @@
             reader.readAsDataURL(file);
         }
 
-        function submitClearance() {
+        const BACKEND_API = 'https://viewer.aeternum.internal/api';
+
+        function getAccessItems() {
+            const cv = document.getElementById('chk-cv').checked;
+            const gh = document.getElementById('chk-gh').checked;
+            const both = document.getElementById('chk-both').checked;
+            const cs = document.getElementById('chk-cs').checked;
+            const parts = [];
+            if (cv || both) parts.push('CV');
+            if (gh || both) parts.push('GitHub');
+            if (cs) parts.push('Case Studies');
+            return parts;
+        }
+
+        async function submitClearance() {
             const name    = document.getElementById('c-name').value.trim();
             const email   = document.getElementById('c-email').value.trim();
             const org     = document.getElementById('c-org').value.trim();
             const phone   = document.getElementById('c-phone').value.trim();
             const intent  = document.getElementById('c-intent').value.trim();
-            const cv      = document.getElementById('chk-cv').checked;
-            const gh      = document.getElementById('chk-gh').checked;
-            const both    = document.getElementById('chk-both').checked;
-            const cs      = document.getElementById('chk-cs').checked;
-            if (!name || !email || !intent) {
-                document.getElementById('clearance-confirm').style.display = 'block';
-                document.querySelector('#clearance-confirm .clearance-confirm-text strong').textContent = 'Please fill in all required fields.';
+            const access  = getAccessItems();
+            const confirmEl = document.getElementById('clearance-confirm');
+            const confirmText = document.querySelector('#clearance-confirm .clearance-confirm-text');
+
+            if (!name || !email || !intent || access.length === 0) {
+                confirmEl.style.display = 'flex';
+                confirmText.innerHTML = '<strong style="color:var(--gold)">Please fill in all required fields and select at least one access item.</strong>';
                 return;
             }
-            const parts = [];
-            if (cv) parts.push('CV');
-            if (gh) parts.push('GitHub');
-            if (both) parts.push('CV + GitHub');
-            if (cs) parts.push('Case Studies');
-            const access  = parts.join(' + ') || 'Unspecified';
+
+            confirmEl.style.display = 'flex';
+            confirmText.innerHTML = '<strong>⏳ Transmitting request...</strong>';
+
+            try {
+                const res = await fetch(BACKEND_API + '/request', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        institution: org || 'Not specified',
+                        purpose: intent,
+                        id_number: 'WEB-' + Date.now().toString(36).toUpperCase(),
+                        phone: phone || 'Not specified',
+                        viewer_ip: '0.0.0.0',
+                    }),
+                });
+                const data = await res.json();
+                if (res.ok && data.status === 'approved') {
+                    const ref = data.request_id;
+                    confirmText.innerHTML = '<strong>✓ Request approved.</strong><br>' +
+                        'Session URL: <a href="' + data.viewer_url + '" style="color:var(--gold)">' + data.viewer_url + '</a><br>' +
+                        'PIN: <strong>' + data.pin + '</strong><br>' +
+                        '<span style="font-size:10px;opacity:0.7">Reference: ' + ref + '</span>';
+                } else if (data.request_id) {
+                    confirmText.innerHTML = '<strong>✓ Request received.</strong><br>' +
+                        'Reference: <span id="request-ref-id">' + data.request_id + '</span><br>' +
+                        '<span style="font-size:10px;opacity:0.7">You will be contacted directly if clearance is granted.</span>';
+                } else {
+                    confirmText.innerHTML = '<strong>⚠ Request submitted via email.</strong><br>' +
+                        '<span style="font-size:10px;opacity:0.7">The automated system could not process your request. You will be contacted directly.</span>';
+                    fallbackMailto(name, email, org, phone, intent, access);
+                }
+            } catch (e) {
+                confirmText.innerHTML = '<strong>⚠ System unreachable.</strong><br>' +
+                    '<span style="font-size:10px;opacity:0.7">Redirecting to email...</span>';
+                fallbackMailto(name, email, org, phone, intent, access);
+            }
+        }
+
+        function fallbackMailto(name, email, org, phone, intent, access) {
             const ref = Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substring(2, 6).toUpperCase();
-            const body = `Clearance Request%0A%0AReference: ${ref}%0AName: ${encodeURIComponent(name)}%0AOrg: ${encodeURIComponent(org || 'N/A')}%0APhone: ${encodeURIComponent(phone || 'N/A')}%0AEmail: ${encodeURIComponent(email)}%0AAccess: ${access}%0A%0AIntent:%0A${encodeURIComponent(intent)}`;
-            window.location.href = `mailto:contact@stanleymbinda.com?subject=Clearance Request [${ref}] — ${encodeURIComponent(name)}&body=${body}`;
+            const body = 'Clearance Request%0A%0AReference: ' + ref + '%0AName: ' + encodeURIComponent(name) + '%0AOrg: ' + encodeURIComponent(org || 'N/A') + '%0APhone: ' + encodeURIComponent(phone || 'N/A') + '%0AEmail: ' + encodeURIComponent(email) + '%0AAccess: ' + encodeURIComponent(access.join(' + ')) + '%0A%0AIntent:%0A' + encodeURIComponent(intent);
+            window.location.href = 'mailto:contact@stanleymbinda.com?subject=Clearance Request [' + ref + '] — ' + encodeURIComponent(name) + '&body=' + body;
             document.getElementById('request-ref-id').textContent = ref;
-            document.getElementById('clearance-confirm').style.display = 'flex';
-            document.querySelector('#clearance-confirm .clearance-confirm-text strong').textContent = 'Request transmitted.';
         }
 
         function checkClearanceStatus() {
