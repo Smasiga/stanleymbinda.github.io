@@ -106,13 +106,15 @@ This site is hosted on GitHub Pages with a custom domain.
 
 ## Request Access
 
-**CV & GitHub Repository Access** are by application only.
+**CV, GitHub Repository & Case Study Access** are by application only.
 
 To request clearance:
 1. Visit [stanleymbinda.com](https://stanleymbinda.com)
-2. Complete the "RESTRICTED ACCESS" form
-3. Specify your identity, affiliation, and purpose
-4. Requests reviewed personally
+2. Complete the "RESTRICTED ACCESS" form with your name, email, affiliation, phone, and purpose
+3. Select the specific materials you need access to (CV, GitHub Projects, Case Studies)
+4. You'll receive a reference ID to track your request
+5. Requests are reviewed personally — allow 1-3 business days for a response
+6. Check your request status using your reference ID or email on the main site
 
 ---
 
