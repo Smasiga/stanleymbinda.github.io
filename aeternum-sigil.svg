@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%" fill="none">
+  <title>Aeternum Sigil</title>
+  <defs>
+    <linearGradient id="gLine" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#FEFCF0" stop-opacity=".96"/>
+      <stop offset="50%"  stop-color="#F2EDD8" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#E6DEC4" stop-opacity=".92"/>
+    </linearGradient>
+    <radialGradient id="gGold" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#FFDA60"/>
+      <stop offset="55%"  stop-color="#C8902E"/>
+      <stop offset="100%" stop-color="#8A5E12"/>
+    </radialGradient>
+    <radialGradient id="gGoldLine" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"  stop-color="#EEB840"/>
+      <stop offset="100%" stop-color="#B07A20"/>
+    </radialGradient>
+    <linearGradient id="gGoldL" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"  stop-color="#F0C040"/>
+      <stop offset="100%" stop-color="#C07820"/>
+    </linearGradient>
+    <filter id="fHalo" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="14" result="b"/>
+      <feColorMatrix in="b" type="matrix" values="1.4 .3  0   0  .08 .8  .7  0   0  .03 .1  0   .3  0  0  0   0   0   .18 0" result="c"/>
+      <feMerge><feMergeNode in="c"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="fGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="b"/>
+      <feColorMatrix in="b" type="matrix" values="1.5 .4  0  0  .04 1.1 .8  0  0  .01 .5  0   .4 0  0  0   0   0  .6 0" result="c"/>
+      <feMerge><feMergeNode in="c"/><feMergeNode in="c"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="fCrisp" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="0.9" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="fNode" x="-300%" y="-300%" width="700%" height="700%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="b"/>
+      <feColorMatrix in="b" type="matrix" values="2.2 .8  0  0  .15 1.0 .9  0  0  .05 .0  0  .1  0  0  0   0   0  1.1 0" result="c"/>
+      <feMerge><feMergeNode in="c"/><feMergeNode in="c"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="fCenter" x="-400%" y="-400%" width="900%" height="900%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="b"/>
+      <feColorMatrix in="b" type="matrix" values="1.4 .4  .2 0  .1 1.2 1.0 .3 0  .08 0.8 .6  .8 0  .04 0   0   0  .9 0" result="c"/>
+      <feMerge><feMergeNode in="c"/><feMergeNode in="c"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="clip"><circle cx="200" cy="200" r="158"/></clipPath>
+  </defs>
+
+  <!-- Orbiting rings -->
+  <circle cx="200" cy="200" r="168" fill="none" stroke="rgba(200,144,46,.10)" stroke-width=".5" stroke-dasharray="2.5 20"/>
+  <circle cx="200" cy="200" r="175" fill="none" stroke="rgba(242,237,216,.05)" stroke-width=".5" stroke-dasharray="1 12"/>
+  <circle cx="200" cy="200" r="162" fill="none" stroke="rgba(200,144,46,.07)" stroke-width=".4" stroke-dasharray="1.5 28"/>
+
+  <!-- Outer ring -->
+  <circle cx="200" cy="200" r="154" fill="none" stroke="#F2EDD8" stroke-width="5" filter="url(#fHalo)" opacity=".2"/>
+  <circle cx="200" cy="200" r="154" fill="none" stroke="url(#gLine)" stroke-width="1.7" filter="url(#fCrisp)"/>
+
+  <!-- Inner groove ring -->
+  <circle cx="200" cy="200" r="124" fill="none" stroke="rgba(242,237,216,.28)" stroke-width=".7" filter="url(#fCrisp)"/>
+
+  <!-- Petal halos -->
+  <g filter="url(#fHalo)" opacity=".14" clip-path="url(#clip)">
+    <path d="M200 80 A88 88 0 0 1 200 200 A88 88 0 0 1 200 80 Z" fill="none" stroke="#F2EDD8" stroke-width="5"/>
+    <path d="M200 320 A88 88 0 0 1 200 200 A88 88 0 0 1 200 320 Z" fill="none" stroke="#F2EDD8" stroke-width="5"/>
+    <path d="M320 200 A88 88 0 0 1 200 200 A88 88 0 0 1 320 200 Z" fill="none" stroke="#F2EDD8" stroke-width="5"/>
+    <path d="M80 200 A88 88 0 0 1 200 200 A88 88 0 0 1 80 200 Z" fill="none" stroke="#F2EDD8" stroke-width="5"/>
+  </g>
+
+  <!-- Petal main lines -->
+  <g filter="url(#fGlow)">
+    <path d="M200 80 A88 88 0 0 1 200 200 A88 88 0 0 1 200 80 Z" fill="rgba(0,0,0,.88)" stroke="url(#gLine)" stroke-width="1.5"/>
+    <path d="M200 320 A88 88 0 0 1 200 200 A88 88 0 0 1 200 320 Z" fill="rgba(0,0,0,.88)" stroke="url(#gLine)" stroke-width="1.5"/>
+    <path d="M320 200 A88 88 0 0 1 200 200 A88 88 0 0 1 320 200 Z" fill="rgba(0,0,0,.88)" stroke="url(#gLine)" stroke-width="1.5"/>
+    <path d="M80 200 A88 88 0 0 1 200 200 A88 88 0 0 1 80 200 Z" fill="rgba(0,0,0,.88)" stroke="url(#gLine)" stroke-width="1.5"/>
+  </g>
+
+  <!-- Diagonal vesica lenses -->
+  <g filter="url(#fGlow)">
+    <ellipse cx="240" cy="160" rx="11" ry="27" transform="rotate(-45 240 160)" fill="none" stroke="url(#gGoldL)" stroke-width="1.15"/>
+    <ellipse cx="240" cy="240" rx="11" ry="27" transform="rotate(45 240 240)" fill="none" stroke="url(#gGoldL)" stroke-width="1.15"/>
+    <ellipse cx="160" cy="240" rx="11" ry="27" transform="rotate(-45 160 240)" fill="none" stroke="url(#gGoldL)" stroke-width="1.15"/>
+    <ellipse cx="160" cy="160" rx="11" ry="27" transform="rotate(45 160 160)" fill="none" stroke="url(#gGoldL)" stroke-width="1.15"/>
+  </g>
+
+  <!-- Inner curved star -->
+  <g filter="url(#fGlow)">
+    <path d="M200 140 Q216 184 260 200 Q216 216 200 260 Q184 216 140 200 Q184 184 200 140 Z" fill="none" stroke="url(#gLine)" stroke-width="1.05"/>
+    <path d="M200 147 Q213 181 253 200 Q213 219 200 253 Q187 219 147 200 Q187 181 200 147 Z" fill="none" stroke="rgba(242,237,216,.18)" stroke-width=".5"/>
+  </g>
+
+  <!-- Center circles -->
+  <circle cx="200" cy="200" r="22" fill="none" stroke="#F2EDD8" stroke-width="4" filter="url(#fHalo)" opacity=".22"/>
+  <circle cx="200" cy="200" r="22" fill="none" stroke="url(#gLine)" stroke-width="1.35" filter="url(#fCrisp)"/>
+  <circle cx="200" cy="200" r="12" fill="none" stroke="rgba(242,237,216,.22)" stroke-width=".55"/>
+
+  <!-- Tick marks -->
+  <g filter="url(#fCrisp)" stroke="rgba(200,144,46,.45)" stroke-width="1">
+    <line x1="200" y1="40" x2="200" y2="57"/>
+    <line x1="200" y1="343" x2="200" y2="360"/>
+    <line x1="40" y1="200" x2="57" y2="200"/>
+    <line x1="343" y1="200" x2="360" y2="200"/>
+  </g>
+  <g stroke="rgba(200,144,46,.22)" stroke-width=".7">
+    <line x1="195" y1="47" x2="205" y2="47"/>
+    <line x1="195" y1="353" x2="205" y2="353"/>
+    <line x1="47" y1="195" x2="47" y2="205"/>
+    <line x1="353" y1="195" x2="353" y2="205"/>
+  </g>
+  <g stroke="rgba(200,144,46,.28)" stroke-width=".8">
+    <line x1="310" y1="90" x2="302" y2="98"/>
+    <line x1="310" y1="310" x2="302" y2="302"/>
+    <line x1="90" y1="310" x2="98" y2="302"/>
+    <line x1="90" y1="90" x2="98" y2="98"/>
+  </g>
+
+  <!-- Nodes -->
+  <circle cx="200" cy="80" r="5" fill="url(#gGold)" filter="url(#fNode)"/>
+  <circle cx="320" cy="200" r="5" fill="url(#gGold)" filter="url(#fNode)"/>
+  <circle cx="200" cy="320" r="5" fill="url(#gGold)" filter="url(#fNode)"/>
+  <circle cx="80" cy="200" r="5" fill="url(#gGold)" filter="url(#fNode)"/>
+  <circle cx="240" cy="160" r="3.2" fill="url(#gGold)" filter="url(#fNode)"/>
+  <circle cx="240" cy="240" r="3.2" fill="url(#gGold)" filter="url(#fNode)"/>
+  <circle cx="160" cy="240" r="3.2" fill="url(#gGold)" filter="url(#fNode)"/>
+  <circle cx="160" cy="160" r="3.2" fill="url(#gGold)" filter="url(#fNode)"/>
+  <circle cx="200" cy="140" r="2.8" fill="#FEFCF0" filter="url(#fNode)"/>
+  <circle cx="260" cy="200" r="2.8" fill="#FEFCF0" filter="url(#fNode)"/>
+  <circle cx="200" cy="260" r="2.8" fill="#FEFCF0" filter="url(#fNode)"/>
+  <circle cx="140" cy="200" r="2.8" fill="#FEFCF0" filter="url(#fNode)"/>
+  <circle cx="200" cy="200" r="7" fill="#FFFFFF" filter="url(#fCenter)"/>
+  <circle cx="200" cy="200" r="3.5" fill="#FFFFFF"/>
+</svg>
