@@ -422,9 +422,29 @@
         ::-webkit-scrollbar-track { background:var(--void); }
         ::-webkit-scrollbar-thumb { background:var(--text-dim); border-radius:2px; }
         ::-webkit-scrollbar-thumb:hover { background:var(--gold); }
+
+        /* PRELOADER */
+        .preloader {
+            position:fixed; inset:0; z-index:9999;
+            background:#060606; display:flex; align-items:center; justify-content:center;
+            opacity:1; transition:opacity .6s ease; pointer-events:all;
+        }
+        .preloader.hidden { opacity:0; pointer-events:none; }
+        .preloader-sigil { animation: preloadPulse 1.8s ease-in-out infinite; }
+        @keyframes preloadPulse { 0%,100%{opacity:.4;transform:scale(1)} 50%{opacity:1;transform:scale(1.06)} }
     </style>
 </head>
 <body>
+    <div class="preloader" id="preloader">
+        <svg class="preloader-sigil" viewBox="0 0 32 32" width="72" height="72" fill="none">
+            <circle cx="16" cy="16" r="12.3" stroke="#c8963c" stroke-width="0.6"/>
+            <circle cx="16" cy="16" r="9.9" stroke="#c8963c" stroke-width="0.4"/>
+            <path d="M16 6.4A9.6 9.6 0 0 1 16 16A9.6 9.6 0 0 1 16 25.6" stroke="#c8963c" stroke-width="0.7"/>
+            <path d="M6.4 16A9.6 9.6 0 0 1 16 6.4" stroke="#c8963c" stroke-width="0.5"/>
+            <circle cx="16" cy="16" r="2.2" stroke="#c8963c" stroke-width="0.5"/>
+            <circle cx="16" cy="16" r="0.8" fill="#c8963c" stroke="none"/>
+        </svg>
+    </div>
     <div class="noise-floor"></div>
     <main class="foundry">
 
@@ -442,12 +462,12 @@
                 </div>
                 <div class="brand-sigil" aria-label="Æternum sigil">
                     <svg viewBox="0 0 32 32" width="48" height="48" fill="none">
-                        <circle cx="16" cy="16" r="12.3" stroke="%23c8963c" stroke-width="0.6"/>
-                        <circle cx="16" cy="16" r="9.9" stroke="%23c8963c" stroke-width="0.4"/>
-                        <path d="M16 6.4A9.6 9.6 0 0 1 16 16A9.6 9.6 0 0 1 16 25.6" stroke="%23c8963c" stroke-width="0.7"/>
-                        <path d="M6.4 16A9.6 9.6 0 0 1 16 6.4" stroke="%23c8963c" stroke-width="0.5"/>
-                        <circle cx="16" cy="16" r="2.2" stroke="%23c8963c" stroke-width="0.5"/>
-                        <circle cx="16" cy="16" r="0.8" fill="%23c8963c" stroke="none"/>
+                        <circle cx="16" cy="16" r="12.3" stroke="#c8963c" stroke-width="0.6"/>
+                        <circle cx="16" cy="16" r="9.9" stroke="#c8963c" stroke-width="0.4"/>
+                        <path d="M16 6.4A9.6 9.6 0 0 1 16 16A9.6 9.6 0 0 1 16 25.6" stroke="#c8963c" stroke-width="0.7"/>
+                        <path d="M6.4 16A9.6 9.6 0 0 1 16 6.4" stroke="#c8963c" stroke-width="0.5"/>
+                        <circle cx="16" cy="16" r="2.2" stroke="#c8963c" stroke-width="0.5"/>
+                        <circle cx="16" cy="16" r="0.8" fill="#c8963c" stroke="none"/>
                     </svg>
                 </div>
             </div>
@@ -849,6 +869,9 @@
                 el.innerHTML = '<span style="color:var(--text-mid)">No record found for "<strong>' + ref + '</strong>". If you submitted a request, please allow 1-3 business days for review. Contact <a href="mailto:contact@stanleymbinda.com?subject=Status Inquiry: ' + encodeURIComponent(ref) + '" style="color:var(--gold)">contact@stanleymbinda.com</a> for direct follow-up.</span>';
             }, 1500);
         }
+        window.addEventListener('load', function() {
+            document.getElementById('preloader').classList.add('hidden');
+        });
     </script>
 </body>
 </html>
