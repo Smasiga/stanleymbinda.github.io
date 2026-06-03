@@ -15,7 +15,7 @@
     <meta name="twitter:description" content="Building permanent systems. Closing the interpretive intelligence gap.">
     <title>Stanley Masiga Mbinda | Chief Architect</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Ccircle cx='200' cy='200' r='154' fill='none' stroke='%23F2EDD8' stroke-width='6' opacity='.9'/%3E%3Ccircle cx='200' cy='200' r='124' fill='none' stroke='%23C8902E' stroke-width='3' opacity='.6'/%3E%3Cpath d='M200 80A88 88 0 0 1 200 200A88 88 0 0 1 200 80Z' fill='none' stroke='%23F2EDD8' stroke-width='4' opacity='.85'/%3E%3Cpath d='M200 320A88 88 0 0 1 200 200A88 88 0 0 1 200 320Z' fill='none' stroke='%23F2EDD8' stroke-width='4' opacity='.85'/%3E%3Cpath d='M320 200A88 88 0 0 1 200 200A88 88 0 0 1 320 200Z' fill='none' stroke='%23F2EDD8' stroke-width='4' opacity='.85'/%3E%3Cpath d='M80 200A88 88 0 0 1 200 200A88 88 0 0 1 80 200Z' fill='none' stroke='%23F2EDD8' stroke-width='4' opacity='.85'/%3E%3Ccircle cx='200' cy='200' r='22' fill='none' stroke='%23F2EDD8' stroke-width='4' opacity='.9'/%3E%3Ccircle cx='200' cy='200' r='6' fill='%23FFFFFF' opacity='.95'/%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Ccircle cx='200' cy='200' r='154' fill='none' stroke='%23F2ED[...]
     <style>
         :root {
             --void:        #060606;
@@ -47,7 +47,7 @@
         /* NOISE */
         .noise-floor {
             position: fixed; inset: 0; pointer-events: none; z-index: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3'/%3E%3C/filter%3E%3Crect width='512' height='512' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' [...]
             background-size: 256px 256px; opacity: 0.6; mix-blend-mode: overlay;
         }
         .noise-floor::after {
@@ -174,8 +174,9 @@
         }
         .item-title { font-size:13px !important; font-weight:700 !important; color:var(--text-bright) !important; margin-bottom:10px !important; line-height:1.4 !important; }
         .item-title .aka { display:block; font-size:10px; font-weight:400; letter-spacing:.1em; color:var(--gold); opacity:.75; margin-top:3px; }
+        .item-status { font-size:9px !important; font-weight:700 !important; text-transform:uppercase !important; letter-spacing:.15em; color:#ff9800 !important; margin-bottom:8px !important; padding:4px 8px; background:rgba(255,152,0,0.1); border-left:2px solid #ff9800; padding-left:10px; }
         .item-domain { font-size:11px !important; line-height:1.65 !important; margin-bottom:10px !important; border-left:1px solid var(--border); padding-left:10px; }
-        .item-layers { font-size:9px !important; letter-spacing:.16em; text-transform:uppercase; color:var(--gold) !important; opacity:.6; margin-bottom:10px !important; transition: opacity .3s ease; }
+        .item-layers { font-size:9px !important; letter-spacing:.16em; text-transform:uppercase; color:var(--gold) !important; opacity:.6; margin-bottom:10px !important; transition: opacity .3s e[...]
         .item-objective { font-size:11px !important; color:var(--text-dim) !important; line-height:1.7 !important; }
         .item:hover .item-domain    { color:var(--text-base) !important; border-color:var(--gold-line); }
         .item:hover .item-objective { color:var(--text-mid) !important; }
@@ -355,7 +356,7 @@
         }
         .lab-post { max-width: 660px; }
         .lab-post-meta { font-size: 9px; font-weight: 700; letter-spacing: .28em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 10px; }
-        .lab-post-title { font-family: var(--font-display); font-size: clamp(22px,3vw,30px); letter-spacing: .04em; text-transform: uppercase; color: var(--text-bright); margin-bottom: 18px; line-height: 1.2; }
+        .lab-post-title { font-family: var(--font-display); font-size: clamp(22px,3vw,30px); letter-spacing: .04em; text-transform: uppercase; color: var(--text-bright); margin-bottom: 18px; line[...]
         .lab-post p { font-size: 13px; font-weight: 300; line-height: 1.9; color: var(--text-mid); margin-bottom: 14px; }
         .lab-post p strong { color: var(--text-bright); font-weight: 700; }
         .lab-post-sig { font-size: 11px; font-weight: 300; color: var(--gold); letter-spacing: .1em; margin-top: 20px; border-left: 2px solid var(--gold); padding-left: 12px; }
@@ -384,20 +385,20 @@
         .clearance-field--full { grid-column: 1 / -1; }
         .clearance-field--wide { grid-column: 1 / -1; }
         .field-label { font-size: 9px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); opacity: .8; }
-        .field-input { background: var(--plate); border: 1px solid var(--border); color: var(--text-base); font-family: var(--font-mono); font-size: 12px; font-weight: 300; padding: 11px 14px; outline: none; transition: border-color .3s ease; }
+        .field-input { background: var(--plate); border: 1px solid var(--border); color: var(--text-base); font-family: var(--font-mono); font-size: 12px; font-weight: 300; padding: 11px 14px; ou[...]
         .field-input:focus { border-color: var(--gold-line); }
         .field-input::placeholder { color: var(--text-dim); }
         .field-textarea { resize: vertical; min-height: 80px; }
         .clearance-checkboxes { display: flex; gap: 24px; flex-wrap: wrap; }
         .checkbox-row { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 12px; font-weight: 300; color: var(--text-mid); }
         .checkbox-row input[type="checkbox"] { accent-color: var(--gold); width: 14px; height: 14px; cursor: pointer; }
-        .clearance-submit { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--void); background: var(--gold); padding: 13px 24px; border: none; cursor: pointer; position: relative; overflow: hidden; }
+        .clearance-submit { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase[...]
         .clearance-submit::before { content:''; position:absolute; inset:0; background:var(--gold-hot); transform:translateX(-101%); transition:transform .35s cubic-bezier(.22,1,.36,1); }
         .clearance-submit:hover::before { transform:translateX(0); }
         .clearance-submit span, .clearance-arrow { position:relative; z-index:1; }
         .clearance-arrow { transition: transform .3s ease; }
         .clearance-submit:hover .clearance-arrow { transform: translateX(4px); }
-        .clearance-confirm { display: none; margin-top: 16px; font-size: 11px; font-weight: 300; letter-spacing: .1em; color: var(--gold); border: 1px solid var(--gold); padding: 12px 16px; gap: 12px; align-items: flex-start; }
+        .clearance-confirm { display: none; margin-top: 16px; font-size: 11px; font-weight: 300; letter-spacing: .1em; color: var(--gold); border: 1px solid var(--gold); padding: 12px 16px; gap: [...]
         .clearance-confirm-icon { font-size: 18px; flex-shrink: 0; line-height: 1; }
         .clearance-confirm-text { letter-spacing: .05em; }
         .clearance-status-check { margin-top: 4px; }
@@ -448,7 +449,7 @@
                         <input type="file" id="photo-upload" accept="image/*" style="display:none" onchange="loadPhoto(event)">
                         <img id="photo-img" src="" alt="" style="display:none; width:100%; height:100%; object-fit:cover; border-radius:50%;">
                         <div class="photo-placeholder" id="photo-placeholder">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7[...]
                             <span>Upload Photo</span>
                         </div>
                     </label>
@@ -504,35 +505,40 @@
         <div class="inventory">
             <div class="item">
                 <label>Architecture I</label>
+                <p class="item-status">⚙️ In Engineering</p>
                 <p class="item-title">Project Parenklisis <span class="aka">aka Clinamen</span></p>
                 <p class="item-domain">Macro-structural intelligence system for directional forecasting under irreducible temporal uncertainty.</p>
-                <p class="item-objective">To map the "swerve" — the 2% of unpredictable deviation — in global systems to provide long-horizon capital allocation certainty.</p>
+                <p class="item-objective">To map the "swerve" — the 2% of unpredictable deviation — in global systems to provide long-horizon capital allocation certainty. Currently in active development.</p>
             </div>
             <div class="item">
                 <label>Architecture II</label>
+                <p class="item-status">⚙️ In Engineering</p>
                 <p class="item-title">The Aetherion Protocol</p>
                 <p class="item-domain">Decentralised protocol for incorruptible token legitimacy verification without central authority.</p>
-                <p class="item-objective">A fully immutable, decentralized protocol using a four-dimensional utility framework to distinguish legitimate assets from fraudulent schemes in real-time.</p>
+                <p class="item-objective">A decentralized protocol using a four-dimensional utility framework to distinguish legitimate assets from fraudulent schemes. Development underway.</p>
             </div>
             <div class="item">
                 <label>Architecture III</label>
+                <p class="item-status">⚙️ In Engineering</p>
                 <p class="item-title">HCIP <span class="aka">Holistic Code Intelligence Platform</span></p>
                 <p class="item-domain">Holistic code intelligence platform that understands software as structure, behaviour, and intent.</p>
                 <p class="item-layers">The Skeleton · The Nervous System · The Soul</p>
-                <p class="item-objective">To move beyond forensic code tools and treat codebases as living artifacts — bridging the gap between what code is and why it exists.</p>
+                <p class="item-objective">To move beyond forensic code tools and treat codebases as living artifacts. Currently under active development and refinement.</p>
             </div>
             <div class="item">
                 <label>Architecture IV</label>
+                <p class="item-status">⚙️ In Engineering</p>
                 <p class="item-title">Project Noema</p>
                 <p class="item-domain">Autonomous attention infrastructure capable of reaching every connected human without gatekeeper permission.</p>
-                <p class="item-objective">A fully autonomous, decentralized Web4 marketing engine — bypassing gatekeepers to deliver messages directly to every mind on Earth.</p>
+                <p class="item-objective">A Web4 marketing engine in development — engineering phase focused on decentralized delivery mechanisms and autonomous systems.</p>
             </div>
             <div class="item">
                 <label>Architecture V</label>
+                <p class="item-status">⚙️ In Engineering</p>
                 <p class="item-title">Project Voraci</p>
                 <p class="item-domain">Anticipatory intelligence architecture that synthesises legally accessible data into permanent, compounding foresight.</p>
                 <p class="item-layers">Volumetric Omnidomain Recognition, Anticipation &amp; Cognitive Intelligence</p>
-                <p class="item-objective">To build a system that knows more than any intelligence agency — gathering all legally available data and refining it through machine intelligence until foresight emerges.</p>
+                <p class="item-objective">To build a system that synthesizes all legally available data through machine intelligence. Project is in active engineering phase.</p>
             </div>
         </div>
 
@@ -574,7 +580,7 @@
                     </div>
                     <div class="clearance-field clearance-field--full">
                         <label class="field-label" for="c-intent">Nature of Interest</label>
-                        <textarea id="c-intent" class="field-input field-textarea" placeholder="State clearly why you are requesting access and what you intend to do with it." rows="3" required></textarea>
+                        <textarea id="c-intent" class="field-input field-textarea" placeholder="State clearly why you are requesting access and what you intend to do with it." rows="3" required><[...]
                     </div>
                     <div class="clearance-field clearance-field--wide">
                         <label class="field-label">Access Requested</label>
@@ -617,9 +623,9 @@
                 <div class="lab-post-meta">Entry 001</div>
                 <h2 class="lab-post-title">The Gap No One Is Closing</h2>
                 <p>We have more data than ever. Models that generate, translate, simulate. Dashboards that tell us what happened yesterday in excruciating detail.</p>
-                <p>Yet the defining crisis of our century is not a lack of information. It is the gap between what our systems can <strong>process</strong> and what they can <strong>understand</strong>.</p>
-                <p>Processing is reactive. Understanding sees the structural future — consequences that haven't happened yet, connections that aren't obvious, truth that exists before the evidence arrives.</p>
-                <p>We built a world that processes everything and understands almost nothing. At Æternum, I am closing that gap. The reactive age is ending. <strong>The interpretive age begins here.</strong></p>
+                <p>Yet the defining crisis of our century is not a lack of information. It is the gap between what our systems can <strong>process</strong> and what they can <strong>understand</s[...]
+                <p>Processing is reactive. Understanding sees the structural future — consequences that haven't happened yet, connections that aren't obvious, truth that exists before the evide[...]
+                <p>We built a world that processes everything and understands almost nothing. At Æternum, I am closing that gap. The reactive age is ending. <strong>The interpretive age begins h[...]
                 <div class="lab-post-sig">— Stanley Masiga Mbinda</div>
             </div>
         </section>
@@ -640,13 +646,13 @@
                 <span>Status: Operational / In Perpetuity</span>
                 <div class="social-links">
                     <a href="https://github.com/Smasiga" target="_blank" class="social-link" title="GitHub">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.603-3.369-1.343-3.369-1.343-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.89 1.529 2.341 1.547 2.914 1.186.09-.924.35-1.546.636-1.903-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009[...]
                     </a>
                     <a href="https://linkedin.com/in/stanley-masiga-mbinda" target="_blank" class="social-link" title="LinkedIn">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.[...]
                     </a>
                     <a href="https://discord.gg/" target="_blank" class="social-link" title="Discord">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0c-.165-.386-.399-.875-.609-1.25a.077.077 0 00-.079-.036 19.736 19.736 0 00-4.885 1.515.07.07 0 00-.033.031C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.056 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.873-1.295 1.226-1.994a.076.076 0 00-.042-.106 13.107 13.107 0 01-1.872-.892.077.077 0 00-.008-.128 10.2 10.2 0 00.372-.294.075.075 0 00.076-.01c3.928 1.793 8.18 1.793 12.062 0a.075.075 0 00.079.009c.12.098.246.198.373.295a.077.077 0 00-.006.127 12.299 12.299 0 01-1.873.892.076.076 0 00-.041.107c.352.699.763 1.364 1.225 1.994a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-4.718-.838-8.812-3.549-12.456a.061.061 0 00-.033-.03zM8.02 15.33c-1.183 0-2.157-.965-2.157-2.156 0-1.193.964-2.157 2.157-2.157 1.193 0 2.156.964 2.156 2.157 0 1.19-.963 2.156-2.156 2.156zm7.975 0c-1.183 0-2.157-.965-2.157-2.156 0-1.193.964-2.157 2.157-2.157 1.193 0 2.157.964 2.157 2.157 0 1.19-.964 2.156-2.157 2.156z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a[...]
                     </a>
                 </div>
             </div>
@@ -742,7 +748,7 @@
             if (!el) {
                 el = document.createElement('div');
                 el.id = 'queue-indicator';
-                el.style.cssText = 'position:fixed;bottom:20px;right:20px;background:#c9a84c;color:#000;padding:8px 16px;border-radius:4px;font-size:12px;z-index:9999;cursor:pointer;font-family:monospace;box-shadow:0 2px 8px rgba(0,0,0,0.3)';
+                el.style.cssText = 'position:fixed;bottom:20px;right:20px;background:#c9a84c;color:#000;padding:8px 16px;border-radius:4px;font-size:12px;z-index:9999;cursor:pointer;font-family:m[...]
                 el.title = 'Click to view pending requests';
                 el.addEventListener('click', function() {
                     const items = getQueue();
@@ -852,7 +858,7 @@
             }
             el.innerHTML = '<span style="opacity:0.6">⏳ Checking... Requests are reviewed personally. You will receive a response via email if your request is approved.</span>';
             setTimeout(function() {
-                el.innerHTML = '<span style="color:var(--text-mid)">No record found for "<strong>' + ref + '</strong>". If you submitted a request, please allow 1-3 business days for review. Contact <a href="mailto:contact@stanleymbinda.com?subject=Status Inquiry: ' + encodeURIComponent(ref) + '" style="color:var(--gold)">contact@stanleymbinda.com</a> for direct follow-up.</span>';
+                el.innerHTML = '<span style="color:var(--text-mid)">No record found for "<strong>' + ref + '</strong>". If you submitted a request, please allow 1-3 business days for review. Cont[...]
             }, 1500);
         }
         window.addEventListener('load', function() {
