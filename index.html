@@ -15,7 +15,7 @@
     <meta name="twitter:description" content="Building permanent systems. Closing the interpretive intelligence gap.">
     <title>Stanley Masiga Mbinda | Chief Architect</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Ccircle cx='200' cy='200' r='154' fill='none' stroke='%23F2ED[...]
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Ccircle cx='200' cy='200' r='154' fill='none' stroke='%23F2ED%23'/%3E%3C/svg%3E">
     <style>
         :root {
             --void:        #060606;
@@ -47,7 +47,7 @@
         /* NOISE */
         .noise-floor {
             position: fixed; inset: 0; pointer-events: none; z-index: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' [...]
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' result='noise'/%3E%3C/filter%3E%3Crect width='512' height='512' fill='%23111'/%3E%3Crect width='512' height='512' fill='%23111' opacity='0.05' filter='url(%23n)'/%3E%3C/svg%3E");
             background-size: 256px 256px; opacity: 0.6; mix-blend-mode: overlay;
         }
         .noise-floor::after {
@@ -176,7 +176,7 @@
         .item-title .aka { display:block; font-size:10px; font-weight:400; letter-spacing:.1em; color:var(--gold); opacity:.75; margin-top:3px; }
         .item-status { font-size:9px !important; font-weight:700 !important; text-transform:uppercase !important; letter-spacing:.15em; color:#ff9800 !important; margin-bottom:8px !important; padding:4px 8px; background:rgba(255,152,0,0.1); border-left:2px solid #ff9800; padding-left:10px; }
         .item-domain { font-size:11px !important; line-height:1.65 !important; margin-bottom:10px !important; border-left:1px solid var(--border); padding-left:10px; }
-        .item-layers { font-size:9px !important; letter-spacing:.16em; text-transform:uppercase; color:var(--gold) !important; opacity:.6; margin-bottom:10px !important; transition: opacity .3s e[...]
+        .item-layers { font-size:9px !important; letter-spacing:.16em; text-transform:uppercase; color:var(--gold) !important; opacity:.6; margin-bottom:10px !important; transition: opacity .3s ease; }
         .item-objective { font-size:11px !important; color:var(--text-dim) !important; line-height:1.7 !important; }
         .item:hover .item-domain    { color:var(--text-base) !important; border-color:var(--gold-line); }
         .item:hover .item-objective { color:var(--text-mid) !important; }
@@ -356,7 +356,7 @@
         }
         .lab-post { max-width: 660px; }
         .lab-post-meta { font-size: 9px; font-weight: 700; letter-spacing: .28em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 10px; }
-        .lab-post-title { font-family: var(--font-display); font-size: clamp(22px,3vw,30px); letter-spacing: .04em; text-transform: uppercase; color: var(--text-bright); margin-bottom: 18px; line[...]
+        .lab-post-title { font-family: var(--font-display); font-size: clamp(22px,3vw,30px); letter-spacing: .04em; text-transform: uppercase; color: var(--text-bright); margin-bottom: 18px; line-height: 1.2; }
         .lab-post p { font-size: 13px; font-weight: 300; line-height: 1.9; color: var(--text-mid); margin-bottom: 14px; }
         .lab-post p strong { color: var(--text-bright); font-weight: 700; }
         .lab-post-sig { font-size: 11px; font-weight: 300; color: var(--gold); letter-spacing: .1em; margin-top: 20px; border-left: 2px solid var(--gold); padding-left: 12px; }
@@ -385,20 +385,20 @@
         .clearance-field--full { grid-column: 1 / -1; }
         .clearance-field--wide { grid-column: 1 / -1; }
         .field-label { font-size: 9px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); opacity: .8; }
-        .field-input { background: var(--plate); border: 1px solid var(--border); color: var(--text-base); font-family: var(--font-mono); font-size: 12px; font-weight: 300; padding: 11px 14px; ou[...]
+        .field-input { background: var(--plate); border: 1px solid var(--border); color: var(--text-base); font-family: var(--font-mono); font-size: 12px; font-weight: 300; padding: 11px 14px; outline: none; border-radius: 2px; }
         .field-input:focus { border-color: var(--gold-line); }
         .field-input::placeholder { color: var(--text-dim); }
         .field-textarea { resize: vertical; min-height: 80px; }
         .clearance-checkboxes { display: flex; gap: 24px; flex-wrap: wrap; }
         .checkbox-row { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 12px; font-weight: 300; color: var(--text-mid); }
         .checkbox-row input[type="checkbox"] { accent-color: var(--gold); width: 14px; height: 14px; cursor: pointer; }
-        .clearance-submit { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase[...]
+        .clearance-submit { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--void); background: var(--gold); padding: 13px 24px; position: relative; overflow: hidden; cursor: pointer; border: none; border-radius: 2px; transition: color .3s ease; }
         .clearance-submit::before { content:''; position:absolute; inset:0; background:var(--gold-hot); transform:translateX(-101%); transition:transform .35s cubic-bezier(.22,1,.36,1); }
         .clearance-submit:hover::before { transform:translateX(0); }
         .clearance-submit span, .clearance-arrow { position:relative; z-index:1; }
         .clearance-arrow { transition: transform .3s ease; }
         .clearance-submit:hover .clearance-arrow { transform: translateX(4px); }
-        .clearance-confirm { display: none; margin-top: 16px; font-size: 11px; font-weight: 300; letter-spacing: .1em; color: var(--gold); border: 1px solid var(--gold); padding: 12px 16px; gap: [...]
+        .clearance-confirm { display: none; margin-top: 16px; font-size: 11px; font-weight: 300; letter-spacing: .1em; color: var(--gold); border: 1px solid var(--gold); padding: 12px 16px; gap: 10px; background: rgba(200,150,60,0.05); border-radius: 2px; align-items: flex-start; }
         .clearance-confirm-icon { font-size: 18px; flex-shrink: 0; line-height: 1; }
         .clearance-confirm-text { letter-spacing: .05em; }
         .clearance-status-check { margin-top: 4px; }
@@ -449,7 +449,7 @@
                         <input type="file" id="photo-upload" accept="image/*" style="display:none" onchange="loadPhoto(event)">
                         <img id="photo-img" src="" alt="" style="display:none; width:100%; height:100%; object-fit:cover; border-radius:50%;">
                         <div class="photo-placeholder" id="photo-placeholder">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7[...]
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
                             <span>Upload Photo</span>
                         </div>
                     </label>
@@ -580,7 +580,7 @@
                     </div>
                     <div class="clearance-field clearance-field--full">
                         <label class="field-label" for="c-intent">Nature of Interest</label>
-                        <textarea id="c-intent" class="field-input field-textarea" placeholder="State clearly why you are requesting access and what you intend to do with it." rows="3" required><[...]
+                        <textarea id="c-intent" class="field-input field-textarea" placeholder="State clearly why you are requesting access and what you intend to do with it." rows="3" required></textarea>
                     </div>
                     <div class="clearance-field clearance-field--wide">
                         <label class="field-label">Access Requested</label>
@@ -623,9 +623,9 @@
                 <div class="lab-post-meta">Entry 001</div>
                 <h2 class="lab-post-title">The Gap No One Is Closing</h2>
                 <p>We have more data than ever. Models that generate, translate, simulate. Dashboards that tell us what happened yesterday in excruciating detail.</p>
-                <p>Yet the defining crisis of our century is not a lack of information. It is the gap between what our systems can <strong>process</strong> and what they can <strong>understand</s[...]
-                <p>Processing is reactive. Understanding sees the structural future — consequences that haven't happened yet, connections that aren't obvious, truth that exists before the evide[...]
-                <p>We built a world that processes everything and understands almost nothing. At Æternum, I am closing that gap. The reactive age is ending. <strong>The interpretive age begins h[...]
+                <p>Yet the defining crisis of our century is not a lack of information. It is the gap between what our systems can <strong>process</strong> and what they can <strong>understand</strong>.</p>
+                <p>Processing is reactive. Understanding sees the structural future — consequences that haven't happened yet, connections that aren't obvious, truth that exists before the evidence arrives.</p>
+                <p>We built a world that processes everything and understands almost nothing. At Æternum, I am closing that gap. The reactive age is ending. <strong>The interpretive age begins here.</strong></p>
                 <div class="lab-post-sig">— Stanley Masiga Mbinda</div>
             </div>
         </section>
@@ -646,13 +646,13 @@
                 <span>Status: Operational / In Perpetuity</span>
                 <div class="social-links">
                     <a href="https://github.com/Smasiga" target="_blank" class="social-link" title="GitHub">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009[...]
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.476-.025-.744A6.975 6.975 0 0 0 12 20.25a6.974 6.974 0 0 0 6.504-3.712c-.017.268-.025.507-.025.744 0 .266.036.525.106.777C19.135 20.166 21 16.418 21 12c0-5.523-4.477-10-10-10Z"/></svg>
                     </a>
                     <a href="https://linkedin.com/in/stanley-masiga-mbinda" target="_blank" class="social-link" title="LinkedIn">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.[...]
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
                     </a>
                     <a href="https://discord.gg/" target="_blank" class="social-link" title="Discord">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a[...]
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0c-.163-.386-.399-.875-.609-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.975 14.975 0 0 0 1.293-2.1a.07.07 0 0 0-.038-.098a13.11 13.11 0 0 1-1.872-.892a.072.072 0 0 1-.007-.12a10.15 10.15 0 0 0 .372-.294a.074.074 0 0 1 .076-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.294a.072.072 0 0 1-.006.12a12.96 12.96 0 0 1-1.873.892a.07.07 0 0 0-.039.098a14.97 14.97 0 0 0 1.294 2.1a.07.07 0 0 0 .084.028a19.963 19.963 0 0 0 6.002-3.03a.071.071 0 0 0 .03-.056c.5-4.467.151-8.94-.882-13.114a.055.055 0 0 0-.031-.028ZM8.02 15.33c-1.183 0-2.157-.965-2.157-2.156c0-1.193.96-2.157 2.157-2.157c1.199 0 2.167.964 2.157 2.157c0 1.19-.96 2.155-2.157 2.155Zm7.975 0c-1.183 0-2.157-.965-2.157-2.156c0-1.193.96-2.157 2.157-2.157c1.199 0 2.167.964 2.157 2.157c0 1.19-.958 2.155-2.157 2.155Z"/></svg>
                     </a>
                 </div>
             </div>
@@ -748,7 +748,7 @@
             if (!el) {
                 el = document.createElement('div');
                 el.id = 'queue-indicator';
-                el.style.cssText = 'position:fixed;bottom:20px;right:20px;background:#c9a84c;color:#000;padding:8px 16px;border-radius:4px;font-size:12px;z-index:9999;cursor:pointer;font-family:m[...]
+                el.style.cssText = 'position:fixed;bottom:20px;right:20px;background:#c9a84c;color:#000;padding:8px 16px;border-radius:4px;font-size:12px;z-index:9999;cursor:pointer;font-family:monospace';
                 el.title = 'Click to view pending requests';
                 el.addEventListener('click', function() {
                     const items = getQueue();
@@ -858,7 +858,7 @@
             }
             el.innerHTML = '<span style="opacity:0.6">⏳ Checking... Requests are reviewed personally. You will receive a response via email if your request is approved.</span>';
             setTimeout(function() {
-                el.innerHTML = '<span style="color:var(--text-mid)">No record found for "<strong>' + ref + '</strong>". If you submitted a request, please allow 1-3 business days for review. Cont[...]
+                el.innerHTML = '<span style="color:var(--text-mid)">No record found for "<strong>' + ref + '</strong>". If you submitted a request, please allow 1-3 business days for review. Contact support if needed.</span>';
             }, 1500);
         }
         window.addEventListener('load', function() {
