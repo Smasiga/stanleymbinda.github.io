@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aeternum — Technologies & Innovation Ltd</title>
+
+<!-- Preconnect for faster font load -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Josefin+Sans:wght@100;200&display=swap" rel="stylesheet">
+
+<style>
+/* ════════════════════════════════════════════════
+   RESET & ROOT
+   ════════════════════════════════════════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --void:#000000;
+  --line:#F2EDD8;
+  --gold:#C8902E;
+  --gold-hi:#F0C040;
+  --white:#FDFAF0;
+}
+
+/* Cursor fallback: show system cursor until JS confirms custom is active */
+html,body{
+  width:100%;height:100%;overflow:hidden;
+  background:var(--void);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Josefin Sans',sans-serif;
+  cursor:auto; /* fallback — JS sets cursor:none once ready */
+  will-change:transform; /* compositing hint for the body layer */
+}
+
+/* JS sets this class once cursor tracking is live */
+body.cursor-ready{ cursor:none }
+
+/* ════════════════════════════════════════════════
+   FILM GRAIN — SVG fractalNoise via data-URI
+   ════════════════════════════════════════════════ */
+body::after{
+  content:'';position:fixed;inset:0;z-index:200;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity:.038;mix-blend-mode:overlay;
+}
+
+/* ════════════════════════════════════════════════
+   CANVAS LAYERS
+   ════════════════════════════════════════════════ */
+#canvas{
+  position:fixed;inset:0;z-index:0;
+  will-change:transform; /* promote to own compositing layer */
+}
+
+/* ════════════════════════════════════════════════
+   DEEP VIGNETTE
+   ════════════════════════════════════════════════ */
+#vig{
+  position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(ellipse 65% 65% at 50% 50%,
+    transparent 30%, rgba(0,0,0,.55) 75%, rgba(0,0,0,.85) 100%);
+}
+
+/* ════════════════════════════════════════════════
+   SCAN LINE
+   ════════════════════════════════════════════════ */
+.scan{
+  position:fixed;left:0;right:0;height:1px;z-index:5;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(242,237,216,.05),transparent);
+  animation:scan 14s linear infinite;
+}
+@keyframes scan{from{top:-1px}to{top:100vh}}
+
+/* ════════════════════════════════════════════════
+   CUSTOM CURSOR
+   ════════════════════════════════════════════════ */
+#cur,#cur2{
+  position:fixed;pointer-events:none;z-index:999;
+  border-radius:50%;transform:translate(-50%,-50%);
+  /* Hidden until JS is ready — no flash of displaced cursor */
+  opacity:0;transition:opacity .3s ease;
+}
+body.cursor-ready #cur,
+body.cursor-ready #cur2{ opacity:1 }
+
+#cur{ width:4px;height:4px;background:var(--white);transition:transform .08s }
+#cur2{
+  width:26px;height:26px;
+  border:1px solid rgba(242,237,216,.25);
+  transition:left .12s ease,top .12s ease,transform .2s ease,opacity .3s ease;
+}
+body.cursor-ready:hover #cur2{ transform:translate(-50%,-50%) scale(1.2) }
+
+/* ════════════════════════════════════════════════
+   CORNER ORNAMENTS
+   ════════════════════════════════════════════════ */
+.orn{
+  position:fixed;width:40px;height:40px;opacity:0;
+  animation:fadeSlide 1s 7.5s ease forwards;
+}
+.orn.tl{top:26px;left:26px;border-top:1px solid rgba(200,144,46,.3);border-left:1px solid rgba(200,144,46,.3)}
+.orn.tr{top:26px;right:26px;border-top:1px solid rgba(200,144,46,.3);border-right:1px solid rgba(200,144,46,.3)}
+.orn.bl{bottom:26px;left:26px;border-bottom:1px solid rgba(200,144,46,.3);border-left:1px solid rgba(200,144,46,.3)}
+.orn.br{bottom:26px;right:26px;border-bottom:1px solid rgba(200,144,46,.3);border-right:1px solid rgba(200,144,46,.3)}
+
+.coord{
+  position:fixed;font-weight:100;font-size:.33rem;letter-spacing:.22em;
+  color:rgba(200,144,46,.22);text-transform:uppercase;opacity:0;
+  animation:fadeSlide 1s 7.8s ease forwards;
+}
+.coord.tl{top:34px;left:74px}
+.coord.br{bottom:34px;right:74px}
+
+/* ════════════════════════════════════════════════
+   STAGE
+   ════════════════════════════════════════════════ */
+#stage{
+  position:relative;z-index:10;
+  display:flex;flex-direction:column;align-items:center;
+  opacity:0;animation:stageIn .6s .1s ease forwards;
+}
+@keyframes stageIn{to{opacity:1}}
+
+/* ════════════════════════════════════════════════
+   MARK WRAPPER — ambient bloom + sonar pulse
+   ════════════════════════════════════════════════ */
+#mw{
+  position:relative;width:340px;height:340px;
+  display:flex;align-items:center;justify-content:center;
+}
+#mw::before{
+  content:'';position:absolute;inset:-80px;
+  background:radial-gradient(circle,rgba(200,144,46,.07) 0%,rgba(242,237,216,.02) 35%,transparent 65%);
+  animation:breatheGlow 5s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes breatheGlow{
+  0%,100%{opacity:.65;transform:scale(.95)}
+  50%    {opacity:1;  transform:scale(1.06)}
+}
+
+/* Sonar pulse rings */
+.pulse{
+  position:absolute;top:50%;left:50%;border-radius:50%;
+  border:1px solid rgba(242,237,216,.12);
+  transform:translate(-50%,-50%);
+  animation:sonar 5.5s ease-out infinite;
+}
+.pulse:nth-child(2){animation-delay:2.75s}
+@keyframes sonar{
+  0%  {width:40px;height:40px;opacity:.5}
+  100%{width:390px;height:390px;opacity:0}
+}
+
+/* ════════════════════════════════════════════════
+   SVG PATH DRAW ANIMATIONS (d1–d8)
+   stroke-dasharray/offset set dynamically by JS
+   via --path-len custom property, falling back to 3000
+   ════════════════════════════════════════════════ */
+.d{
+  stroke-dasharray:var(--path-len,3000);
+  stroke-dashoffset:var(--path-len,3000);
+}
+.d1{animation:draw 3.2s   .5s  cubic-bezier(.3,0,.15,1) forwards}
+.d2{animation:draw 2.6s  1.1s  cubic-bezier(.3,0,.15,1) forwards}
+.d3{animation:draw 2.1s  1.7s  cubic-bezier(.3,0,.15,1) forwards}
+.d4{animation:draw 1.7s  2.3s  cubic-bezier(.3,0,.15,1) forwards}
+.d5{animation:draw 1.3s  2.8s  cubic-bezier(.3,0,.15,1) forwards}
+.d6{animation:draw  .9s  3.3s  cubic-bezier(.3,0,.15,1) forwards}
+.d7{animation:draw  .65s 3.7s  cubic-bezier(.3,0,.15,1) forwards}
+.d8{animation:draw  .5s  3.95s cubic-bezier(.3,0,.15,1) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+
+/* Node burst */
+.nd{opacity:0;transform-origin:center}
+.n1{animation:burst .55s 4.3s  ease forwards}
+.n2{animation:burst .55s 4.5s  ease forwards}
+.n3{animation:burst .55s 4.65s ease forwards}
+.n4{animation:burst .55s 4.8s  ease forwards}
+@keyframes burst{
+  0%  {opacity:0;transform:scale(0)}
+  55% {opacity:1;transform:scale(2.4)}
+  100%{opacity:1;transform:scale(1)}
+}
+
+/* ════════════════════════════════════════════════
+   MARK: breathing via CSS custom property
+   JS writes --breathe-scale → no style.transform collision
+   ════════════════════════════════════════════════ */
+#mark{
+  transform:scale(var(--breathe-scale,1));
+  transform-origin:center;
+  will-change:transform;
+  transition:filter .4s ease;
+}
+
+/* ════════════════════════════════════════════════
+   WORDMARK
+   ════════════════════════════════════════════════ */
+#wm{margin-top:2px;text-align:center}
+
+.eye{
+  font-size:.42rem;font-weight:100;letter-spacing:.72em;
+  color:rgba(200,144,46,.48);text-transform:uppercase;
+  padding-right:.72em;opacity:0;
+  animation:fadeSlide 1s 5.0s ease forwards;
+}
+
+.name{
+  display:flex;justify-content:center;margin-top:8px;
+  position:relative;
+}
+.name span{
+  font-family:'Cormorant Garamond',serif;font-weight:300;
+  font-size:3.75rem;color:var(--white);line-height:1;
+  letter-spacing:.04em;
+  opacity:0;transform:translateY(16px);display:inline-block;
+  will-change:transform,opacity;
+}
+.name span:nth-child(1){animation:ltr .75s 5.2s  ease forwards}
+.name span:nth-child(2){animation:ltr .75s 5.33s ease forwards}
+.name span:nth-child(3){animation:ltr .75s 5.46s ease forwards}
+.name span:nth-child(4){animation:ltr .75s 5.59s ease forwards}
+.name span:nth-child(5){animation:ltr .75s 5.72s ease forwards}
+.name span:nth-child(6){animation:ltr .75s 5.85s ease forwards}
+.name span:nth-child(7){animation:ltr .75s 5.98s ease forwards}
+.name span:nth-child(8){animation:ltr .75s 6.11s ease forwards}
+@keyframes ltr{to{opacity:1;transform:translateY(0)}}
+
+/* Chromatic aberration ghost layers */
+.name::before,.name::after{
+  content:attr(data-echo);
+  position:absolute;inset:0;
+  display:flex;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-weight:300;
+  font-size:3.75rem;line-height:1;letter-spacing:.04em;
+  pointer-events:none;
+}
+.name::before{color:#00E5FF;opacity:.07;transform:translateX(-2px)}
+.name::after {color:#FF4458;opacity:.05;transform:translateX(2px)}
+
+/* Horizontal rule */
+.rule{
+  display:flex;align-items:center;gap:0;
+  width:340px;margin:11px auto;
+  opacity:0;animation:fadeSlide 1.1s 6.5s ease forwards;
+}
+.rl{flex:1;height:1px}
+.rl.l{background:linear-gradient(90deg,transparent,rgba(200,144,46,.4))}
+.rl.r{background:linear-gradient(90deg,rgba(200,144,46,.4),transparent)}
+.dia{
+  width:5px;height:5px;flex-shrink:0;
+  background:var(--gold);transform:rotate(45deg);
+  box-shadow:0 0 7px 2px rgba(200,144,46,.7);
+}
+
+.sub{
+  font-size:.42rem;font-weight:100;letter-spacing:.55em;
+  color:rgba(242,237,216,.25);text-transform:uppercase;
+  padding-right:.55em;opacity:0;
+  animation:fadeSlide 1s 6.8s ease forwards;
+}
+
+@keyframes fadeSlide{
+  from{opacity:0;transform:translateY(9px)}
+  to  {opacity:1;transform:translateY(0)}
+}
+
+/* Grid box pulse */
+@keyframes gridPulse {
+  0%,100%{ opacity:.04 }
+  50%    { opacity:1   }
+}
+
+/* ════════════════════════════════════════════════
+   REDUCED MOTION: respect prefers-reduced-motion
+   Collapses all timing to near-instant
+   ════════════════════════════════════════════════ */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    animation-delay:0ms !important;
+    transition-duration:.01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div id="cur"  aria-hidden="true"></div>
+<div id="cur2" aria-hidden="true"></div>
+
+<!-- Background canvas (void atmosphere) -->
+<canvas id="canvas" aria-hidden="true"></canvas>
+
+<!-- Vignette, scan line, corner ornaments -->
+<div id="vig"  aria-hidden="true"></div>
+<div class="scan" aria-hidden="true"></div>
+<div class="orn tl" aria-hidden="true"></div>
+<div class="orn tr" aria-hidden="true"></div>
+<div class="orn bl" aria-hidden="true"></div>
+<div class="orn br" aria-hidden="true"></div>
+<main id="stage" role="main">
+  <div id="mw" aria-hidden="true">
+    <div class="pulse"></div>
+    <div class="pulse"></div>
+
+    <!-- ════════════════════════════════════════
+         THE SIGIL — 400×400 SVG, center (200,200)
+         Geometry:
+           Outer ring      R=154
+           Inner groove    R=124
+           Cardinal petals arc-R=88, tip-R=120
+           Diagonal vesicas at ±40px diag, rx=11 ry=27
+           Inner star      points at R=60 (±60px from center)
+           Center circles  R=22 & R=12
+         ════════════════════════════════════════ -->
+    <svg id="mark" width="340" height="340" viewBox="0 0 400 400"
+         xmlns="http://www.w3.org/2000/svg"
+         role="img"
+         aria-label="Aeternum sigil — sacred geometry mark"
+         style="overflow:visible">
+      <title>Aeternum Sigil</title>
+      <defs>
+
+        <!-- ── GRADIENTS ── -->
+        <linearGradient id="gLine" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%"   stop-color="#FEFCF0" stop-opacity=".96"/>
+          <stop offset="50%"  stop-color="#F2EDD8" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#E6DEC4" stop-opacity=".92"/>
+        </linearGradient>
+
+        <radialGradient id="gGold" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"   stop-color="#FFDA60"/>
+          <stop offset="55%"  stop-color="#C8902E"/>
+          <stop offset="100%" stop-color="#8A5E12"/>
+        </radialGradient>
+
+        <radialGradient id="gGoldLine" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"  stop-color="#EEB840"/>
+          <stop offset="100%" stop-color="#B07A20"/>
+        </radialGradient>
+
+        <linearGradient id="gGoldL" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%"  stop-color="#F0C040"/>
+          <stop offset="100%" stop-color="#C07820"/>
+        </linearGradient>
+
+        <!-- ── 3-LAYER GLOW SYSTEM ── -->
+
+        <!-- Layer A: deep outer halo (warm) -->
+        <filter id="fHalo" x="-100%" y="-100%" width="300%" height="300%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="14" result="b"/>
+          <feColorMatrix in="b" type="matrix"
+            values="1.4 .3  0   0  .08
+                    .8  .7  0   0  .03
+                    .1  0   .3  0  0
+                    0   0   0   .18 0" result="c"/>
+          <feMerge><feMergeNode in="c"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+
+        <!-- Layer B: mid body glow (triple merged for intensity) -->
+        <filter id="fGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="b"/>
+          <feColorMatrix in="b" type="matrix"
+            values="1.5 .4  0  0  .04
+                    1.1 .8  0  0  .01
+                    .5  0   .4 0  0
+                    0   0   0  .6 0" result="c"/>
+          <feMerge>
+            <feMergeNode in="c"/>
+            <feMergeNode in="c"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+
+        <!-- Layer C: sharp crisp edge glow -->
+        <filter id="fCrisp" x="-25%" y="-25%" width="150%" height="150%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="0.9" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+
+        <!-- Gold node bloom (aggressive) -->
+        <filter id="fNode" x="-300%" y="-300%" width="700%" height="700%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="b"/>
+          <feColorMatrix in="b" type="matrix"
+            values="2.2 .8  0  0  .15
+                    1.0 .9  0  0  .05
+                    .0  0  .1  0  0
+                    0   0   0  1.1 0" result="c"/>
+          <feMerge>
+            <feMergeNode in="c"/>
+            <feMergeNode in="c"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+
+        <!-- White center bloom (maximum) -->
+        <filter id="fCenter" x="-400%" y="-400%" width="900%" height="900%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="b"/>
+          <feColorMatrix in="b" type="matrix"
+            values="1.4 .4  .2 0  .1
+                    1.2 1.0 .3 0  .08
+                    0.8 .6  .8 0  .04
+                    0   0   0  .9 0" result="c"/>
+          <feMerge>
+            <feMergeNode in="c"/>
+            <feMergeNode in="c"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+
+        <!-- Grid box glow -->
+        <filter id="fGridBox" x="-300%" y="-300%" width="700%" height="700%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="1.4" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+
+        <!-- Clip to outer circle -->
+        <clipPath id="clip">
+          <circle cx="200" cy="200" r="158"/>
+        </clipPath>
+
+      </defs>
+
+      <!-- ════════ ORBITING RINGS (JS-rotated) ════════ -->
+      <g id="orb1">
+        <circle cx="200" cy="200" r="168" fill="none"
+          stroke="rgba(200,144,46,.10)" stroke-width=".5"
+          stroke-dasharray="2.5 20"/>
+      </g>
+      <g id="orb2">
+        <circle cx="200" cy="200" r="175" fill="none"
+          stroke="rgba(242,237,216,.05)" stroke-width=".5"
+          stroke-dasharray="1 12"/>
+      </g>
+      <g id="orb3">
+        <circle cx="200" cy="200" r="162" fill="none"
+          stroke="rgba(200,144,46,.07)" stroke-width=".4"
+          stroke-dasharray="1.5 28"/>
+      </g>
+
+      <!-- ════════ OUTER RING ════════ -->
+      <!-- Halo pass -->
+      <circle cx="200" cy="200" r="154" fill="none"
+        stroke="#F2EDD8" stroke-width="5"
+        filter="url(#fHalo)" opacity=".2"
+        class="d d1"/>
+      <!-- Crisp line pass -->
+      <circle cx="200" cy="200" r="154" fill="none"
+        stroke="url(#gLine)" stroke-width="1.7"
+        filter="url(#fCrisp)"
+        class="d d1"/>
+
+      <!-- ════════ INNER GROOVE RING ════════ -->
+      <circle cx="200" cy="200" r="124" fill="none"
+        stroke="rgba(242,237,216,.28)" stroke-width=".7"
+        filter="url(#fCrisp)"
+        class="d d2"/>
+
+      <!-- ════════ FOUR CARDINAL PETALS (Vesica Piscis) ════════ -->
+      <!--
+        Top    petal: M200 80  A88 88 0 0 1 200 200  A88 88 0 0 1 200 80  Z
+        Bottom petal: M200 320 A88 88 0 0 1 200 200  A88 88 0 0 1 200 320 Z
+        Right  petal: M320 200 A88 88 0 0 1 200 200  A88 88 0 0 1 320 200 Z
+        Left   petal: M80  200 A88 88 0 0 1 200 200  A88 88 0 0 1 80  200 Z
+        Chord=120, arc-R=88 → half-width≈23.6px — elegant slim petals
+        FIX: fill corrected to rgba(0,0,0,.88) — pure black (was rgba(0,0,4,.88) = blue tint)
+      -->
+
+      <!-- Halo copies -->
+      <g filter="url(#fHalo)" opacity=".14" clip-path="url(#clip)">
+        <path d="M200 80  A88 88 0 0 1 200 200 A88 88 0 0 1 200 80  Z"
+              fill="none" stroke="#F2EDD8" stroke-width="5" class="d d2"/>
+        <path d="M200 320 A88 88 0 0 1 200 200 A88 88 0 0 1 200 320 Z"
+              fill="none" stroke="#F2EDD8" stroke-width="5" class="d d2"/>
+        <path d="M320 200 A88 88 0 0 1 200 200 A88 88 0 0 1 320 200 Z"
+              fill="none" stroke="#F2EDD8" stroke-width="5" class="d d2"/>
+        <path d="M80  200 A88 88 0 0 1 200 200 A88 88 0 0 1 80  200 Z"
+              fill="none" stroke="#F2EDD8" stroke-width="5" class="d d2"/>
+      </g>
+      <!-- Main petal lines -->
+      <g filter="url(#fGlow)">
+        <path d="M200 80  A88 88 0 0 1 200 200 A88 88 0 0 1 200 80  Z"
+              fill="rgba(0,0,0,.88)" stroke="url(#gLine)" stroke-width="1.5"
+              class="d d2"/>
+        <path d="M200 320 A88 88 0 0 1 200 200 A88 88 0 0 1 200 320 Z"
+              fill="rgba(0,0,0,.88)" stroke="url(#gLine)" stroke-width="1.5"
+              class="d d2"/>
+        <path d="M320 200 A88 88 0 0 1 200 200 A88 88 0 0 1 320 200 Z"
+              fill="rgba(0,0,0,.88)" stroke="url(#gLine)" stroke-width="1.5"
+              class="d d2"/>
+        <path d="M80  200 A88 88 0 0 1 200 200 A88 88 0 0 1 80  200 Z"
+              fill="rgba(0,0,0,.88)" stroke="url(#gLine)" stroke-width="1.5"
+              class="d d2"/>
+      </g>
+
+      <!-- Flowing energy shimmer on petals (SMIL animated dash) -->
+      <g opacity=".22">
+        <path d="M200 80  A88 88 0 0 1 200 200 A88 88 0 0 1 200 80  Z"
+              fill="none" stroke="rgba(242,237,216,.5)" stroke-width=".4"
+              stroke-dasharray="6 4" stroke-dashoffset="0">
+          <animate attributeName="stroke-dashoffset" from="0"   to="-40" dur="3s" repeatCount="indefinite"/>
+        </path>
+        <path d="M200 320 A88 88 0 0 1 200 200 A88 88 0 0 1 200 320 Z"
+              fill="none" stroke="rgba(242,237,216,.5)" stroke-width=".4"
+              stroke-dasharray="6 4" stroke-dashoffset="-20">
+          <animate attributeName="stroke-dashoffset" from="-20" to="-60" dur="3s" repeatCount="indefinite"/>
+        </path>
+        <path d="M320 200 A88 88 0 0 1 200 200 A88 88 0 0 1 320 200 Z"
+              fill="none" stroke="rgba(242,237,216,.5)" stroke-width=".4"
+              stroke-dasharray="6 4" stroke-dashoffset="-10">
+          <animate attributeName="stroke-dashoffset" from="-10" to="-50" dur="3s" repeatCount="indefinite"/>
+        </path>
+        <path d="M80  200 A88 88 0 0 1 200 200 A88 88 0 0 1 80  200 Z"
+              fill="none" stroke="rgba(242,237,216,.5)" stroke-width=".4"
+              stroke-dasharray="6 4" stroke-dashoffset="-30">
+          <animate attributeName="stroke-dashoffset" from="-30" to="-70" dur="3s" repeatCount="indefinite"/>
+        </path>
+      </g>
+
+      <!-- ════════ DIAGONAL VESICA LENSES ════════ -->
+      <!-- Centers at (240,160),(240,240),(160,240),(160,160) — 56.6px from center -->
+      <!-- rx=11, ry=27 — elegant slim almonds. NE/SW: rotate(-45), NW/SE: rotate(45) -->
+      <g filter="url(#fGlow)">
+        <ellipse cx="240" cy="160" rx="11" ry="27"
+          transform="rotate(-45 240 160)"
+          fill="none" stroke="url(#gGoldL)" stroke-width="1.15" class="d d3"/>
+        <ellipse cx="240" cy="240" rx="11" ry="27"
+          transform="rotate(45 240 240)"
+          fill="none" stroke="url(#gGoldL)" stroke-width="1.15" class="d d3"/>
+        <ellipse cx="160" cy="240" rx="11" ry="27"
+          transform="rotate(-45 160 240)"
+          fill="none" stroke="url(#gGoldL)" stroke-width="1.15" class="d d3"/>
+        <ellipse cx="160" cy="160" rx="11" ry="27"
+          transform="rotate(45 160 160)"
+          fill="none" stroke="url(#gGoldL)" stroke-width="1.15" class="d d3"/>
+      </g>
+
+      <!-- ════════ INNER CURVED STAR ════════ -->
+      <!-- Points at R=60: (200,140),(260,200),(200,260),(140,200)
+           Concave sides via quadratic bezier toward center:
+           NE ctrl=(216,184)  SE ctrl=(216,216)
+           SW ctrl=(184,216)  NW ctrl=(184,184) -->
+      <g filter="url(#fGlow)">
+        <!-- Outer star -->
+        <path d="M200 140 Q216 184 260 200 Q216 216 200 260 Q184 216 140 200 Q184 184 200 140 Z"
+              fill="none" stroke="url(#gLine)" stroke-width="1.05" class="d d4"/>
+        <!-- Inner echo (scale .88 → R≈52.8) -->
+        <path d="M200 147 Q213 181 253 200 Q213 219 200 253 Q187 219 147 200 Q187 181 200 147 Z"
+              fill="none" stroke="rgba(242,237,216,.18)" stroke-width=".5" class="d d5"/>
+      </g>
+
+      <!-- ════════ CENTER CIRCLE ════════ -->
+      <!-- Halo pass -->
+      <circle cx="200" cy="200" r="22" fill="none"
+        stroke="#F2EDD8" stroke-width="4"
+        filter="url(#fHalo)" opacity=".22"
+        class="d d6"/>
+      <!-- Crisp line pass -->
+      <circle cx="200" cy="200" r="22" fill="none"
+        stroke="url(#gLine)" stroke-width="1.35"
+        filter="url(#fCrisp)"
+        class="d d6"/>
+
+      <!-- Inner ring marker -->
+      <circle cx="200" cy="200" r="12" fill="none"
+        stroke="rgba(242,237,216,.22)" stroke-width=".55"
+        class="d d7"/>
+
+      <!-- ════════ PRECISION TICK MARKS ════════ -->
+      <!-- Cardinal (N/S/E/W) — longer, with crossbar -->
+      <g filter="url(#fCrisp)" stroke="rgba(200,144,46,.45)" stroke-width="1">
+        <line x1="200" y1="40"  x2="200" y2="57"  class="d d7"/>
+        <line x1="200" y1="343" x2="200" y2="360" class="d d7"/>
+        <line x1="40"  y1="200" x2="57"  y2="200" class="d d7"/>
+        <line x1="343" y1="200" x2="360" y2="200" class="d d7"/>
+      </g>
+      <!-- Crossbars on cardinal ticks -->
+      <g stroke="rgba(200,144,46,.22)" stroke-width=".7">
+        <line x1="195" y1="47"  x2="205" y2="47"  class="d d8"/>
+        <line x1="195" y1="353" x2="205" y2="353" class="d d8"/>
+        <line x1="47"  y1="195" x2="47"  y2="205" class="d d8"/>
+        <line x1="353" y1="195" x2="353" y2="205" class="d d8"/>
+      </g>
+      <!-- Diagonal ticks (NE/SE/SW/NW) — shorter -->
+      <g stroke="rgba(200,144,46,.28)" stroke-width=".8">
+        <line x1="310" y1="90"  x2="302" y2="98"  class="d d8"/>
+        <line x1="310" y1="310" x2="302" y2="302" class="d d8"/>
+        <line x1="90"  y1="310" x2="98"  y2="302" class="d d8"/>
+        <line x1="90"  y1="90"  x2="98"  y2="98"  class="d d8"/>
+      </g>
+
+      <!-- ════════ INTERSECTION NODES ════════ -->
+      <!-- Cardinal petal tips — GOLD, large -->
+      <circle class="nd n1" cx="200" cy="80"  r="5" fill="url(#gGold)" filter="url(#fNode)"/>
+      <circle class="nd n1" cx="320" cy="200" r="5" fill="url(#gGold)" filter="url(#fNode)"/>
+      <circle class="nd n1" cx="200" cy="320" r="5" fill="url(#gGold)" filter="url(#fNode)"/>
+      <circle class="nd n1" cx="80"  cy="200" r="5" fill="url(#gGold)" filter="url(#fNode)"/>
+
+      <!-- Vesica centers — GOLD, medium -->
+      <circle class="nd n2" cx="240" cy="160" r="3.2" fill="url(#gGold)" filter="url(#fNode)"/>
+      <circle class="nd n2" cx="240" cy="240" r="3.2" fill="url(#gGold)" filter="url(#fNode)"/>
+      <circle class="nd n2" cx="160" cy="240" r="3.2" fill="url(#gGold)" filter="url(#fNode)"/>
+      <circle class="nd n2" cx="160" cy="160" r="3.2" fill="url(#gGold)" filter="url(#fNode)"/>
+
+      <!-- Inner star points — warm white -->
+      <circle class="nd n3" cx="200" cy="140" r="2.8" fill="#FEFCF0" filter="url(#fNode)"/>
+      <circle class="nd n3" cx="260" cy="200" r="2.8" fill="#FEFCF0" filter="url(#fNode)"/>
+      <circle class="nd n3" cx="200" cy="260" r="2.8" fill="#FEFCF0" filter="url(#fNode)"/>
+      <circle class="nd n3" cx="140" cy="200" r="2.8" fill="#FEFCF0" filter="url(#fNode)"/>
+
+      <!-- CENTER POINT — pure white, max bloom -->
+      <circle class="nd n4" cx="200" cy="200" r="7"   fill="#FFFFFF" filter="url(#fCenter)"/>
+      <circle class="nd n4" cx="200" cy="200" r="3.5" fill="#FFFFFF"/>
+
+    </svg>
+  </div><!-- /mw -->
+
+  <!-- ════════ WORDMARK ════════ -->
+  <div id="wm">
+    <div class="name" data-echo="AETERNUM" aria-label="AETERNUM">
+      <span aria-hidden="true">A</span>
+      <span aria-hidden="true">E</span>
+      <span aria-hidden="true">T</span>
+      <span aria-hidden="true">E</span>
+      <span aria-hidden="true">R</span>
+      <span aria-hidden="true">N</span>
+      <span aria-hidden="true">U</span>
+      <span aria-hidden="true">M</span>
+    </div>
+    <div class="rule" aria-hidden="true">
+      <div class="rl l"></div>
+      <div class="dia"></div>
+      <div class="rl r"></div>
+    </div>
+    <div class="sub">Technologies &thinsp;·&thinsp; Innovation &thinsp;·&thinsp; Limited</div>
+  </div>
+
+</main><!-- /stage -->
+
+<script>
+/* ════════════════════════════════════════════════════════════════
+   AETERNUM — L99 REVISED RUNTIME
+   Fixes applied vs original:
+     1. devicePixelRatio-aware canvas scaling (bg + ripple)
+     2. visibilitychange → pause/resume all rAF loops
+     3. SVG stroke-dasharray computed via getTotalLength()
+     4. Petal fill corrected to rgba(0,0,0,.88) (CSS—already fixed above)
+     5. Breathing uses CSS custom property --breathe-scale, no style.transform collision
+     6. cursor:none applied via .cursor-ready class (graceful fallback)
+     7. Ripple canvas fully DPR-aware
+     8. Shared rAF scheduler: single requestAnimationFrame drives all subsystems
+   ════════════════════════════════════════════════════════════════ */
+
+/* ── DPR helper ── */
+const DPR = () => Math.max(window.devicePixelRatio || 1, 1);
+
+/* ════════════════════════════════════════════════
+   BACKGROUND CANVAS — void atmosphere
+   ════════════════════════════════════════════════ */
+const cv  = document.getElementById('canvas');
+const ctx = cv.getContext('2d');
+let W = 0, H = 0;
+
+function resizeBg() {
+  const dpr = DPR();
+  W = window.innerWidth;
+  H = window.innerHeight;
+  cv.style.width  = W + 'px';
+  cv.style.height = H + 'px';
+  cv.width  = Math.round(W * dpr);
+  cv.height = Math.round(H * dpr);
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0); // scale all drawing to physical pixels
+}
+resizeBg();
+window.addEventListener('resize', resizeBg);
+
+/* ── Ripple overlay canvas — DPR-aware ── */
+const cvO  = document.createElement('canvas');
+const ctxO = cvO.getContext('2d');
+cvO.style.cssText = 'position:fixed;inset:0;z-index:50;pointer-events:none';
+document.body.appendChild(cvO);
+
+function resizeRipple() {
+  const dpr = DPR();
+  cvO.style.width  = window.innerWidth  + 'px';
+  cvO.style.height = window.innerHeight + 'px';
+  cvO.width  = Math.round(window.innerWidth  * dpr);
+  cvO.height = Math.round(window.innerHeight * dpr);
+  ctxO.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+resizeRipple();
+window.addEventListener('resize', resizeRipple);
+
+/* ── Background draw ── */
+let t = 0;
+
+function drawBg() {
+  t += 0.004;
+  ctx.clearRect(0, 0, W, H);
+
+  /* Central bloom */
+  const b = ctx.createRadialGradient(W/2, H/2, 0, W/2, H/2, W * 0.4);
+  b.addColorStop(0,   `rgba(200,144,46,${.022 + .008 * Math.sin(t)})`);
+  b.addColorStop(.35, `rgba(242,237,216,${.006 + .003 * Math.sin(t * 1.3)})`);
+  b.addColorStop(1,   'rgba(0,0,0,0)');
+  ctx.fillStyle = b;
+  ctx.fillRect(0, 0, W, H);
+
+  /* Dot grid — 44px, barely visible */
+  ctx.fillStyle = 'rgba(242,237,216,.03)';
+  const gs = 44;
+  const ox = (W / 2) % gs, oy = (H / 2) % gs;
+  for (let x = ox; x < W; x += gs)
+    for (let y = oy; y < H; y += gs) {
+      ctx.beginPath();
+      ctx.arc(x, y, .6, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+  /* Two sets of counter-phase void rings.
+     Set 1: warm white, outward-travelling wave envelope  sin(r*.018 + t*8)
+     Set 2: gold,       inward-travelling counter-wave    sin(r*.022 - t*5)  */
+  const maxR = Math.hypot(W, H) * .65;
+  const step = 50;
+
+  for (let r = step; r < maxR; r += step) {
+    const amp = .5 + .5 * Math.sin(r * .018 + t * 8);
+    ctx.beginPath();
+    ctx.arc(W/2, H/2, r, 0, Math.PI * 2);
+    ctx.strokeStyle = `rgba(242,237,216,${.011 * amp})`;
+    ctx.lineWidth = .5;
+    ctx.stroke();
+  }
+  for (let r = step * .5; r < maxR; r += step) {
+    const amp = .5 + .5 * Math.sin(r * .022 - t * 5);
+    ctx.beginPath();
+    ctx.arc(W/2, H/2, r, 0, Math.PI * 2);
+    ctx.strokeStyle = `rgba(200,144,46,${.006 * amp})`;
+    ctx.lineWidth = .4;
+    ctx.stroke();
+  }
+}
+
+/* ════════════════════════════════════════════════
+   ORBITAL RING ROTATION
+   Three SVG rings spun at different speeds/directions
+   ════════════════════════════════════════════════ */
+const orb1 = document.getElementById('orb1');
+const orb2 = document.getElementById('orb2');
+const orb3 = document.getElementById('orb3');
+let oa = 0;
+
+function spinOrbs() {
+  oa += 0.007;
+  orb1.setAttribute('transform', `rotate(${oa}         200 200)`);
+  orb2.setAttribute('transform', `rotate(${-oa * .6}   200 200)`);
+  orb3.setAttribute('transform', `rotate(${oa  * .35}  200 200)`);
+}
+
+/* ════════════════════════════════════════════════
+   MARK BREATHING — CSS custom property path
+   Sets --breathe-scale on #mark so CSS transform:scale()
+   picks it up with no style.transform collision risk.
+   ════════════════════════════════════════════════ */
+const mark = document.getElementById('mark');
+let ba = 0;
+
+function breatheMark() {
+  ba += .007;
+  mark.style.setProperty('--breathe-scale', (1 + .005 * Math.sin(ba)).toFixed(6));
+}
+
+/* ════════════════════════════════════════════════
+   CURSOR
+   ════════════════════════════════════════════════ */
+const cur  = document.getElementById('cur');
+const cur2 = document.getElementById('cur2');
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+function trackCursor() {
+  /* Exponential approach — ~8-frame lag at 60fps */
+  rx += (mx - rx) * .12;
+  ry += (my - ry) * .12;
+  cur.style.left  = mx + 'px'; cur.style.top  = my + 'px';
+  cur2.style.left = rx + 'px'; cur2.style.top = ry + 'px';
+}
+
+/* Activate cursor after first mousemove (prevents flash on load) */
+let cursorReady = false;
+document.addEventListener('mousemove', () => {
+  if (!cursorReady) {
+    cursorReady = true;
+    document.body.classList.add('cursor-ready');
+  }
+}, { once: true });
+
+/* ════════════════════════════════════════════════
+   HOVER CHARGE EFFECT
+   ════════════════════════════════════════════════ */
+const mw = document.getElementById('mw');
+mw.addEventListener('mouseenter', () => {
+  mark.style.filter = 'brightness(1.18) saturate(1.1)';
+});
+mw.addEventListener('mouseleave', () => {
+  mark.style.filter = 'brightness(1) saturate(1)';
+});
+
+/* ════════════════════════════════════════════════
+   CLICK RIPPLE BURST
+   ════════════════════════════════════════════════ */
+let ripples = [];
+document.addEventListener('click', e => {
+  ripples.push({ x: e.clientX, y: e.clientY, r: 0, a: .5 });
+});
+
+function drawRipples() {
+  ctxO.clearRect(0, 0, window.innerWidth, window.innerHeight);
+  ripples = ripples.filter(r => r.a > 0);
+  for (const r of ripples) {
+    r.r += 4;
+    r.a -= .018;
+    ctxO.beginPath();
+    ctxO.arc(r.x, r.y, r.r, 0, Math.PI * 2);
+    ctxO.strokeStyle = `rgba(200,144,46,${r.a})`;
+    ctxO.lineWidth = 1.2;
+    ctxO.stroke();
+  }
+}
+
+/* ════════════════════════════════════════════════
+   UNIFIED rAF SCHEDULER
+   Single requestAnimationFrame drives all subsystems.
+   Paused automatically when tab is hidden.
+   ════════════════════════════════════════════════ */
+let rafId = null;
+let running = true;
+
+function tick() {
+  if (!running) return;
+  drawBg();
+  spinOrbs();
+  breatheMark();
+  trackCursor();
+  drawRipples();
+  rafId = requestAnimationFrame(tick);
+}
+
+/* Pause on hidden tab, resume on visible — prevents background CPU burn */
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    running = false;
+    if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+  } else {
+    running = true;
+    tick();
+  }
+});
+
+/* ════════════════════════════════════════════════
+   PULSING GRID BOXES — scattered inside the sigil
+   Step-22 grid, R ∈ [28, 112] from center (200,200)
+   Each box pulses independently at staggered phase
+   ════════════════════════════════════════════════ */
+(function generateGridBoxes() {
+  const svgEl  = document.getElementById('mark');
+  const g      = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  g.id = 'grid-boxes';
+  g.style.opacity = '0';
+  g.style.transition = 'opacity 1.8s ease';
+
+  const cx = 200, cy = 200;
+  const W  = 3.6,  H = 3.6;
+  const step = 16, minR = 16, maxR = 146;
+
+  // Alternate gold / warm-white for visual texture
+  const colors = [
+    'rgba(200,144,46,0.88)',
+    'rgba(200,144,46,0.88)',
+    'rgba(242,237,216,0.72)',
+  ];
+
+  let idx = 0;
+  for (let dx = -148; dx <= 148; dx += step) {
+    for (let dy = -148; dy <= 148; dy += step) {
+      const r = Math.hypot(dx, dy);
+      if (r < minR || r > maxR) continue;
+
+      const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      rect.setAttribute('x',      (cx + dx - W / 2).toFixed(1));
+      rect.setAttribute('y',      (cy + dy - H / 2).toFixed(1));
+      rect.setAttribute('width',  W);
+      rect.setAttribute('height', H);
+      rect.setAttribute('fill',   'rgba(200,144,46,0.06)');
+      rect.setAttribute('stroke', colors[idx % colors.length]);
+      rect.setAttribute('stroke-width', '0.55');
+      rect.setAttribute('filter', 'url(#fGridBox)');
+
+      const dur = (1.6 + (idx % 9) * 0.28).toFixed(2);
+      const del = ((idx * 0.17) % 5.0).toFixed(2);
+      rect.style.animation = `gridPulse ${dur}s ${del}s ease-in-out infinite`;
+      g.appendChild(rect);
+      idx++;
+    }
+  }
+
+  svgEl.appendChild(g);
+
+  // Reveal after the main sigil draw sequence completes
+  setTimeout(() => { g.style.opacity = '1'; }, 5800);
+})();
+
+/* Start the loop */
+tick();
+
+/* ════════════════════════════════════════════════
+   SVG PATH LENGTH CALIBRATION
+   Measures actual path/ellipse/line/circle lengths via
+   getTotalLength() and sets --path-len custom property
+   on each element, so stroke-dasharray exactly matches
+   the geometry regardless of future coordinate changes.
+   ════════════════════════════════════════════════ */
+(function calibratePathLengths() {
+  /* All elements bearing class "d" need calibration.
+     SVGGeometryElement.getTotalLength() works on:
+       circle, ellipse, line, path, polyline, polygon, rect */
+  const drawEls = document.querySelectorAll('#mark .d');
+
+  /* requestAnimationFrame ensures SVG is laid out and lengths are valid */
+  requestAnimationFrame(() => {
+    drawEls.forEach(el => {
+      try {
+        const len = el.getTotalLength();
+        if (len > 0) {
+          /* Add 1px buffer to prevent hairline gap at end of draw */
+          const safeLen = (len + 1).toFixed(2);
+          el.style.setProperty('--path-len', safeLen);
+        }
+      } catch (e) {
+        /* getTotalLength not supported on this element type — CSS fallback of 3000 holds */
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
