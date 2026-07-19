@@ -6,81 +6,9 @@
     <meta name="description" content="Terms of Use for Stanley Masiga Mbinda's portfolio website">
     <title>Terms of Use | Stanley Masiga Mbinda</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="app.css">
     <link rel="stylesheet" href="themes.css">
-    <style>
-        :root {
-            --void:#060606; --plate:#111111; --border:#1f1f1f; --text-dim:#3a3a3a;
-            --text-mid:#888888; --text-base:#c8c8c8; --text-bright:#efefef;
-            --gold:        var(--accent);
-            --gold-hot:    var(--accent-hot);
-            --gold-glow:   var(--accent-glow);
-            --gold-line:   var(--accent-line); --font-display:'Bebas Neue',sans-serif;
-            --font-mono:'JetBrains Mono',monospace; --gap:clamp(24px,4vw,56px);
-        }
-        *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html {
-            background: var(--void); color: var(--text-base); font-family: var(--font-mono);
-            font-size: 14px; line-height: 1.7; -webkit-font-smoothing: antialiased;
-        }
-        body { min-height: 100vh; overflow-x: hidden; position: relative; }
-        .noise-floor {
-            position: fixed; inset: 0; pointer-events: none; z-index: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3'/%3E%3C/filter%3E%3Crect width='512' height='512' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
-            background-size: 256px 256px; opacity: 0.6; mix-blend-mode: overlay;
-        }
-        .noise-floor::after {
-            content: ''; position: absolute; inset: 0;
-            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px);
-        }
-        body::before {
-            content: ''; position: fixed; left: 0; top: 0; bottom: 0; width: 2px;
-            background: linear-gradient(to bottom, transparent 0%, var(--gold-line) 20%, var(--gold) 50%, var(--gold-line) 80%, transparent 100%);
-            animation: rulePulse 6s ease-in-out infinite; z-index: 10;
-        }
-        @keyframes rulePulse { 0%,100%{opacity:.3} 50%{opacity:.9} }
-        .foundry {
-            position: relative; z-index: 1; max-width: 780px; margin: 0 auto;
-            padding: var(--gap) clamp(20px,5vw,48px) calc(var(--gap) * 2);
-            display: flex; flex-direction: column; gap: var(--gap);
-        }
-        .nav-back {
-            display: inline-flex; align-items: center; gap: 10px; font-size: 10px;
-            font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
-            text-decoration: none; color: var(--text-dim); transition: color .3s ease;
-        }
-        .nav-back::before { content: '←'; font-size: 13px; transition: transform .3s ease; }
-        .nav-back:hover { color: var(--gold); }
-        .nav-back:hover::before { transform: translateX(-4px); }
-        h1 {
-            font-family: var(--font-display); font-size: clamp(44px, 8vw, 92px);
-            line-height: .92; letter-spacing: .01em; text-transform: uppercase;
-            color: var(--text-bright); margin: 20px 0;
-        }
-        h2 {
-            font-family: var(--font-display); font-size: 28px; letter-spacing: .02em;
-            text-transform: uppercase; color: var(--gold); margin: 32px 0 16px;
-        }
-        p { font-size: 13px; line-height: 2; color: var(--text-mid); margin-bottom: 16px; max-width: 660px; }
-        ul, ol { margin-left: 32px; margin-bottom: 16px; }
-        li { margin-bottom: 8px; }
-        .back-link {
-            display: inline-flex; align-items: center; gap: 10px; font-size: 11px;
-            font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
-            text-decoration: none; color: var(--void); background: var(--gold);
-            padding: 13px 24px; position: relative; overflow: hidden;
-        }
-        .back-link::before {
-            content: ''; position: absolute; inset: 0; background: var(--gold-hot);
-            transform: translateX(-101%); transition: transform .35s cubic-bezier(.22,1,.36,1);
-        }
-        .back-link:hover::before { transform: translateX(0); }
-        .back-link span { position: relative; z-index: 1; }
-        ::selection { background: var(--accent-glow); color: var(--gold-hot); }
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: var(--void); }
-        ::-webkit-scrollbar-thumb { background: var(--text-dim); border-radius: 2px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
-    </style>
+    
 </head>
 <body>
     <div class="noise-floor"></div><div class="scanline"></div>
