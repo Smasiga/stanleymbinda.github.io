@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="sovereign">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,23 +15,14 @@
     <meta name="twitter:description" content="Building permanent systems. Closing the interpretive intelligence gap.">
     <title>Stanley Masiga Mbinda | Chief Architect</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="themes.css">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Ccircle cx='200' cy='200' r='154' fill='none' stroke='%23F2ED%23'/%3E%3C/svg%3E">
     <style>
         :root {
-            --void:        #060606;
-            --plate:       #111111;
-            --border:      #1f1f1f;
-            --text-dim:    #3a3a3a;
-            --text-mid:    #888888;
-            --text-base:   #c8c8c8;
-            --text-bright: #efefef;
-            --gold:        #c8963c;
-            --gold-hot:    #f0b040;
-            --gold-glow:   rgba(200,150,60,0.12);
-            --gold-line:   rgba(200,150,60,0.35);
-            --font-display:'Bebas Neue', sans-serif;
-            --font-mono:   'JetBrains Mono', monospace;
-            --gap:         clamp(24px, 4vw, 56px);
+            --gold:        var(--accent);
+            --gold-hot:    var(--accent-hot);
+            --gold-glow:   var(--accent-glow);
+            --gold-line:   var(--accent-line);
         }
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html {
@@ -418,7 +409,7 @@
         }
 
         /* SELECTION + SCROLLBAR */
-        ::selection { background:rgba(200,150,60,.25); color:var(--gold-hot); }
+        ::selection { background:var(--accent-glow); color:var(--gold-hot); }
         ::-webkit-scrollbar       { width:4px; }
         ::-webkit-scrollbar-track { background:var(--void); }
         ::-webkit-scrollbar-thumb { background:var(--text-dim); border-radius:2px; }
@@ -506,21 +497,21 @@
             <div class="item">
                 <label>Architecture I</label>
                 <p class="item-status">⚙️ In Engineering</p>
-                <p class="item-title">Project Parenklisis <span class="aka">aka Clinamen</span></p>
+                <a href="parenklisis.html" class="item-title" style="text-decoration:none;display:block">Project Parenklisis <span class="aka">aka Clinamen</span> →</a>
                 <p class="item-domain">Macro-structural intelligence system for directional forecasting under irreducible temporal uncertainty.</p>
                 <p class="item-objective">To map the "swerve" — the 2% of unpredictable deviation — in global systems to provide long-horizon capital allocation certainty. Currently in active development.</p>
             </div>
             <div class="item">
                 <label>Architecture II</label>
                 <p class="item-status">⚙️ In Engineering</p>
-                <p class="item-title">The Aetherion Protocol</p>
+                <a href="aetherion-protocol.html" class="item-title" style="text-decoration:none;display:block">The Aetherion Protocol →</a>
                 <p class="item-domain">Decentralised protocol for incorruptible token legitimacy verification without central authority.</p>
                 <p class="item-objective">A decentralized protocol using a four-dimensional utility framework to distinguish legitimate assets from fraudulent schemes. Development underway.</p>
             </div>
             <div class="item">
                 <label>Architecture III</label>
                 <p class="item-status">⚙️ In Engineering</p>
-                <p class="item-title">HCIP <span class="aka">Holistic Code Intelligence Platform</span></p>
+                <a href="hcip.html" class="item-title" style="text-decoration:none;display:block">HCIP <span class="aka">Holistic Code Intelligence Platform</span> →</a>
                 <p class="item-domain">Holistic code intelligence platform that understands software as structure, behaviour, and intent.</p>
                 <p class="item-layers">The Skeleton · The Nervous System · The Soul</p>
                 <p class="item-objective">To move beyond forensic code tools and treat codebases as living artifacts. Currently under active development and refinement.</p>
@@ -528,14 +519,14 @@
             <div class="item">
                 <label>Architecture IV</label>
                 <p class="item-status">⚙️ In Engineering</p>
-                <p class="item-title">Project Noema</p>
+                <a href="noema.html" class="item-title" style="text-decoration:none;display:block">Project Noema →</a>
                 <p class="item-domain">Autonomous attention infrastructure capable of reaching every connected human without gatekeeper permission.</p>
                 <p class="item-objective">A Web4 marketing engine in development — engineering phase focused on decentralized delivery mechanisms and autonomous systems.</p>
             </div>
             <div class="item">
                 <label>Architecture V</label>
                 <p class="item-status">⚙️ In Engineering</p>
-                <p class="item-title">Project Voraci</p>
+                <a href="voraci.html" class="item-title" style="text-decoration:none;display:block">Project Voraci →</a>
                 <p class="item-domain">Anticipatory intelligence architecture that synthesises legally accessible data into permanent, compounding foresight.</p>
                 <p class="item-layers">Volumetric Omnidomain Recognition, Anticipation &amp; Cognitive Intelligence</p>
                 <p class="item-objective">To build a system that synthesizes all legally available data through machine intelligence. Project is in active engineering phase (Technical Specification v2.0 Final, March 2026).</p>
@@ -543,7 +534,7 @@
             <div class="item">
                 <label>Architecture VI</label>
                 <p class="item-status">⚙️ In Engineering</p>
-                <p class="item-title">Veritatem Substratum <span class="aka">The V-Substrate</span></p>
+                <a href="veritatem.html" class="item-title" style="text-decoration:none;display:block">Veritatem Substratum <span class="aka">The V-Substrate</span> →</a>
                 <p class="item-domain">Immutable verifiable-truth underlayer where data carries its origin, intelligence exposes its trace, and authority operates within mathematical bounds.</p>
                 <p class="item-layers">Three Oaths · Commons Charter v2.0 · Formal Verification (Tamarin + Coq)</p>
                 <p class="item-objective">A cryptographic foundation defeating the hallucination economy — every assertion auditable, every reasoning trace transparent, every intervention bound to sovereign human authority. In active specification (Whitepaper v2, Security Proofs VS-SEC-001 v1.1).</p>
@@ -551,7 +542,7 @@
             <div class="item">
                 <label>Architecture VII</label>
                 <p class="item-status">⚙️ In Engineering</p>
-                <p class="item-title">AEGIS <span class="aka">Compound Intelligence Architecture</span></p>
+                <a href="aegis.html" class="item-title" style="text-decoration:none;display:block">AEGIS <span class="aka">Compound Intelligence Architecture</span> →</a>
                 <p class="item-domain">Private, self-improving, hallucination-gated coding intelligence operating at staff-engineer level.</p>
                 <p class="item-layers">Six Subsystems · Constitution v6.0 · CIA v1.0 · Gate 5 Adversarial Testing</p>
                 <p class="item-objective">An autonomous coding intelligence bound by a constitutional framework and seven-tier compound-intelligence architecture. Engineering blueprint at Technical Specification v4.0 Final (May 2026).</p>
@@ -559,7 +550,7 @@
             <div class="item">
                 <label>Architecture VIII</label>
                 <p class="item-status">⚙️ In Engineering</p>
-                <p class="item-title">Aeternum Secure Viewer <span class="aka">The Vault</span></p>
+                <a href="secure-viewer.html" class="item-title" style="text-decoration:none;display:block">Aeternum Secure Viewer <span class="aka">The Vault</span> →</a>
                 <p class="item-domain">Self-healing secure viewing system that cryptographically guarantees its own integrity and grants only windows that close.</p>
                 <p class="item-layers">Tamper-Evident Audit Chain · Prometheus · Multi-Person Authorization</p>
                 <p class="item-objective">A sentient security guardian for sensitive assets — chain-anchored logs, living observability, and ceremonial security. Elite upgrade roadmap in active rollout.</p>
@@ -567,7 +558,7 @@
             <div class="item">
                 <label>Architecture IX</label>
                 <p class="item-status">⚙️ In Engineering</p>
-                <p class="item-title">Project Mycelium Network <span class="aka">Aion × Manus</span></p>
+                <a href="mycelium.html" class="item-title" style="text-decoration:none;display:block">Project Mycelium Network <span class="aka">Aion × Manus</span> →</a>
                 <p class="item-domain">Permanent autonomous trading infrastructure engineered for the next fifty years.</p>
                 <p class="item-layers">Separation of Mind &amp; Hand · Mesh Core (BFT) · Constitutional Kernel</p>
                 <p class="item-objective">"The part that thinks must be permanently separated from the part that touches capital." Aion (the infinite mind) and Manus (the obedient hand) operate under zero-trust execution. Architecture &amp; Security Design v7.0, Technical Specs v1.17.</p>

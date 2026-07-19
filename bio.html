@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="veritatem">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stanley Masiga Mbinda | Biography</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="themes.css">
     <style>
         :root {
             --void:        #060606;
@@ -14,10 +15,10 @@
             --text-mid:    #888888;
             --text-base:   #c8c8c8;
             --text-bright: #efefef;
-            --gold:        #c8963c;
-            --gold-hot:    #f0b040;
-            --gold-glow:   rgba(200,150,60,0.12);
-            --gold-line:   rgba(200,150,60,0.35);
+            --gold:        var(--accent);
+            --gold-hot:    var(--accent-hot);
+            --gold-glow:   var(--accent-glow);
+            --gold-line:   var(--accent-line);
             --font-display:'Bebas Neue', sans-serif;
             --font-mono:   'JetBrains Mono', monospace;
             --gap:         clamp(24px, 4vw, 56px);
@@ -150,7 +151,7 @@
             .back-link { width: 100%; justify-content: space-between; }
         }
 
-        ::selection { background: rgba(200,150,60,.25); color: var(--gold-hot); }
+        ::selection { background: var(--accent-glow); color: var(--gold-hot); }
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: var(--void); }
         ::-webkit-scrollbar-thumb { background: var(--text-dim); border-radius: 2px; }
