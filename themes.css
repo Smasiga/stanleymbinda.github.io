@@ -1,103 +1,78 @@
 /* =====================================================================
-   ÆTERNUM — UNIQUE FRONTEND THEME SYSTEM
+   ÆTERNUM — UNIQUE FRONTEND THEME SYSTEM  (v2: alive / engineering-grade)
    10 distinct, fixed-per-page themes. Each page sets <html data-theme="...">.
-   Shared component layer + 10 token palettes. No JS theme switching.
+   Two-tone accents + shared "alive" layer (grid, scanline, glow, telemetry).
    ===================================================================== */
 
 /* ---------- SHARED BASE ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html {
-    color: var(--text-base);
-    font-family: var(--font-mono);
-    font-size: 14px; line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-    background: var(--void);
-    scroll-behavior: smooth;
-}
+html { color: var(--text-base); font-family: var(--font-mono); font-size: 14px; line-height: 1.7;
+    -webkit-font-smoothing: antialiased; background: var(--void); scroll-behavior: smooth; }
 body { min-height: 100vh; overflow-x: hidden; position: relative; }
 
-/* noise / texture overlay (theme-tinted) */
-.noise-floor {
-    position: fixed; inset: 0; pointer-events: none; z-index: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' result='noise'/%3E%3C/filter%3E%3Crect width='512' height='512' fill='%23111'/%3E%3Crect width='512' height='512' fill='%23111' opacity='0.05' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-size: 256px 256px; opacity: 0.55; mix-blend-mode: overlay;
-}
-.noise-floor::after {
-    content: ''; position: absolute; inset: 0;
-    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px);
-}
+/* engineering grid backdrop (theme-tinted, very subtle) */
+.noise-floor { position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image:
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 44px 44px, 44px 44px;
+    opacity: .5; mask-image: radial-gradient(circle at 50% 30%, #000 0%, transparent 85%); }
+.noise-floor::after { content:''; position:absolute; inset:0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.08) 2px, rgba(0,0,0,.08) 4px); }
+
+/* scanning line — gives the page a "live system" feel */
+.scanline { position: fixed; left:0; right:0; height: 140px; z-index: 0; pointer-events: none;
+    background: linear-gradient(to bottom, transparent, var(--accent-glow), transparent);
+    animation: scan 9s linear infinite; opacity: .5; }
+@keyframes scan { 0%{ transform: translateY(-160px); } 100%{ transform: translateY(100vh); } }
 
 /* left rule accent */
-.foundry { position: relative; z-index: 1; max-width: 900px; margin: 0 auto;
+.foundry { position: relative; z-index: 1; max-width: 1040px; margin: 0 auto;
     padding: var(--gap) clamp(20px,5vw,48px) calc(var(--gap) * 1.5);
     display: flex; flex-direction: column; gap: var(--gap); }
-.foundry::before {
-    content: ''; position: fixed; left: 0; top: 0; bottom: 0; width: 2px;
-    background: linear-gradient(to bottom, transparent 0%, var(--accent-line) 20%, var(--accent) 50%, var(--accent-line) 80%, transparent 100%);
-    animation: rulePulse 6s ease-in-out infinite; z-index: 10;
-}
-@keyframes rulePulse { 0%,100%{opacity:.3} 50%{opacity:.9} }
+.foundry::before { content:''; position: fixed; left: 0; top: 0; bottom: 0; width: 2px;
+    background: linear-gradient(to bottom, transparent 0%, var(--accent-line) 20%, var(--accent) 50%, var(--accent-2) 60%, var(--accent-line) 80%, transparent 100%);
+    animation: rulePulse 6s ease-in-out infinite; z-index: 10; }
+@keyframes rulePulse { 0%,100%{opacity:.35} 50%{opacity:1} }
 
 /* headings */
 h1, h2, h3 { font-family: var(--font-display); text-transform: uppercase; line-height: .95; }
 .master-identity h1, .page-title {
-    font-family: var(--font-display);
-    font-size: clamp(52px,9vw,108px); line-height: .92; letter-spacing: .01em; text-transform: uppercase;
+    font-family: var(--font-display); font-size: clamp(52px,9vw,108px); line-height: .92; letter-spacing: .01em; text-transform: uppercase;
     background: linear-gradient(105deg, var(--text-bright) 0%, var(--text-bright) 38%, var(--accent-hot) 50%, var(--text-bright) 62%, var(--text-bright) 100%);
-    background-size: 300% auto;
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    animation: shimmer 8s linear infinite;
-}
+    background-size: 300% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    animation: shimmer 8s linear infinite; }
 @keyframes shimmer { 0%{background-position:200% center} 100%{background-position:-100% center} }
 
 /* section header */
-.logic-header, .section-header {
-    font-size: 9px; font-weight: 700; letter-spacing: .28em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 16px; display: flex; align-items: center; gap: 12px;
-}
-.logic-header::after, .section-header::after { content:''; flex:1; height:1px; background: linear-gradient(to right, var(--accent-line), transparent); }
+.logic-header, .section-header, .eyebrow { font-size: 9px; font-weight: 700; letter-spacing: .3em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 18px; display: flex; align-items: center; gap: 12px; }
+.logic-header::after, .section-header::after, .eyebrow::after { content:''; flex:1; height:1px; background: linear-gradient(to right, var(--accent-line), transparent); }
 
-/* generic paragraph */
-.prose p { font-size: 13px; font-weight: 300; line-height: 1.9; color: var(--text-mid); max-width: 680px; }
-.prose p strong { color: var(--text-bright); font-weight: 700; }
-.lede { font-size: 15px; color: var(--text-base); }
+/* prose */
+.prose p, .lede { font-size: 13px; font-weight: 300; line-height: 1.95; color: var(--text-mid); max-width: 720px; }
+.prose p strong, .lede strong { color: var(--text-bright); font-weight: 700; }
 
 /* inventory / card grid */
-.inventory { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px,1fr)); gap: 2px; }
-.item {
-    background: var(--plate); border: 1px solid var(--border);
-    padding: 24px 20px; position: relative; overflow: hidden;
-    transition: border-color .3s ease, background .3s ease;
-}
-.item::before {
-    content:''; position:absolute; top:0; left:0; width:16px; height:16px;
-    border-top: 2px solid var(--accent); border-left: 2px solid var(--accent); opacity:0; transition: opacity .3s ease;
-}
-.item::after { content:''; position:absolute; inset:0; background: var(--accent-glow); opacity:0; transition: opacity .4s ease; }
-.item:hover { border-color: var(--accent-line); background: var(--plate-hot); }
-.item:hover::before { opacity:1; } .item:hover::after { opacity:1; }
-.item label { display:block; font-size:9px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--accent); margin-bottom:12px; position:relative; z-index:1; }
-.item p { font-size:12px; font-weight:300; line-height:1.65; color:var(--text-mid); position:relative; z-index:1; }
-.item-title { font-size:13px !important; font-weight:700 !important; color:var(--text-bright) !important; margin-bottom:10px !important; line-height:1.4 !important; }
-.item-title .aka { display:block; font-size:10px; font-weight:400; letter-spacing:.1em; color:var(--accent); opacity:.75; margin-top:3px; }
-.item-status { font-size:9px !important; font-weight:700 !important; text-transform:uppercase !important; letter-spacing:.15em; color:var(--status) !important; margin-bottom:8px !important; padding:4px 8px; background:var(--status-bg); border-left:2px solid var(--status); padding-left:10px; }
+.inventory, .arch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px,1fr)); gap: 2px; }
+.item, .arch-card { background: var(--plate); border: 1px solid var(--border); padding: 24px 20px; position: relative; overflow: hidden;
+    transition: border-color .3s ease, background .3s ease, transform .3s ease; }
+.item::before, .arch-card::before { content:''; position:absolute; top:0; left:0; width:16px; height:16px;
+    border-top: 2px solid var(--accent); border-left: 2px solid var(--accent); opacity:0; transition: opacity .3s ease; }
+.item::after, .arch-card::after { content:''; position:absolute; inset:0; background: var(--accent-glow); opacity:0; transition: opacity .4s ease; }
+.item:hover, .arch-card:hover { border-color: var(--accent-line); background: var(--plate-hot); transform: translateY(-2px); }
+.item:hover::before, .arch-card:hover::before { opacity:1; } .item:hover::after, .arch-card:hover::after { opacity:1; }
+.item label, .arch-card .ac-num { display:block; font-size:9px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--accent); margin-bottom:12px; position:relative; z-index:1; }
+.item p, .arch-card .ac-domain { font-size:12px; font-weight:300; line-height:1.65; color:var(--text-mid); position:relative; z-index:1; }
+.item-title, .arch-card .ac-title { font-size:14px !important; font-weight:700 !important; color:var(--text-bright) !important; margin-bottom:10px !important; line-height:1.4 !important; position:relative; z-index:1; }
+.item-title .aka, .arch-card .ac-aka { display:block; font-size:10px; font-weight:400; letter-spacing:.1em; color:var(--accent); opacity:.75; margin-top:3px; }
+.item-status { font-size:9px !important; font-weight:700 !important; text-transform:uppercase !important; letter-spacing:.15em; color:var(--status) !important; margin-bottom:8px !important; padding:4px 8px; background:var(--status-bg); border-left:2px solid var(--status); padding-left:10px; position:relative; z-index:1; }
 .item-domain { font-size:11px !important; line-height:1.65 !important; margin-bottom:10px !important; border-left:1px solid var(--border); padding-left:10px; }
 .item-layers { font-size:9px !important; letter-spacing:.16em; text-transform:uppercase; color:var(--accent) !important; opacity:.6; margin-bottom:10px !important; transition: opacity .3s ease; }
 .item-objective { font-size:11px !important; color:var(--text-dim) !important; line-height:1.7 !important; }
 .item:hover .item-domain { color:var(--text-base) !important; border-color:var(--accent-line); }
 .item:hover .item-objective { color:var(--text-mid) !important; }
 .item:hover .item-layers { opacity:1; }
-
-/* signature motif block shown on architecture pages */
-.motif {
-    border: 1px solid var(--border); background: var(--plate);
-    padding: 28px; position: relative; overflow: hidden;
-}
-.motif::before {
-    content:''; position:absolute; inset:0; opacity:.5; pointer-events:none;
-    background: var(--motif-bg);
-}
-.motif > * { position: relative; z-index: 1; }
 
 /* spec list */
 .spec-list { list-style: none; display: grid; gap: 1px; border: 1px solid var(--border); }
@@ -106,152 +81,144 @@ h1, h2, h3 { font-family: var(--font-display); text-transform: uppercase; line-h
 .spec-list li span:last-child { color: var(--text-base); text-align: right; }
 
 /* nav / links */
-.footer-nav { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px; padding-top:28px; border-top:1px solid var(--border); }
-.footer-nav a, .nav-link { color: var(--text-dim); text-decoration:none; font-size:10px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; transition: color .3s ease; }
-.footer-nav a:hover, .nav-link:hover { color: var(--accent); }
+.footer-nav a, .nav-link, .foot-links a { color: var(--text-dim); text-decoration:none; font-size:10px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; transition: color .3s ease; }
+.footer-nav a:hover, .nav-link:hover, .foot-links a:hover { color: var(--accent); }
 .back-link { display:inline-flex; align-items:center; gap:10px; font-size:10px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; text-decoration:none; color:var(--text-dim); transition:color .3s ease; }
 .back-link::before { content:'←'; transition: transform .3s ease; } .back-link:hover { color: var(--accent); } .back-link:hover::before { transform: translateX(-4px); }
-
-/* status pill reused */
 .pill { display:inline-block; font-size:9px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; padding:5px 10px; border:1px solid var(--accent-line); color:var(--accent); background:var(--accent-glow); }
 
-/* entrance animations */
+/* entrance */
 @keyframes fadeDown { from{opacity:0; transform:translateY(-12px)} to{opacity:1; transform:none} }
 @keyframes fadeUp { from{opacity:0; transform:translateY(12px)} to{opacity:1; transform:none} }
 .reveal { animation: fadeDown .7s .1s ease forwards; }
-
-/* responsive */
-@media (max-width: 640px) {
-    .spec-list li { flex-direction: column; gap: 4px; }
-    .spec-list li span:last-child { text-align: left; }
-}
+@media (max-width: 640px) { .spec-list li { flex-direction: column; gap: 4px; } .spec-list li span:last-child { text-align: left; } }
 
 /* =====================================================================
-   THEME I — SOVEREIGN OBSIDIAN (Hub / index)
+   THEME I — SOVEREIGN COPPER (Hub / index)  warm, premium, alive
    ===================================================================== */
 [data-theme="sovereign"] {
-    --void:#060606; --plate:#101012; --plate-hot:#16161a; --border:#222227;
-    --text-dim:#3a3a40; --text-mid:#7c7c86; --text-base:#c6c6cc; --text-bright:#f1f1f4;
-    --accent:#9aa6b2; --accent-hot:#cdd6df; --accent-line:rgba(154,166,178,.32); --accent-glow:rgba(154,166,178,.10);
-    --status:#ff9800; --status-bg:rgba(255,152,0,.1);
+    --void:#0a0705; --plate:#14100c; --plate-hot:#1b150e; --border:#2c2118;
+    --text-dim:#5a4d3c; --text-mid:#a08d72; --text-base:#e4d6c2; --text-bright:#fbf3e6;
+    --accent:#d98a4a; --accent-2:#e8b06a; --accent-hot:#f4c98a;
+    --accent-line:rgba(217,138,74,.4); --accent-glow:rgba(217,138,74,.12); --grid-line:rgba(217,138,74,.05);
+    --status:#d98a4a; --status-bg:rgba(217,138,74,.12);
     --font-display:'Bebas Neue',sans-serif; --font-mono:'JetBrains Mono',monospace;
     --gap:clamp(24px,4vw,56px);
-    --motif-bg: radial-gradient(circle at 20% 10%, rgba(154,166,178,.08), transparent 45%), radial-gradient(circle at 80% 80%, rgba(154,166,178,.05), transparent 40%);
 }
 
 /* =====================================================================
-   THEME II — CLINAMEN EMBER (Parenklisis — the swerve, conviction heat)
+   THEME II — CLINAMEN EMBER (Parenklisis) molten amber/orange
    ===================================================================== */
 [data-theme="clinamen"] {
     --void:#0c0805; --plate:#161009; --plate-hot:#1c1208; --border:#2a1c0e;
-    --text-dim:#4a3a2a; --text-mid:#9a7c54; --text-base:#e6d2b4; --text-bright:#fff3e0;
-    --accent:#ff7a18; --accent-hot:#ffb347; --accent-line:rgba(255,122,24,.4); --accent-glow:rgba(255,122,24,.12);
-    --status:#ff9800; --status-bg:rgba(255,122,24,.12);
+    --text-dim:#5a4327; --text-mid:#a9804f; --text-base:#e8d3b2; --text-bright:#fff3e0;
+    --accent:#ff7a18; --accent-2:#ff9d4d; --accent-hot:#ffc078;
+    --accent-line:rgba(255,122,24,.42); --accent-glow:rgba(255,122,24,.13); --grid-line:rgba(255,122,24,.05);
+    --status:#ff7a18; --status-bg:rgba(255,122,24,.12);
     --font-display:'Bebas Neue',sans-serif; --font-mono:'JetBrains Mono',monospace;
     --gap:clamp(24px,4vw,56px);
-    --motif-bg: radial-gradient(circle at 30% 20%, rgba(255,122,24,.14), transparent 50%), conic-gradient(from 210deg at 70% 70%, rgba(255,122,24,.08), transparent 40%);
 }
 
 /* =====================================================================
-   THEME III — AETHER VERDICT (Aetherion — incorruptible, cold viridian+brass)
+   THEME III — AETHER VERDICT (Aetherion) cold viridian + brass
    ===================================================================== */
 [data-theme="aether"] {
     --void:#04090a; --plate:#0a1416; --plate-hot:#0d1a1c; --border:#13302f;
     --text-dim:#2f4a47; --text-mid:#6fae9f; --text-base:#cfeae2; --text-bright:#effaf6;
-    --accent:#1fb89a; --accent-hot:#5fe6c8; --accent-line:rgba(31,184,154,.4); --accent-glow:rgba(31,184,154,.12);
+    --accent:#1fb89a; --accent-2:#36d6b6; --accent-hot:#7df0d8;
+    --accent-line:rgba(31,184,154,.42); --accent-glow:rgba(31,184,154,.13); --grid-line:rgba(31,184,154,.05);
     --status:#1fb89a; --status-bg:rgba(31,184,154,.12);
     --font-display:'Bebas Neue',sans-serif; --font-mono:'JetBrains Mono',monospace;
     --gap:clamp(24px,4vw,56px);
-    --motif-bg: linear-gradient(135deg, rgba(31,184,154,.10), transparent 55%), repeating-linear-gradient(45deg, rgba(31,184,154,.04) 0 10px, transparent 10px 20px);
 }
 
 /* =====================================================================
-   THEME IV — SYNTAX PULSE (HCIP — living code, electric violet)
+   THEME IV — SYNTAX PULSE (HCIP) electric violet/magenta
    ===================================================================== */
 [data-theme="syntax"] {
     --void:#0a0610; --plate:#130a1c; --plate-hot:#190e26; --border:#2a1640;
-    --text-dim:#42305a; --text-mid:#9a78c4; --text-base:#e3d4f5; --text-bright:#f6eeff;
-    --accent:#a855f7; --accent-hot:#d8a4ff; --accent-line:rgba(168,85,247,.4); --accent-glow:rgba(168,85,247,.13);
+    --text-dim:#4a3568; --text-mid:#a07fce; --text-base:#e6d6f7; --text-bright:#f6eeff;
+    --accent:#a855f7; --accent-2:#c879ff; --accent-hot:#e0b4ff;
+    --accent-line:rgba(168,85,247,.42); --accent-glow:rgba(168,85,247,.14); --grid-line:rgba(168,85,247,.05);
     --status:#c084fc; --status-bg:rgba(168,85,247,.13);
     --font-display:'Bebas Neue',sans-serif; --font-mono:'JetBrains Mono',monospace;
     --gap:clamp(24px,4vw,56px);
-    --motif-bg: radial-gradient(circle at 50% 0%, rgba(168,85,247,.16), transparent 55%), repeating-linear-gradient(90deg, rgba(168,85,247,.05) 0 2px, transparent 2px 6px);
 }
 
 /* =====================================================================
-   THEME V — NOEMA SIGNAL (Noema — autonomous attention, ice cyan)
+   THEME V — NOEMA SIGNAL (Noema) ice cyan
    ===================================================================== */
 [data-theme="noema"] {
     --void:#03070e; --plate:#081120; --plate-hot:#0a1626; --border:#10294a;
     --text-dim:#26415f; --text-mid:#5e90c4; --text-base:#cfe2f5; --text-bright:#eef6ff;
-    --accent:#29b6f6; --accent-hot:#7fd8ff; --accent-line:rgba(41,182,246,.42); --accent-glow:rgba(41,182,246,.13);
+    --accent:#29b6f6; --accent-2:#5fd0ff; --accent-hot:#a6e4ff;
+    --accent-line:rgba(41,182,246,.44); --accent-glow:rgba(41,182,246,.14); --grid-line:rgba(41,182,246,.05);
     --status:#29b6f6; --status-bg:rgba(41,182,246,.12);
     --font-display:'Bebas Neue',sans-serif; --font-mono:'JetBrains Mono',monospace;
     --gap:clamp(24px,4vw,56px);
-    --motif-bg: radial-gradient(circle at 80% 10%, rgba(41,182,246,.16), transparent 50%), repeating-radial-gradient(circle at 20% 80%, rgba(41,182,246,.05) 0 12px, transparent 12px 26px);
 }
 
 /* =====================================================================
-   THEME VI — VORACI OMNISCOPE (Voraci — anticipatory, aurora green/blue)
+   THEME VI — VORACI OMNISCOPE (Voraci) aurora green/blue
    ===================================================================== */
 [data-theme="voraci"] {
     --void:#04090a; --plate:#0a1416; --plate-hot:#0c1a1d; --border:#123438;
     --text-dim:#27484a; --text-mid:#5fa6a0; --text-base:#cdeae6; --text-bright:#edfaf7;
-    --accent:#34d399; --accent-hot:#7df0c4; --accent-line:rgba(52,211,153,.4); --accent-glow:rgba(52,211,153,.12);
+    --accent:#34d399; --accent-2:#5fe6c4; --accent-hot:#9af0d8;
+    --accent-line:rgba(52,211,153,.42); --accent-glow:rgba(52,211,153,.13); --grid-line:rgba(52,211,153,.05);
     --status:#34d399; --status-bg:rgba(52,211,153,.12);
     --font-display:'Bebas Neue',sans-serif; --font-mono:'JetBrains Mono',monospace;
     --gap:clamp(24px,4vw,56px);
-    --motif-bg: linear-gradient(120deg, rgba(52,211,153,.10), rgba(41,182,246,.08) 60%, transparent 80%), repeating-linear-gradient(60deg, rgba(52,211,153,.04) 0 14px, transparent 14px 28px);
 }
 
 /* =====================================================================
-   THEME VII — VERITATEM OATH (Veritatem — law, crimson seal + bone)
+   THEME VII — VERITATEM OATH (Veritatem) crimson seal + bone
    ===================================================================== */
 [data-theme="veritatem"] {
     --void:#0b0606; --plate:#160c0c; --plate-hot:#1c0f0f; --border:#331616;
     --text-dim:#4a2c2c; --text-mid:#a06a64; --text-base:#ecd6cf; --text-bright:#fbeee9;
-    --accent:#c0392b; --accent-hot:#e8766a; --accent-line:rgba(192,57,43,.42); --accent-glow:rgba(192,57,43,.12);
-    --status:#e08a4a; --status-bg:rgba(192,57,43,.12);
+    --accent:#d8473a; --accent-2:#e8766a; --accent-hot:#f4a89c;
+    --accent-line:rgba(216,71,58,.44); --accent-glow:rgba(216,71,58,.13); --grid-line:rgba(216,71,58,.05);
+    --status:#e08a4a; --status-bg:rgba(216,71,58,.12);
     --font-display:'Bebas Neue',sans-serif; --font-mono:'JetBrains Mono',monospace;
     --gap:clamp(24px,4vw,56px);
-    --motif-bg: radial-gradient(circle at 15% 15%, rgba(192,57,43,.14), transparent 50%), repeating-linear-gradient(0deg, rgba(192,57,43,.05) 0 2px, transparent 2px 8px);
 }
 
 /* =====================================================================
-   THEME VIII — AEGIS BULWARK (AEGIS — defensive steel-blue + alert amber)
+   THEME VIII — AEGIS BULWARK (AEGIS) steel-blue + alert amber
    ===================================================================== */
 [data-theme="aegis"] {
     --void:#06080c; --plate:#0d1118; --plate-hot:#121823; --border:#1e2a3a;
     --text-dim:#33415a; --text-mid:#6f86a8; --text-base:#d2dcea; --text-bright:#eef3fb;
-    --accent:#4a90d9; --accent-hot:#82b8f0; --accent-line:rgba(74,144,217,.42); --accent-glow:rgba(74,144,217,.13);
+    --accent:#4a90d9; --accent-2:#6fb0f0; --accent-hot:#a6cdf7;
+    --accent-line:rgba(74,144,217,.44); --accent-glow:rgba(74,144,217,.14); --grid-line:rgba(74,144,217,.05);
     --status:#f0a830; --status-bg:rgba(240,168,48,.13);
     --font-display:'Bebas Neue',sans-serif; --font-mono:'JetBrains Mono',monospace;
     --gap:clamp(24px,4vw,56px);
-    --motif-bg: linear-gradient(180deg, rgba(74,144,217,.10), transparent 60%), repeating-linear-gradient(135deg, rgba(74,144,217,.04) 0 16px, transparent 16px 32px);
 }
 
 /* =====================================================================
-   THEME IX — VAULT SENTINEL (Aeternum Secure Viewer — emerald guardian)
+   THEME IX — VAULT SENTINEL (Aeternum Secure Viewer) emerald guardian
    ===================================================================== */
 [data-theme="vault"] {
     --void:#04100a; --plate:#0a1c12; --plate-hot:#0c2316; --border:#143524;
     --text-dim:#2a4a38; --text-mid:#5fae84; --text-base:#cdeede; --text-bright:#eefaf2;
-    --accent:#2ecc71; --accent-hot:#7be8a8; --accent-line:rgba(46,204,113,.42); --accent-glow:rgba(46,204,113,.13);
+    --accent:#2ecc71; --accent-2:#5fe6a0; --accent-hot:#9af4c4;
+    --accent-line:rgba(46,204,113,.44); --accent-glow:rgba(46,204,113,.14); --grid-line:rgba(46,204,113,.05);
     --status:#2ecc71; --status-bg:rgba(46,204,113,.12);
     --font-display:'Bebas Neue',sans-serif; --font-mono:'JetBrains Mono',monospace;
     --gap:clamp(24px,4vw,56px);
-    --motif-bg: radial-gradient(circle at 50% 100%, rgba(46,204,113,.14), transparent 55%), repeating-linear-gradient(90deg, rgba(46,204,113,.05) 0 3px, transparent 3px 9px);
 }
 
 /* =====================================================================
-   THEME X — MYCELIUM MYCORRHIZA (Mycelium — soil black + bioluminescent lime)
+   THEME X — MYCELIUM MYCORRHIZA (Mycelium) bioluminescent lime
    ===================================================================== */
 [data-theme="mycelium"] {
     --void:#070a05; --plate:#0f140a; --plate-hot:#131a0d; --border:#223018;
     --text-dim:#3e4a2e; --text-mid:#88a85a; --text-base:#dcebc8; --text-bright:#f3fbe6;
-    --accent:#aaff00; --accent-hot:#d4ff6a; --accent-line:rgba(170,255,0,.4); --accent-glow:rgba(170,255,0,.12);
+    --accent:#aaff00; --accent-2:#c8ff5a; --accent-hot:#e2ffa0;
+    --accent-line:rgba(170,255,0,.42); --accent-glow:rgba(170,255,0,.13); --grid-line:rgba(170,255,0,.05);
     --status:#aaff00; --status-bg:rgba(170,255,0,.12);
     --font-display:'Bebas Neue',sans-serif; --font-mono:'JetBrains Mono',monospace;
     --gap:clamp(24px,4vw,56px);
-    --motif-bg: radial-gradient(circle at 70% 30%, rgba(170,255,0,.12), transparent 50%), repeating-radial-gradient(circle at 30% 70%, rgba(170,255,0,.05) 0 10px, transparent 10px 22px);
 }
