@@ -130,13 +130,13 @@ h1, h2, h3 { font-family: var(--font-display); text-transform: uppercase; line-h
    THEME I — SOVEREIGN OBSIDIAN (Hub / index)
    ===================================================================== */
 [data-theme="sovereign"] {
-    --void:#060606; --plate:#111111; --plate-hot:#131313; --border:#1f1f1f;
-    --text-dim:#3a3a3a; --text-mid:#888888; --text-base:#c8c8c8; --text-bright:#efefef;
-    --accent:#c8963c; --accent-hot:#f0b040; --accent-line:rgba(200,150,60,.35); --accent-glow:rgba(200,150,60,.12);
+    --void:#060606; --plate:#101012; --plate-hot:#16161a; --border:#222227;
+    --text-dim:#3a3a40; --text-mid:#7c7c86; --text-base:#c6c6cc; --text-bright:#f1f1f4;
+    --accent:#9aa6b2; --accent-hot:#cdd6df; --accent-line:rgba(154,166,178,.32); --accent-glow:rgba(154,166,178,.10);
     --status:#ff9800; --status-bg:rgba(255,152,0,.1);
     --font-display:'Bebas Neue',sans-serif; --font-mono:'JetBrains Mono',monospace;
     --gap:clamp(24px,4vw,56px);
-    --motif-bg: radial-gradient(circle at 20% 10%, rgba(200,150,60,.10), transparent 45%), radial-gradient(circle at 80% 80%, rgba(200,150,60,.06), transparent 40%);
+    --motif-bg: radial-gradient(circle at 20% 10%, rgba(154,166,178,.08), transparent 45%), radial-gradient(circle at 80% 80%, rgba(154,166,178,.05), transparent 40%);
 }
 
 /* =====================================================================
