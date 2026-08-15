@@ -18,7 +18,7 @@ Founded **Æternum Technologies & Innovation Ltd** — a perpetual sovereign arc
 
 ---
 
-## Current Work: Five Founding Architectures
+## Current Work: Ten Founding Architectures
 
 ### Architecture I: Project Parenklisis (Clinamen)
 **Macro-structural intelligence for directional forecasting**
@@ -49,6 +49,33 @@ Founded **Æternum Technologies & Innovation Ltd** — a perpetual sovereign arc
 - Volumetric Omnidomain Recognition, Anticipation & Cognitive Intelligence
 - Synthesizes legally accessible data into permanent foresight
 - Builds systems that know more than intelligence agencies
+
+### Architecture VI: Veritatem Substratum
+**Immutable verifiable-truth underlayer**
+- Data carries its origin; intelligence exposes its trace
+- The V-Substrate beneath every Æternum architecture
+
+### Architecture VII: AEGIS
+**Constitutional coding intelligence**
+- Private, self-improving, hallucination-gated
+- Bound by a constitution, verified at Gate 5
+
+### Architecture VIII: Aeternum Secure Viewer
+**Cryptographically guaranteed integrity**
+- Self-healing secure viewer
+- The Vault — the system that proves itself untampered
+
+### Architecture IX: Project Mycelium Network
+**Permanent autonomous trading infrastructure**
+- Aion × Manus — thought separated from execution
+- Engineered for the next fifty years
+
+### Architecture X: Orthogonal Spatial
+**Spatial topology intelligence**
+- Dependency graphs resolved and rendered as navigable 3D cities
+- Towers are modules, conduits are data flows, colour is health
+- Ghost-node discovery + dual-path AI failure classification
+- In testing and production deployment
 
 ---
 

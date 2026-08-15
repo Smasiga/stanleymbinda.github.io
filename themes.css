@@ -222,3 +222,16 @@ h1, h2, h3 { font-family: var(--font-display); text-transform: uppercase; line-h
     --font-display:'Bebas Neue',sans-serif; --font-mono:'JetBrains Mono',monospace;
     --gap:clamp(24px,4vw,56px);
 }
+
+/* =====================================================================
+   THEME XI — ORTHOGONAL SPATIAL (Orthogonal Spatial) deep-space indigo grid
+   ===================================================================== */
+[data-theme="orthogonal"] {
+    --void:#05070d; --plate:#0a0e18; --plate-hot:#0f1526; --border:#1c2740;
+    --text-dim:#3d4a6b; --text-mid:#8295c4; --text-base:#d5def5; --text-bright:#eef3ff;
+    --accent:#5b8cff; --accent-2:#7faaff; --accent-hot:#b3ccff;
+    --accent-line:rgba(91,140,255,.44); --accent-glow:rgba(91,140,255,.14); --grid-line:rgba(91,140,255,.06);
+    --status:#5b8cff; --status-bg:rgba(91,140,255,.13);
+    --font-display:'Bebas Neue',sans-serif; --font-mono:'JetBrains Mono',monospace;
+    --gap:clamp(24px,4vw,56px);
+}
