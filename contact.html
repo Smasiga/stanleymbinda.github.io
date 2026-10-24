@@ -123,23 +123,25 @@ main{background-image:linear-gradient(#E4EDF3 1px,transparent 1px),linear-gradie
 <main>
 <section class="section" aria-label="Contact form">
 <div>
-<label class="lbl" for="cf-name">Full name</label>
-<input class="field" id="cf-name" name="name" type="text" autocomplete="name" maxlength="120">
-<label class="lbl" for="cf-email">Contact email</label>
-<input class="field" id="cf-email" name="email" type="email" autocomplete="email" maxlength="160">
+<div class="frow">
+<div><label class="lbl" for="cf-name">Full name</label>
+<input class="field" id="cf-name" name="name" type="text" autocomplete="name" maxlength="120"></div>
+<div><label class="lbl" for="cf-email">Contact email</label>
+<input class="field" id="cf-email" name="email" type="email" autocomplete="email" maxlength="160"></div>
+</div>
 <label class="lbl" for="cf-org">Organisation (optional)</label>
 <input class="field" id="cf-org" name="org" type="text" autocomplete="organization" maxlength="160">
 <label class="lbl" for="cf-intent">Nature of interest</label>
 <textarea class="field" id="cf-intent" name="intent" rows="4" maxlength="2000"></textarea>
 <p class="eyebrow">I&rsquo;m asking about</p>
-<div style="display:flex;flex-direction:column;gap:8px;max-width:520px;margin:0 0 18px;font-size:14px;color:#0B1F3A">
-<label style="display:flex;gap:10px;align-items:baseline"><input type="checkbox" name="topic" id="cf-t-intro" value="General introduction"> General introduction</label>
-<label style="display:flex;gap:10px;align-items:baseline"><input type="checkbox" name="topic" id="cf-t-evidence" value="Evidence and materials"> Evidence and materials</label>
-<label style="display:flex;gap:10px;align-items:baseline"><input type="checkbox" name="topic" id="cf-t-press" value="Press and interview"> Press and interview</label>
-<label style="display:flex;gap:10px;align-items:baseline"><input type="checkbox" name="topic" id="cf-t-work" value="Collaboration and work"> Collaboration and work</label>
+<div style="display:flex;flex-direction:column;gap:10px;max-width:520px;margin:0 0 18px">
+<label class="topic"><input type="checkbox" name="topic" id="cf-t-intro" value="General introduction"> General introduction</label>
+<label class="topic"><input type="checkbox" name="topic" id="cf-t-evidence" value="Evidence and materials"> Evidence and materials</label>
+<label class="topic"><input type="checkbox" name="topic" id="cf-t-press" value="Press and interview"> Press and interview</label>
+<label class="topic"><input type="checkbox" name="topic" id="cf-t-work" value="Collaboration and work"> Collaboration and work</label>
 </div>
 <p id="cf-err" style="display:none;max-width:520px;font-size:13px;font-weight:700;color:#A33D2E" role="alert"></p>
-<button class="btn" id="cf-send" type="button">Press and hold to verify &amp; send</button>
+<button class="btn" id="cf-send" type="button" style="width:100%;max-width:520px;min-height:52px">Press and hold to verify &amp; send</button>
 <p class="sub2" id="cf-note" style="margin-top:14px">Your mail app will open with the message addressed &mdash; nothing is sent until you press send there.</p>
 </div>
 </section>
