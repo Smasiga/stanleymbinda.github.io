@@ -1,13 +1,13 @@
-# Aeternum Brand Canon (v2 — 2026-10-24)
+# Personal Site Canon (v3 — 2026-10-24)
 
 The rules that keep this site honest. Change the site only in ways that keep every line below true.
 
 ## 0. The honesty rule (highest law here)
-No company exists. "Aeternum" names the body of work — ten architectures under one independent practice — not a registered entity. Never write "Ltd", "Inc", "founded [company]", "incorporated", or any institutional claim (vault-as-legal-entity, trusts, succession, partnerships) unless a real legal event has occurred AND counsel has cleared the wording. When the legal business name arrives, it gets its own dated entry. Nothing is backdated, ever.
+No company exists. No "Architect" title and no "Aeternum" name anywhere a visitor can read — the words survive only in legacy asset filenames, never in text. "Architectures" (the ten projects) and "architectural" (technical adjective) stay; they name work, not rank. CiteProof is a deployed, independent system — never attach it to an architecture number. When the legal business name arrives, it gets its own dated entry. Nothing is backdated, ever.
 
 ## 1. Identity (canonical, no variants)
-- Human: **Stanley Masiga Mbinda**, independent architect and builder, Nairobi.
-- `Æ` lives ONLY in the SVG logotype. All text — titles, meta, body, footers — spells **Aeternum** (the work's name, never a company claim).
+- Human: **Stanley Masiga Mbinda**, independent builder, Nairobi.
+- Titles: none. No rank, no institution, no logotype words on-page.
 - Handles: `Smasiga` = code (GitHub), `stanleymbinda.com` = home, LinkedIn = professional. Every profile links the other two.
 
 ## 2. Numbers (dated or absent)
