@@ -1,6 +1,6 @@
 # Stanley Masiga Mbinda | Chief Architect
 
-**Sovereign deep-tech infrastructure engineer. Founder of Æternum Technologies & Innovation Ltd.**
+**Independent architect and builder. Ten deep-tech architectures in engineering, one system deployed.**
 
 ---
 
@@ -8,7 +8,7 @@
 
 I build permanent systems at the edge of the possible. My life's work is closing the **Interpretive Intelligence gap** — the chasm between what systems can process and what they genuinely understand.
 
-Founded **Æternum Technologies & Innovation Ltd** — a perpetual sovereign architectural foundry in Nairobi, Kenya — to forge civilization-grade institutions that operate at absolute permanence.
+Independent research and engineering practice in Nairobi, Kenya — ten founding architectures, one system serving the public. No company, no institution: just documented work, built without dilution.
 
 ### Core Philosophy
 - **Architectures over products** — systems designed for centuries, not quarters
@@ -48,12 +48,12 @@ Founded **Æternum Technologies & Innovation Ltd** — a perpetual sovereign arc
 **Anticipatory intelligence architecture**
 - Volumetric Omnidomain Recognition, Anticipation & Cognitive Intelligence
 - Synthesizes legally accessible data into permanent foresight
-- Builds systems that know more than intelligence agencies
+- Synthesizes legally accessible data into long-horizon foresight
 
 ### Architecture VI: Veritatem Substratum
 **Immutable verifiable-truth underlayer**
 - Data carries its origin; intelligence exposes its trace
-- The V-Substrate beneath every Æternum architecture
+- The V-Substrate beneath every architecture
 
 ### Architecture VII: AEGIS
 **Constitutional coding intelligence**
@@ -83,7 +83,6 @@ Founded **Æternum Technologies & Innovation Ltd** — a perpetual sovereign arc
 
 - **[stanleymbinda.com](https://stanleymbinda.com)** — Main portfolio & institution hub
 - **[/bio.html](https://stanleymbinda.com/bio.html)** — Personal biography & philosophy
-- **[/aeternum.html](https://stanleymbinda.com/aeternum.html)** — Æternum Technologies institutional declaration
 
 ---
 
@@ -158,7 +157,7 @@ To request clearance:
 
 This portfolio website is licensed under the **MIT License**. See [LICENSE](./LICENSE) file for details.
 
-**Note:** The architectural frameworks, intellectual property, and institutional concepts are proprietary and protected. Æternum Technologies & Innovation Ltd retains all rights.
+**Note:** The architectural frameworks, intellectual property, and institutional concepts are proprietary and protected. Stanley Masiga Mbinda retains all rights.
 
 ---
 
