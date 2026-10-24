@@ -81,8 +81,7 @@ Independent research and engineering practice in Nairobi, Kenya — ten founding
 
 ## Site Structure
 
-- **[stanleymbinda.com](https://stanleymbinda.com)** — Main portfolio & institution hub
-- **[/bio.html](https://stanleymbinda.com/bio.html)** — Personal biography & philosophy
+- **[stanleymbinda.com](https://stanleymbinda.com)** — Personal site: bio card, deployed work, evidence, contact
 
 ---
 
