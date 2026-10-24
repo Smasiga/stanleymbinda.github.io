@@ -54,8 +54,9 @@ a:focus-visible,button:focus-visible{outline:3px solid #0D7DA3;outline-offset:2p
 .arch-list li:first-child{border-top:0}
 .arch-list .n{font-weight:800;color:#0D7DA3;min-width:30px;font-size:12px}
 .bio-card{margin-top:-26px;background:#fff;border:1px solid #DCE8EF;border-radius:16px;box-shadow:0 16px 48px rgba(20,90,160,.12);padding:22px}
-.bio-avatar{position:relative;width:56px;height:56px;border-radius:50%;background:#0D7DA3;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;letter-spacing:.02em;overflow:hidden}
+.bio-avatar{position:relative;width:56px;height:56px;border-radius:50%;background:#0D7DA3;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;letter-spacing:.02em;overflow:hidden;cursor:pointer}
 .bio-avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.avatar-badge{position:absolute;right:0;bottom:0;width:20px;height:20px;border-radius:50%;background:#fff;border:1px solid #DCE8EF;color:#0D7DA3;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;line-height:1}
 .bio-name{margin:12px 0 2px;font-size:17px;font-weight:800}
 .bio-role{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#0B7599}
 .bio-loc{font-size:12px;color:#4A5B70;margin-top:2px}
@@ -115,7 +116,7 @@ main{background-image:linear-gradient(#E4EDF3 1px,transparent 1px),linear-gradie
 <div class="hero-in">
 <div class="hero-grid">
 <aside class="bio-card" aria-label="About Stanley Masiga Mbinda">
-<div class="bio-avatar" aria-hidden="true">SM<img src="photo.jpg" alt="" onerror="this.remove()"></div>
+<div class="bio-avatar" id="avatarBox" role="button" tabindex="0" title="Upload your photo" aria-label="Upload your photo"><span aria-hidden="true">SM</span><img id="avatarImg" src="photo.jpg" alt="" onerror="this.remove()"><input type="file" id="avatarFile" accept="image/*" hidden><span class="avatar-badge" aria-hidden="true">+</span></div>
 <div class="bio-name">Stanley Masiga Mbinda</div>
 <div class="bio-role">Independent Builder</div>
 <div class="bio-loc">Nairobi, Kenya</div>
@@ -169,5 +170,34 @@ main{background-image:linear-gradient(#E4EDF3 1px,transparent 1px),linear-gradie
 </div>
 <div class="footer-in" style="padding-top:0"><span class="fine" style="padding:0">Replies within two business days.</span></div>
 </footer>
+<script>
+(function(){
+var box=document.getElementById('avatarBox'),file=document.getElementById('avatarFile'),KEY='sm-photo';
+function show(src){var img=document.getElementById('avatarImg');if(!img){img=document.createElement('img');img.id='avatarImg';img.alt='';box.insertBefore(img,box.firstChild);}img.onerror=function(){this.remove();};img.src=src;}
+try{var saved=localStorage.getItem(KEY);if(saved){show(saved);}}catch(e){}
+function openPicker(){file.click();}
+box.addEventListener('click',openPicker);
+box.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openPicker();}});
+file.addEventListener('change',function(){
+var f=file.files&&file.files[0];if(!f){return;}
+if(!/^image\//.test(f.type)||f.size>8*1024*1024){return;}
+var rd=new FileReader();
+rd.onload=function(){
+var im=new Image();
+im.onload=function(){
+var S=256,r=Math.min(1,S/Math.max(im.width,im.height));
+var c=document.createElement('canvas');c.width=Math.max(1,Math.round(im.width*r));c.height=Math.max(1,Math.round(im.height*r));
+c.getContext('2d').drawImage(im,0,0,c.width,c.height);
+var url=c.toDataURL('image/jpeg',0.85);
+try{localStorage.setItem(KEY,url);}catch(e){}
+show(url);
+};
+im.src=rd.result;
+};
+rd.readAsDataURL(f);
+file.value='';
+});
+})();
+</script>
 </body>
 </html>
