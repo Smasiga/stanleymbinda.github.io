@@ -2,11 +2,11 @@
    Same tokens as the homepage: Plus Jakarta Sans, ink #0B1F3A,
    accent #0D7DA3, hairline #DCE8EF, white surfaces. */
 html{background:#fff;scroll-behavior:smooth}
-body{margin:0;font-family:'Plus Jakarta Sans',sans-serif;color:#0B1F3A;-webkit-font-smoothing:antialiased;padding-left:150px}
+body{margin:0;font-family:Georgia,'Times New Roman',serif;color:#0B1F3A;-webkit-font-smoothing:antialiased;padding-left:150px}
 a{color:#2B3F57;text-decoration:none}
 a:hover{color:#0D7DA3}
 a:focus-visible,button:focus-visible{outline:3px solid #0D7DA3;outline-offset:2px}
-.btn{background:#0D7DA3;color:#fff;border:0;border-radius:8px;padding:0 22px;min-height:44px;font:700 13px 'Plus Jakarta Sans',sans-serif;cursor:pointer}
+.btn{background:#0D7DA3;color:#fff;border:0;border-radius:8px;padding:0 22px;min-height:44px;font:700 13px Georgia,'Times New Roman',serif;cursor:pointer}
 .action-link,.download-link{display:inline-flex;align-items:center;gap:8px;background:#0D7DA3;color:#fff!important;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;padding:12px 22px;border-radius:8px}
 .action-secondary{background:transparent;border:1px solid #0D7DA3;color:#0D7DA3!important}
 .wrap,.foundry{max-width:880px;margin:0 auto;padding:28px 24px 64px}
