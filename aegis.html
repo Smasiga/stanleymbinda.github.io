@@ -1,58 +1,140 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AEGIS - a private, self-improving, hallucination-gated coding intelligence design.">
-    <title>AEGIS | Stanley Masiga Mbinda</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="AEGIS - a private, self-improving, hallucination-gated coding intelligence design.">
+<title>AEGIS | Stanley Masiga Mbinda</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap">
+<style>
+body{margin:0}
+a{color:#2B3F57;text-decoration:none}a:hover{color:#0D7DA3}
+.btn{background:#0D7DA3;color:#fff;border:0;border-radius:8px;padding:0 22px;min-height:44px;font:700 13px 'Plus Jakarta Sans',sans-serif;cursor:pointer}
+.box{border:1px solid #DCE8EF;border-radius:12px;background:#fff;box-sizing:border-box}
+.t{font:700 11px/1 'Plus Jakarta Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#0B1F3A}
+.k{padding:12px;background:#F6FAFC}
+.kv{font:800 18px/1.1 'Plus Jakarta Sans',sans-serif;color:#0B1F3A}
+.kl{margin-top:4px;font-size:11px;color:#4A5B70}
+.lg{flex:1;height:44px;border:1px dashed #9DB1C2;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px;color:#4A5B70}
+.ic{width:12px;height:12px;border-radius:4px;background:#BFD3E0}
+.pu{fill:none;stroke:#17A2C8;stroke-width:2.2;stroke-linecap:round;stroke-dasharray:10 90;animation:fl 3.4s linear infinite}
+.pu:nth-child(2n){animation-duration:4.1s}
+.pu:nth-child(3n){animation-duration:2.9s;animation-delay:-1.1s}
+.pu:nth-child(5n){animation-delay:-2.2s}
+.pu:nth-child(7n){animation-duration:5s;animation-delay:-3.2s}
+.rg{fill:none;stroke:#17A2C8;stroke-width:1.5;transform-box:fill-box;transform-origin:center;animation:rg 2.6s ease-out infinite}
+.rg:nth-child(2n){animation-delay:-.9s}
+.rg:nth-child(3n){animation-delay:-1.7s}
+@keyframes fl{from{stroke-dashoffset:10}to{stroke-dashoffset:-90}}
+@keyframes rg{0%{transform:scale(1);opacity:.9}100%{transform:scale(3.2);opacity:0}}
+@media(prefers-reduced-motion:reduce){.pu,.rg{display:none}}
+</style>
+<style>
+html{background:#FFFFFF;scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;color:#0B1F3A;padding-left:150px}
+a:focus-visible,button:focus-visible{outline:3px solid #0D7DA3;outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.topnav{position:fixed;top:0;left:0;bottom:0;width:150px;z-index:50;background:transparent;border-right:1px solid #DCE8EF}
+.topnav-in{height:100%;padding:14px 12px;display:flex;flex-direction:column;align-items:stretch;gap:20px}
+.brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:13px;color:#0B1F3A}
+.navlinks{display:flex;flex-direction:column;align-items:stretch;gap:2px;font-size:12px;font-weight:600}
+.navlinks a{padding:8px 8px;border-radius:8px;color:#0B1F3A}
+.navlinks a:hover{background:#F2F7FA}
+.navlinks a:last-child{margin-top:auto;padding:0}
+.navlinks .btn{width:100%;padding:0 8px;font-size:12px}
+@media(max-width:1100px){.hero-grid{grid-template-columns:1fr}.hero-copy{grid-column:auto;margin-top:0}}
+@media(max-width:760px){body{padding-left:0}.topnav{position:sticky;top:0;right:0;bottom:auto;width:auto;border-right:0;border-bottom:1px solid #DCE8EF}.topnav-in{flex-direction:row;align-items:center;justify-content:space-between;height:auto;padding:14px 24px;gap:0}.navlinks{flex-direction:row;align-items:center}.navlinks a{display:none}.navlinks a:last-child{display:block;margin-top:0;padding:0}.navlinks .btn{width:auto}}
+.hero{position:relative;overflow:hidden;background:#fff;border-bottom:1px solid #DCE8EF}
+.hero-net{position:absolute;inset:0;pointer-events:none;opacity:.9}
+.hero-in{position:relative;max-width:1120px;margin:0 auto;padding:56px 24px 0}
+.hero-grid{display:grid;grid-template-columns:400px 1fr;gap:36px;align-items:start;text-align:left}
+.hero-copy{margin-top:-34px;grid-column:2;min-width:0}
+.hero-cols{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:start}
+.arch-list{list-style:none;margin:0;padding:0}
+.arch-list li{display:flex;gap:12px;align-items:baseline;padding:7px 0;border-top:1px solid #DCE8EF;font-size:13px;color:#0B1F3A}
+.arch-list li:first-child{border-top:0}
+.arch-list .n{font-weight:800;color:#0D7DA3;min-width:30px;font-size:12px}
+.bio-card{margin-top:-26px;background:#fff;border:1px solid #DCE8EF;border-radius:16px;box-shadow:0 16px 48px rgba(20,90,160,.12);padding:22px}
+.bio-avatar{width:56px;height:56px;border-radius:50%;background:#0D7DA3;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;letter-spacing:.02em}
+.bio-name{margin:12px 0 2px;font-size:17px;font-weight:800}
+.bio-role{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#0B7599}
+.bio-loc{font-size:12px;color:#4A5B70;margin-top:2px}
+.bio-text{margin:12px 0 0;font-size:13px;line-height:1.65;color:#22303E}
+.bio-links{margin-top:14px;display:flex;gap:14px;font-size:12px;font-weight:700}
+@media(max-width:760px){.hero-grid{grid-template-columns:1fr}.hero-copy{grid-column:auto;margin-top:0}.hero-cols{grid-template-columns:1fr}}
+.eyebrow{margin:0 0 14px;font-size:11px;font-weight:700;letter-spacing:.14em;color:#0B7599}
+.hero h1{margin:0 0 16px;font-size:28px;line-height:40px;font-weight:800;text-transform:uppercase;letter-spacing:-.01em}
+.hero p.sub{margin:0 0 14px;max-width:520px;font-size:15px;line-height:1.65;color:#4A5B70}
+.hero p.sub2{margin:0 0 22px;max-width:520px;font-size:13px;line-height:1.65;color:#4A5B70}
+.hero p.sub2 strong{color:#0B1F3A}
+.section{max-width:1120px;margin:0 auto;padding:40px 24px 0}
+main{background-image:linear-gradient(#E4EDF3 1px,transparent 1px),linear-gradient(90deg,#E4EDF3 1px,transparent 1px);background-size:44px 44px;background-position:center top}
+.panel{background:#fff;border:1px solid #DCE8EF;border-radius:16px;box-shadow:0 16px 48px rgba(30,100,170,.1);padding:20px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.pressrow{display:flex;align-items:center;gap:10px;margin-top:16px;padding:14px 18px}
+.pressrow .lg{flex:1}
+.pressbtn{width:44px;height:44px;flex:none;border-radius:8px;border:1px solid #DCE8EF;background:#fff;color:#0B1F3A;font-size:18px;cursor:pointer}
+.evgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.evgrid .box{padding:18px}
+.proof{max-width:1120px;margin:0 auto;padding:34px 24px 6px;text-align:center}
+.proofline{font-size:14px;line-height:1.7;color:#0B1F3A}
+.proofline strong{font-weight:800}
+.proofline a{text-decoration:underline;text-underline-offset:3px}
+.proofcta{margin-top:16px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;font-size:13px;font-weight:700}
+.proofcta a{border-bottom:2px solid #0D7DA3;padding-bottom:2px}
+.panel-head{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #DCE8EF;padding-bottom:14px;margin-bottom:2px}
+.live-pill{display:inline-flex;align-items:center;gap:7px;font-size:10px;font-weight:700;letter-spacing:.14em;color:#0B7A3E}
+.live-pill i{width:8px;height:8px;border-radius:50%;background:#22B573;box-shadow:0 0 0 4px rgba(34,181,115,.15)}
+.kpis .k{border-top:3px solid #0D7DA3;padding:14px}
+.kpis .kv{font-size:20px}
+.kpis .kl{font-size:12px}
+.cta{text-align:center;padding:36px 24px 8px}
+.fine{text-align:center;font-size:11px;color:#4A5B70;padding:0 24px 20px}
+.footer{border-top:1px solid #DCE8EF;background:#fff}
+.footer-in{max-width:1120px;margin:0 auto;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:11px;color:#4A5B70}
+.footer-in nav{display:flex;gap:18px}
+@media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}.charts{grid-template-columns:1fr}.evgrid{grid-template-columns:1fr}.navlinks a{display:none}.hero-in{padding:56px 24px 48px}}
+</style>
 </head>
 <body>
-    
-    <nav class="topnav" aria-label="Primary"><div class="topnav-in">
-<a href="index.html" class="brand"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="10" fill="#0D7DA3"/><path d="M6 15C6 9 10 6 16 6C16 12 12 15 6 15Z" fill="#fff"/></svg><span>S. Mbinda</span></a>
+<nav class="topnav" aria-label="Primary">
+<div class="topnav-in">
+<a href="index.html" class="brand" aria-label="Home"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="10" fill="#0D7DA3"/><path d="M6 15C6 9 10 6 16 6C16 12 12 15 6 15Z" fill="#fff"/></svg><span>S. Mbinda</span></a>
 <div class="navlinks"><a href="index.html">Home</a><a href="milestones.html">Milestones</a><a href="press-kit.html">Press</a><a href="mailto:contact@stanleymbinda.com?subject=Introduction">Contact</a><a href="mailto:contact@stanleymbinda.com?subject=Introduction"><button class="btn">Get in touch</button></a></div>
-</div></nav>
-
-<main class="foundry">
-<svg class="page-net" width="100%" height="340" viewBox="0 0 1280 520" preserveAspectRatio="xMidYMin slice" aria-hidden="true">
+</div>
+</nav>
+<header class="hero">
+<svg class="hero-net" width="100%" height="100%" viewBox="0 0 1280 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
 <g fill="none" stroke="#AEBAC7" stroke-width="1.5" opacity=".6"><path d="M0 250H80L110 220V150"/><path d="M0 700H110L140 730V820H240"/><path d="M0 800H70L100 830V930"/><path d="M0 900H180L210 930H320"/><path d="M0 600H60L90 630V700"/><path d="M0 460H100L130 430V330H200"/><path d="M0 150H60L90 120V40"/><path d="M1280 180H1180L1150 210V300H1100"/><path d="M1280 260H1210L1190 280V420"/><path d="M1280 360H1240L1210 390V1120"/><path d="M0 60H50L80 90V160"/><path d="M0 380H70L100 350V280H160"/><path d="M0 500H90L120 470V400"/><path d="M1280 60H1200L1170 90V170H1120"/><path d="M1280 480H1190L1160 450V380"/><path d="M640 0V60L670 90H740"/></g>
 <g fill="#C3D3DE" stroke="#AEBAC7" stroke-width="1.5" opacity=".7"><circle cx="110" cy="150" r="4"/><circle cx="240" cy="820" r="4"/><circle cx="100" cy="930" r="4"/><circle cx="320" cy="930" r="4"/><circle cx="90" cy="700" r="4"/><circle cx="200" cy="330" r="4"/><circle cx="1100" cy="300" r="4"/><circle cx="1190" cy="420" r="4"/><circle cx="80" cy="160" r="4"/><circle cx="160" cy="280" r="4"/><circle cx="120" cy="400" r="4"/><circle cx="1120" cy="170" r="4"/><circle cx="1160" cy="380" r="4"/><circle cx="740" cy="90" r="4"/></g>
 <g style="filter:drop-shadow(0 0 3px rgba(23,162,200,.8))"><use href="#h1" class="pu"/><use href="#h2" class="pu"/><use href="#h3" class="pu"/><use href="#h4" class="pu"/></g>
 <defs><path id="h1" pathLength="100" d="M0 250H80L110 220V150"/><path id="h2" pathLength="100" d="M0 700H110L140 730V820H240"/><path id="h3" pathLength="100" d="M1280 180H1180L1150 210V300H1100"/><path id="h4" pathLength="100" d="M0 380H70L100 350V280H160"/></defs>
 <g><circle class="rg" cx="240" cy="820" r="4"/><circle class="rg" cx="1100" cy="300" r="4"/><circle class="rg" cx="200" cy="330" r="4"/></g>
 </svg>
-        <a href="index.html" class="nav-back">Return to Origin</a>
-        <header class="arch-hero">
-            <div class="arch-eyebrow">Architecture VII &middot; Constitutional Coding Intelligence</div>
-            <h1>AEGIS</h1>
-            <div class="layer-line">Compound Intelligence Design v1.0 &middot; Constitution v6.0</div>
-            <p class="arch-tag">A private, self-improving, hallucination-gated coding intelligence design &mdash; built to operate at the level of a staff software engineer, bound by its own constitution.</p>
-        </header>
-        <section class="arch-section">
-            <div class="section-header">Specification</div>
-            <div class="spec-grid">
-                <div class="spec-cell"><div class="k">Classification</div><div class="v">Coding Intelligence</div></div>
-                <div class="spec-cell"><div class="k">Design premise</div><div class="v">Constitution-bound inference</div></div>
-                <div class="spec-cell"><div class="k">Status</div><div class="v">Documented design</div></div>
-                <div class="spec-cell"><div class="k">Evidence</div><div class="v">Shared on request</div></div>
-            </div>
-        </section>
-        <section class="arch-section">
-            <div class="section-header">Status</div>
-            <p><span class="pill">Documented design</span> &nbsp; Design documented; not deployed. Only CiteProof serves the public. Detailed evidence shared on request.</p>
-        </section>
-        <nav class="back-row">
-            <a href="index.html">Home</a>
-            <a href="milestones.html">Milestones</a>
-            <a href="mailto:contact@stanleymbinda.com?subject=Evidence%20request">Evidence on request</a>
-        </nav>
-    </main>
-<footer class="site-footer"><div class="site-footer-in">
-<div><strong>Stanley Masiga Mbinda</strong> &middot; Nairobi, Kenya<small>Replies within two business days.</small></div>
-<nav aria-label="Footer"><a href="index.html">Home</a><a href="milestones.html">Milestones</a><a href="press-kit.html">Press</a><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a><a href="mailto:contact@stanleymbinda.com?subject=Introduction">Contact</a></nav>
-</div></footer>
-
+<div class="hero-in">
+<div>
+<p class="eyebrow">Architecture VII &middot; Constitutional Coding Intelligence</p>
+<h1>AEGIS</h1>
+<p class="sub">Compound Intelligence Design v1.0 &middot; Constitution v6.0</p>
+<p class="sub2">A private, self-improving, hallucination-gated coding intelligence design &mdash; built to operate at the level of a staff software engineer, bound by its own constitution.</p>
+<p class="sub2"><strong>Documented design</strong> &mdash; not deployed. Only CiteProof serves the public.</p>
+<a href="mailto:contact@stanleymbinda.com?subject=Evidence%20request%20AEGIS"><button class="btn">Evidence on request</button></a>
+</div>
+</div>
+</header>
+<main>
+<section class="section proof" aria-label="Specification">
+<div class="proofline"><strong>VII</strong> AEGIS <span aria-hidden="true">&middot;</span> Constitutional Coding Intelligence <span aria-hidden="true">&middot;</span> Status <strong>Documented design</strong> <span aria-hidden="true">&middot;</span> Evidence shared on request</div>
+<div class="proofcta"><a href="index.html">Home &rarr;</a><a href="milestones.html">Milestones &rarr;</a><a href="mailto:contact@stanleymbinda.com?subject=Evidence%20request%20AEGIS">Evidence on request &rarr;</a></div>
+</section>
+</main>
+<footer class="footer">
+<div class="footer-in">
+<span>&copy; 2026 Stanley Masiga Mbinda &middot; Nairobi</span>
+<nav aria-label="Footer"><a href="milestones.html">Milestones</a><a href="press-kit.html">Press Kit</a><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a><a href="mailto:contact@stanleymbinda.com?subject=Introduction">Contact</a></nav>
+</div>
+<div class="footer-in" style="padding-top:0"><span class="fine" style="padding:0">Replies within two business days.</span></div>
+</footer>
 </body>
 </html>
