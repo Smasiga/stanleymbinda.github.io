@@ -40,10 +40,19 @@ a:focus-visible,button:focus-visible{outline:3px solid #0D7DA3;outline-offset:2p
 .navlinks{display:flex;align-items:center;gap:22px;font-size:12px;font-weight:500}
 .hero{position:relative;overflow:hidden;background:#fff;border-bottom:1px solid #DCE8EF}
 .hero-net{position:absolute;inset:0;pointer-events:none;opacity:.9}
-.hero-in{position:relative;max-width:1120px;margin:0 auto;padding:64px 24px 48px;text-align:center}
+.hero-in{position:relative;max-width:1120px;margin:0 auto;padding:48px 24px 40px}
+.hero-grid{display:grid;grid-template-columns:300px 1fr;gap:36px;align-items:start;text-align:left}
+.bio-card{background:#fff;border:1px solid #DCE8EF;border-radius:16px;box-shadow:0 16px 48px rgba(20,90,160,.12);padding:22px}
+.bio-avatar{width:56px;height:56px;border-radius:50%;background:#0D7DA3;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;letter-spacing:.02em}
+.bio-name{margin:12px 0 2px;font-size:17px;font-weight:800}
+.bio-role{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#0B7599}
+.bio-loc{font-size:12px;color:#4A5B70;margin-top:2px}
+.bio-text{margin:12px 0 0;font-size:13px;line-height:1.65;color:#22303E}
+.bio-links{margin-top:14px;display:flex;gap:14px;font-size:12px;font-weight:700}
+@media(max-width:760px){.hero-grid{grid-template-columns:1fr}}
 .eyebrow{margin:0 0 14px;font-size:11px;font-weight:700;letter-spacing:.14em;color:#0B7599}
-.hero h1{margin:0 0 14px;font-size:clamp(30px,4.6vw,46px);line-height:1.12;font-weight:800;text-transform:uppercase;letter-spacing:-.01em}
-.hero p.sub{margin:0 auto 22px;max-width:520px;font-size:15px;line-height:1.6;color:#4A5B70}
+.hero h1{margin:0 0 12px;font-size:clamp(24px,3.2vw,32px);line-height:1.12;font-weight:800;text-transform:uppercase;letter-spacing:-.01em}
+.hero p.sub{margin:0 0 18px;max-width:480px;font-size:14px;line-height:1.6;color:#4A5B70}
 .section{max-width:1120px;margin:0 auto;padding:40px 24px 0}
 .panel{background:#fff;border:1px solid #DCE8EF;border-radius:16px;box-shadow:0 16px 48px rgba(30,100,170,.1);padding:20px}
 .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
@@ -77,7 +86,7 @@ a:focus-visible,button:focus-visible{outline:3px solid #0D7DA3;outline-offset:2p
 <nav class="topnav" aria-label="Primary">
 <div class="topnav-in">
 <a href="#top" class="brand" aria-label="Home"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="10" fill="#0D7DA3"/><path d="M6 15C6 9 10 6 16 6C16 12 12 15 6 15Z" fill="#fff"/></svg><span>S. Mbinda</span></a>
-<div class="navlinks"><a href="#top">Home</a><a href="#deployed">Deployed</a><a href="mailto:contact@stanleymbinda.com?subject=Introduction">Contact</a><a href="mailto:contact@stanleymbinda.com?subject=Introduction"><button class="btn">Get started</button></a></div>
+<div class="navlinks"><a href="#top">Home</a><a href="bio.html">About</a><a href="milestones.html">Milestones</a><a href="press-kit.html">Press</a><a href="mailto:contact@stanleymbinda.com?subject=Introduction">Contact</a><a href="mailto:contact@stanleymbinda.com?subject=Introduction"><button class="btn">Get in touch</button></a></div>
 </div>
 </nav>
 <header class="hero">
@@ -89,10 +98,22 @@ a:focus-visible,button:focus-visible{outline:3px solid #0D7DA3;outline-offset:2p
 <g><circle class="rg" cx="240" cy="820" r="4"/><circle class="rg" cx="1100" cy="300" r="4"/><circle class="rg" cx="200" cy="330" r="4"/></g>
 </svg>
 <div class="hero-in">
+<div class="hero-grid">
+<aside class="bio-card" aria-label="About Stanley Masiga Mbinda">
+<div class="bio-avatar" aria-hidden="true">SM</div>
+<div class="bio-name">Stanley Masiga Mbinda</div>
+<div class="bio-role">Independent Builder</div>
+<div class="bio-loc">Nairobi, Kenya</div>
+<p class="bio-text">I build verification systems &mdash; software that checks its own work. My first deployed system is CiteProof: deterministic citation verification for legal briefs.</p>
+<div class="bio-links"><a href="bio.html">Full bio &rarr;</a><a href="mailto:contact@stanleymbinda.com?subject=Introduction">Contact &rarr;</a></div>
+</aside>
+<div>
 <p class="eyebrow">Deep-tech systems &middot; Nairobi</p>
 <h1>Engineering permanence:<br>a founder&rsquo;s record</h1>
-<p class="sub">I&rsquo;m Stanley Masiga Mbinda. I build verification systems &mdash; software that checks its own work. One system is live and serving the public.</p>
+<p class="sub">One system serving the public. Every claim on this page links to live evidence.</p>
 <a href="#deployed"><button class="btn">See the proof</button></a>
+</div>
+</div>
 </div>
 </header>
 <main>
@@ -104,8 +125,9 @@ a:focus-visible,button:focus-visible{outline:3px solid #0D7DA3;outline-offset:2p
 <footer class="footer">
 <div class="footer-in">
 <span>&copy; 2026 Stanley Masiga Mbinda &middot; Nairobi</span>
-<span class="fine" style="padding:0">Replies within two business days.</span>
+<nav aria-label="Footer"><a href="bio.html">About</a><a href="milestones.html">Milestones</a><a href="press-kit.html">Press Kit</a><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a><a href="mailto:contact@stanleymbinda.com?subject=Introduction">Contact</a></nav>
 </div>
+<div class="footer-in" style="padding-top:0"><span class="fine" style="padding:0">Replies within two business days.</span></div>
 </footer>
 </body>
 </html>
