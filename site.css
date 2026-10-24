@@ -2,7 +2,7 @@
    Same tokens as the homepage: Plus Jakarta Sans, ink #0B1F3A,
    accent #0D7DA3, hairline #DCE8EF, white surfaces. */
 html{background:#fff;scroll-behavior:smooth}
-body{margin:0;font-family:'Plus Jakarta Sans',sans-serif;color:#0B1F3A;-webkit-font-smoothing:antialiased}
+body{margin:0;font-family:'Plus Jakarta Sans',sans-serif;color:#0B1F3A;-webkit-font-smoothing:antialiased;padding-left:150px}
 a{color:#2B3F57;text-decoration:none}
 a:hover{color:#0D7DA3}
 a:focus-visible,button:focus-visible{outline:3px solid #0D7DA3;outline-offset:2px}
@@ -11,10 +11,15 @@ a:focus-visible,button:focus-visible{outline:3px solid #0D7DA3;outline-offset:2p
 .action-secondary{background:transparent;border:1px solid #0D7DA3;color:#0D7DA3!important}
 .wrap,.foundry{max-width:880px;margin:0 auto;padding:28px 24px 64px}
 /* top nav */
-.topnav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid #DCE8EF}
-.topnav-in{max-width:1120px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between}
-.brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:15px;color:#0B1F3A}
-.navlinks{display:flex;align-items:center;gap:20px;font-size:12px;font-weight:500}
+.topnav{position:fixed;top:0;left:0;bottom:0;width:150px;z-index:50;background:transparent;border-right:1px solid #DCE8EF}
+.topnav-in{height:100%;padding:14px 12px;display:flex;flex-direction:column;align-items:stretch;gap:20px}
+.brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:13px;color:#0B1F3A}
+.navlinks{display:flex;flex-direction:column;align-items:stretch;gap:2px;font-size:12px;font-weight:600}
+.navlinks a{padding:8px;border-radius:8px}
+.navlinks a:hover{background:#F2F7FA}
+.navlinks a:last-child{margin-top:auto;padding:0}
+.navlinks .btn{width:100%;padding:0 8px;font-size:12px}
+main{background-image:linear-gradient(#E4EDF3 1px,transparent 1px),linear-gradient(90deg,#E4EDF3 1px,transparent 1px);background-size:44px 44px;background-position:center top}
 /* headings + labels */
 h1{font-size:clamp(30px,4.5vw,44px);line-height:1.1;font-weight:800;letter-spacing:-.01em;text-transform:uppercase;margin:0 0 14px}
 h2{font-size:20px;font-weight:800;letter-spacing:.01em;text-transform:uppercase;margin:34px 0 12px}
@@ -98,6 +103,7 @@ strong{color:#0B1F3A}
 .site-footer-in{max-width:1120px;margin:0 auto;padding:22px 24px;display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap}
 .site-footer nav{display:flex;gap:16px;flex-wrap:wrap;font-size:12px}
 .site-footer small{display:block;margin-top:8px;color:#7A8CA0;font-size:11px}
+@media(max-width:760px){body{padding-left:0}.topnav{position:sticky;top:0;right:0;bottom:auto;width:auto;border-bottom:1px solid #DCE8EF}.topnav-in{flex-direction:row;align-items:center;justify-content:space-between;height:auto;padding:12px 24px;gap:0}.navlinks{flex-direction:row;align-items:center}.navlinks a:last-child{display:block;margin-top:0;padding:0}.navlinks .btn{width:auto}}
 @media(max-width:700px){
   .navlinks a{display:none}
   .contrast-row{grid-template-columns:1fr}
