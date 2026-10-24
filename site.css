@@ -20,6 +20,17 @@ a:focus-visible,button:focus-visible{outline:3px solid #0D7DA3;outline-offset:2p
 .navlinks a:last-child{margin-top:auto;padding:0}
 .navlinks .btn{width:100%;padding:0 8px;font-size:12px}
 main{background-image:linear-gradient(#E4EDF3 1px,transparent 1px),linear-gradient(90deg,#E4EDF3 1px,transparent 1px);background-size:44px 44px;background-position:center top}
+.foundry{position:relative}
+.page-net{position:absolute;top:0;left:0;right:0;height:340px;width:100%;pointer-events:none;opacity:.9}
+.foundry>*{position:relative}
+.pu{fill:none;stroke:#17A2C8;stroke-width:2.2;stroke-linecap:round;stroke-dasharray:10 90;animation:fl 3.4s linear infinite}
+.pu:nth-child(2n){animation-duration:4.1s}
+.pu:nth-child(3n){animation-duration:2.9s;animation-delay:-1.1s}
+.rg{fill:none;stroke:#17A2C8;stroke-width:1.5;transform-box:fill-box;transform-origin:center;animation:rg 2.6s ease-out infinite}
+.rg:nth-child(2n){animation-delay:-.9s}
+.rg:nth-child(3n){animation-delay:-1.7s}
+@keyframes fl{from{stroke-dashoffset:10}to{stroke-dashoffset:-90}}
+@keyframes rg{0%{transform:scale(1);opacity:.9}100%{transform:scale(3.2);opacity:0}}
 /* headings + labels */
 h1{font-size:clamp(30px,4.5vw,44px);line-height:1.1;font-weight:800;letter-spacing:-.01em;text-transform:uppercase;margin:0 0 14px}
 h2{font-size:20px;font-weight:800;letter-spacing:.01em;text-transform:uppercase;margin:34px 0 12px}
