@@ -122,17 +122,25 @@ main{background-image:linear-gradient(#E4EDF3 1px,transparent 1px),linear-gradie
 </header>
 <main>
 <section class="section" aria-label="Contact form">
+<p class="eyebrow">How this works</p>
+<ol class="arch-list" style="max-width:560px;margin:0 0 28px">
+<li><span class="n">01</span><div><strong>Complete the form.</strong> Name, reply email, and the nature of your interest — plus what it concerns.</div></li>
+<li><span class="n">02</span><div><strong>Press and hold.</strong> Hold the button two seconds to prove you are human. No puzzles, no accounts.</div></li>
+<li><span class="n">03</span><div><strong>Send from your mail app.</strong> Your draft opens fully addressed — nothing leaves until you press send there.</div></li>
+</ol>
+<div class="panel formpanel">
+<div class="panel-head"><div class="t">Send a message</div><div class="kl">Replies within two business days</div></div>
 <div>
 <div class="frow">
 <div><label class="lbl" for="cf-name">Full name</label>
-<input class="field" id="cf-name" name="name" type="text" autocomplete="name" maxlength="120"></div>
+<input class="field" id="cf-name" name="name" type="text" autocomplete="name" maxlength="120" placeholder="Your full name"></div>
 <div><label class="lbl" for="cf-email">Contact email</label>
-<input class="field" id="cf-email" name="email" type="email" autocomplete="email" maxlength="160"></div>
+<input class="field" id="cf-email" name="email" type="email" autocomplete="email" maxlength="160" placeholder="you@example.com"></div>
 </div>
 <label class="lbl" for="cf-org">Organisation (optional)</label>
-<input class="field" id="cf-org" name="org" type="text" autocomplete="organization" maxlength="160">
+<input class="field" id="cf-org" name="org" type="text" autocomplete="organization" maxlength="160" placeholder="Company, institution, or independent">
 <label class="lbl" for="cf-intent">Nature of interest</label>
-<textarea class="field" id="cf-intent" name="intent" rows="4" maxlength="2000"></textarea>
+<textarea class="field" id="cf-intent" name="intent" rows="4" maxlength="2000" placeholder="State clearly why you are reaching out and what it concerns"></textarea>
 <p class="eyebrow">I&rsquo;m asking about</p>
 <div style="display:flex;flex-direction:column;gap:10px;max-width:520px;margin:0 0 18px">
 <label class="topic"><input type="checkbox" name="topic" id="cf-t-intro" value="General introduction"> General introduction</label>
@@ -142,7 +150,8 @@ main{background-image:linear-gradient(#E4EDF3 1px,transparent 1px),linear-gradie
 </div>
 <p id="cf-err" style="display:none;max-width:520px;font-size:13px;font-weight:700;color:#A33D2E" role="alert"></p>
 <button class="btn" id="cf-send" type="button" style="width:100%;max-width:520px;min-height:52px">Press and hold to verify &amp; send</button>
-<p class="sub2" id="cf-note" style="margin-top:14px">Your mail app will open with the message addressed &mdash; nothing is sent until you press send there.</p>
+<p class="sub2" id="cf-note" style="margin-top:14px;margin-bottom:0">Your mail app will open with the message addressed &mdash; nothing is sent until you press send there.</p>
+</div>
 </div>
 </section>
 <section class="section proof" aria-label="Links">
