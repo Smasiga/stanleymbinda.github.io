@@ -1,5 +1,5 @@
 /* Shared site chrome + light reading system for content pages.
-   Same tokens as the homepage: Plus Jakarta Sans, ink #0B1F3A,
+   Same tokens as the homepage: Georgia serif, ink #0B1F3A,
    accent #0D7DA3, hairline #DCE8EF, white surfaces. */
 html{background:#fff;scroll-behavior:smooth}
 body{margin:0;font-family:Georgia,'Times New Roman',serif;color:#0B1F3A;-webkit-font-smoothing:antialiased;padding-left:150px}
