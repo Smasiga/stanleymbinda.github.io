@@ -11,9 +11,8 @@ No company exists. No "Architect" title and no "Aeternum" name anywhere a visito
 - Handles: `Smasiga` = code (GitHub), `stanleymbinda.com` = home, LinkedIn = professional. Every profile links the other two.
 
 ## 2. Numbers (dated or absent)
-- **Ten** founding architectures (I–X, fixed names — see index grid). Never "five" except inside dated historical entries (milestones), which stay verbatim.
-- Status vocabulary, site-wide: **Deployed** (live + linked), **In engineering** (real, evidence on request). No other status words.
-- Proof beats prose: every claim links live evidence, a dated milestone, or a case study. New claims without evidence do not ship.
+- The public site claims ONE deployed system: CiteProof. No architecture counts, no roadmaps, no other project names anywhere a visitor can read. Undeployed work stays private until it ships with evidence.
+- Verifiable figures only, each traceable: 0 false cleans on 17 holdout items (October 2026 runs, bound reported), national press (The Register, BeSpacific, October 2026).
 
 ## 3. Voice
 - Plain, sourced, no adjectives it can't prove. Interpretive-age framing is the register; hype is forbidden.
