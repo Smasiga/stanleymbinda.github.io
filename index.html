@@ -21,7 +21,7 @@ a{color:#2B3F57;text-decoration:none}a:hover{color:#0D7DA3}
 .pu:nth-child(2n){animation-duration:4.1s}
 .pu:nth-child(3n){animation-duration:2.9s;animation-delay:-1.1s}
 .pu:nth-child(5n){animation-delay:-2.2s}
-.pu:nth-child(7n){animation-duration:5s;animation-delay:-3s}
+.pu:nth-child(7n){animation-duration:5s;animation-delay:-3.2s}
 .rg{fill:none;stroke:#17A2C8;stroke-width:1.5;transform-box:fill-box;transform-origin:center;animation:rg 2.6s ease-out infinite}
 .rg:nth-child(2n){animation-delay:-.9s}
 .rg:nth-child(3n){animation-delay:-1.7s}
@@ -30,78 +30,94 @@ a{color:#2B3F57;text-decoration:none}a:hover{color:#0D7DA3}
 @media(prefers-reduced-motion:reduce){.pu,.rg{display:none}}
 </style>
 <style>
-html{background:#DCE1E7}
-a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #0D7DA3;outline-offset:2px}
+html{background:#DCE1E7;scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;color:#0B1F3A}
+a:focus-visible,button:focus-visible{outline:3px solid #0D7DA3;outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.topnav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid #DCE8EF}
+.topnav-in{max-width:1120px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:15px;color:#0B1F3A}
+.navlinks{display:flex;align-items:center;gap:22px;font-size:12px;font-weight:500}
+.hero{position:relative;overflow:hidden;background:#fff;border-bottom:1px solid #DCE8EF}
+.hero-net{position:absolute;inset:0;pointer-events:none;opacity:.9}
+.hero-in{position:relative;max-width:1120px;margin:0 auto;padding:88px 24px 72px;text-align:center}
+.eyebrow{margin:0 0 14px;font-size:11px;font-weight:700;letter-spacing:.14em;color:#0B7599}
+.hero h1{margin:0 0 14px;font-size:clamp(30px,4.6vw,46px);line-height:1.12;font-weight:800;text-transform:uppercase;letter-spacing:-.01em}
+.hero p.sub{margin:0 auto 22px;max-width:520px;font-size:15px;line-height:1.6;color:#4A5B70}
+.section{max-width:1120px;margin:0 auto;padding:40px 24px 0}
+.panel{background:#fff;border:1px solid #DCE8EF;border-radius:16px;box-shadow:0 16px 48px rgba(30,100,170,.1);padding:20px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.pressrow{display:flex;align-items:center;gap:10px;margin-top:16px;padding:14px 18px}
+.pressrow .lg{flex:1}
+.pressbtn{width:44px;height:44px;flex:none;border-radius:8px;border:1px solid #DCE8EF;background:#fff;color:#0B1F3A;font-size:18px;cursor:pointer}
+.evgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.evgrid .box{padding:18px}
+.cta{text-align:center;padding:36px 24px 8px}
+.fine{text-align:center;font-size:11px;color:#4A5B70;padding:0 24px 20px}
+.footer{border-top:1px solid #DCE8EF;background:#fff}
+.footer-in{max-width:1120px;margin:0 auto;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:11px;color:#4A5B70}
+.footer-in nav{display:flex;gap:18px}
+@media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}.charts{grid-template-columns:1fr}.evgrid{grid-template-columns:1fr}.navlinks a{display:none}.hero-in{padding:56px 24px 48px}}
 </style>
 </head>
-<body>
-<div id="stage" style="width:1280px;margin:0 auto">
-<div id="top" style="position:relative;width:1280px;height:1000px;overflow:hidden;font-family:'Plus Jakarta Sans',sans-serif;color:#0B1F3A;background:#DCE1E7">
-<div style="position:absolute;left:60px;top:150px;width:520px;height:900px;background:#fff;border-radius:24px;box-shadow:0 16px 48px rgba(30,100,170,.12)"></div>
-<div style="position:absolute;left:700px;top:150px;width:520px;height:900px;background:#fff;border-radius:24px;box-shadow:0 16px 48px rgba(30,100,170,.12)">
-<div class="box" style="position:absolute;left:-636px;top:428px;width:200px;padding:18px">
-<div class="t" style="margin-bottom:12px">Press</div>
-<div style="display:flex;gap:8px;align-items:center"><div class="lg" id="pressSlot"><a href="https://www.theregister.com/ai-and-ml/2026/10/16/new-online-tool-will-check-lawyers-sloppy-ai-written-briefs-since-they-cant-seem-to-be-bothered/5303589" target="_blank" rel="noopener">The Register</a></div><button id="pressNext" aria-label="Next press link" style="width:44px;height:44px;border-radius:8px;border:1px solid #DCE8EF;background:#fff;color:#0B1F3A;font-size:18px;cursor:pointer">&rsaquo;</button></div>
+<body id="top">
+<nav class="topnav" aria-label="Primary">
+<div class="topnav-in">
+<a href="#top" class="brand" aria-label="Home"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="10" fill="#0D7DA3"/><path d="M6 15C6 9 10 6 16 6C16 12 12 15 6 15Z" fill="#fff"/></svg><span>S. Mbinda</span></a>
+<div class="navlinks"><a href="#top">Home</a><a href="#deployed">Deployed</a><a href="#evidence">Evidence</a><a href="mailto:contact@stanleymbinda.com?subject=Introduction">Contact</a><a href="mailto:contact@stanleymbinda.com?subject=Introduction"><button class="btn">Get started</button></a></div>
 </div>
-</div>
-<svg style="position:absolute;left:0;top:0" width="1280" height="1000" viewBox="0 0 1280 1000" aria-hidden="true">
-<g fill="none" stroke="#AEBAC7" stroke-width="1.5" stroke-linejoin="round" opacity=".6">
-<path d="M1280 180H1180L1150 210V300H1100"/><path d="M1280 260H1210L1190 280V420"/><path d="M1280 360H1240L1210 390H1120"/><path d="M1280 520H1170L1140 550V640H1060"/><path d="M1280 640H1230L1200 670V780"/><path d="M1280 760H1130L1100 790H1000"/><path d="M1280 880H1200L1170 910V1000"/>
-<path d="M0 700H110L140 730V820H240"/><path d="M0 800H70L100 830V930"/><path d="M0 900H180L210 930H320"/><path d="M0 600H60L90 630V700"/><path d="M0 460H100L130 430V330H200"/><path d="M0 250H80L110 220V150"/>
-<g fill="#DCE1E7"><circle cx="1100" cy="300" r="4"/><circle cx="1190" cy="420" r="4"/><circle cx="1120" cy="390" r="4"/><circle cx="1060" cy="640" r="4"/><circle cx="1200" cy="780" r="4"/><circle cx="1000" cy="790" r="4"/><circle cx="1170" cy="1000" r="4"/><circle cx="240" cy="820" r="4"/><circle cx="100" cy="930" r="4"/><circle cx="320" cy="930" r="4"/><circle cx="90" cy="700" r="4"/><circle cx="200" cy="330" r="4"/><circle cx="110" cy="150" r="4"/></g>
-</g>
-</svg>
-<svg style='position:absolute;left:0;top:0' width='1280' height='1000' viewBox='0 0 1280 1000' aria-hidden='true'>
-<defs>
-<path id='a1' pathLength='100' d='M1280 180H1180L1150 210V300H1100'/><path id='a2' pathLength='100' d='M1280 260H1210L1190 280V420'/><path id='a3' pathLength='100' d='M1280 360H1240L1210 390H1120'/><path id='a4' pathLength='100' d='M1280 520H1170L1140 550V640H1060'/><path id='a5' pathLength='100' d='M1280 640H1230L1200 670V780'/><path id='a6' pathLength='100' d='M1280 760H1130L1100 790H1000'/><path id='a7' pathLength='100' d='M1280 880H1200L1170 910V1000'/><path id='a8' pathLength='100' d='M0 700H110L140 730V820H240'/><path id='a9' pathLength='100' d='M0 800H70L100 830V930'/><path id='b1' pathLength='100' d='M0 900H180L210 930H320'/><path id='b2' pathLength='100' d='M0 600H60L90 630V700'/><path id='b3' pathLength='100' d='M0 460H100L130 430V330H200'/><path id='b4' pathLength='100' d='M0 250H80L110 220V150'/>
-<path id='n1' pathLength='100' d='M1280 100H1160L1130 130V190H1040'/><path id='n2' pathLength='100' d='M1280 440H1260L1240 460V560'/><path id='n3' pathLength='100' d='M1280 820H1060L1030 850V960H940'/><path id='n4' pathLength='100' d='M1280 960H1100L1070 990'/><path id='n5' pathLength='100' d='M0 150H60L90 120V40'/><path id='n6' pathLength='100' d='M0 350H40L70 380V470H140'/><path id='n7' pathLength='100' d='M0 540H150L180 510V430H260'/><path id='n8' pathLength='100' d='M0 650H30L60 680V760'/><path id='n9' pathLength='100' d='M0 960H120L150 990'/><path id='n10' pathLength='100' d='M300 0V30L330 50H420'/><path id='n11' pathLength='100' d='M880 0V25L910 45H1010'/><path id='n12' pathLength='100' d='M560 0V20L580 40H720'/><path id='n13' pathLength='100' d='M120 0V60L150 90H260'/><path id='n14' pathLength='100' d='M1180 0V40L1150 70H1060'/><path id='n15' pathLength='100' d='M980 1000V950L1010 920H1100'/><path id='n16' pathLength='100' d='M300 1000V960L270 930H190'/><path id='n17' pathLength='100' d='M1280 560H1210L1190 580V700H1150'/>
-</defs>
-<g fill='none' stroke='#AEBAC7' stroke-width='1.5' stroke-linejoin='round' opacity='.6'><use href='#n1'/><use href='#n2'/><use href='#n3'/><use href='#n4'/><use href='#n5'/><use href='#n6'/><use href='#n7'/><use href='#n8'/><use href='#n9'/><use href='#n10'/><use href='#n11'/><use href='#n12'/><use href='#n13'/><use href='#n14'/><use href='#n15'/><use href='#n16'/><use href='#n17'/></g>
-<g fill='#DCE1E7' stroke='#AEBAC7' stroke-width='1.5' opacity='.7'><circle cx='1040' cy='190' r='4'/><circle cx='1240' cy='560' r='4'/><circle cx='940' cy='960' r='4'/><circle cx='1070' cy='990' r='4'/><circle cx='90' cy='40' r='4'/><circle cx='140' cy='470' r='4'/><circle cx='260' cy='430' r='4'/><circle cx='60' cy='760' r='4'/><circle cx='150' cy='990' r='4'/><circle cx='420' cy='50' r='4'/><circle cx='1010' cy='45' r='4'/><circle cx='720' cy='40' r='4'/><circle cx='260' cy='90' r='4'/><circle cx='1060' cy='70' r='4'/><circle cx='1100' cy='920' r='4'/><circle cx='190' cy='930' r='4'/><circle cx='1150' cy='700' r='4'/></g>
-<g style='filter:drop-shadow(0 0 3px rgba(23,162,200,.8))'><use href='#a1' class='pu'/><use href='#a2' class='pu'/><use href='#a3' class='pu'/><use href='#a4' class='pu'/><use href='#a5' class='pu'/><use href='#a6' class='pu'/><use href='#a7' class='pu'/><use href='#a8' class='pu'/><use href='#a9' class='pu'/><use href='#b1' class='pu'/><use href='#b2' class='pu'/><use href='#b3' class='pu'/><use href='#b4' class='pu'/><use href='#n1' class='pu'/><use href='#n2' class='pu'/><use href='#n3' class='pu'/><use href='#n4' class='pu'/><use href='#n5' class='pu'/><use href='#n6' class='pu'/><use href='#n7' class='pu'/><use href='#n8' class='pu'/><use href='#n9' class='pu'/><use href='#n10' class='pu'/><use href='#n11' class='pu'/><use href='#n12' class='pu'/><use href='#n13' class='pu'/><use href='#n14' class='pu'/><use href='#n15' class='pu'/><use href='#n16' class='pu'/><use href='#n17' class='pu'/></g>
-<g><circle class='rg' cx='1100' cy='300' r='4'/><circle class='rg' cx='240' cy='820' r='4'/><circle class='rg' cx='1060' cy='640' r='4'/><circle class='rg' cx='200' cy='330' r='4'/><circle class='rg' cx='1040' cy='190' r='4'/><circle class='rg' cx='260' cy='430' r='4'/><circle class='rg' cx='1010' cy='45' r='4'/><circle class='rg' cx='420' cy='50' r='4'/><circle class='rg' cx='1100' cy='920' r='4'/><circle class='rg' cx='140' cy='470' r='4'/><circle class='rg' cx='1000' cy='790' r='4'/><circle class='rg' cx='320' cy='930' r='4'/></g>
-</svg>
-<div style="position:absolute;left:265px;top:60px;width:750px;background:#fff;border-radius:24px;box-shadow:0 24px 70px rgba(20,90,160,.2);display:flex;flex-direction:column">
-<nav style="display:flex;align-items:center;justify-content:space-between;padding:16px 32px">
-<a href="#top" style="display:flex;align-items:center;gap:8px;font:800 14px 'Plus Jakarta Sans',sans-serif;color:#0B1F3A"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="10" fill="#0D7DA3"/><path d="M6 15C6 9 10 6 16 6C16 12 12 15 6 15Z" fill="#fff"/></svg>S. Mbinda</a>
-<div style="display:flex;align-items:center;gap:20px;font-size:12px;font-weight:500"><a href="#top">Home</a><a href="#deployed">Deployed</a><a href="#evidence">Evidence</a><a href="mailto:contact@stanleymbinda.com?subject=Introduction">Contact</a><a href="mailto:contact@stanleymbinda.com?subject=Introduction"><button class="btn">Get started</button></a></div>
 </nav>
-<section style="text-align:center;padding:28px 40px 0">
-<p style="margin:0 0 14px;font:700 11px/1 'Plus Jakarta Sans',sans-serif;letter-spacing:.14em;color:#0B7599">DEEP-TECH SYSTEMS &middot; NAIROBI</p>
-<h1 style="margin:0 0 14px;font:800 30px/1.12 'Plus Jakarta Sans',sans-serif;text-transform:uppercase;letter-spacing:-.01em">Engineering permanence:<br>a founder&rsquo;s record</h1>
-<p style="margin:0 auto 20px;max-width:460px;font-size:14px;line-height:1.6;color:#4A5B70">I&rsquo;m Stanley Masiga Mbinda, an independent builder in Nairobi. I build verification systems &mdash; software that checks its own work.</p>
+<header class="hero">
+<svg class="hero-net" width="100%" height="100%" viewBox="0 0 1280 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<g fill="none" stroke="#AEBAC7" stroke-width="1.5" opacity=".6"><path d="M0 250H80L110 220V150"/><path d="M0 700H110L140 730V820H240"/><path d="M0 800H70L100 830V930"/><path d="M0 900H180L210 930H320"/><path d="M0 600H60L90 630V700"/><path d="M0 460H100L130 430V330H200"/><path d="M0 150H60L90 120V40"/><path d="M1280 180H1180L1150 210V300H1100"/><path d="M1280 260H1210L1190 280V420"/><path d="M1280 360H1240L1210 390V1120"/></g>
+<g fill="#DCE1E7" stroke="#AEBAC7" stroke-width="1.5" opacity=".7"><circle cx="110" cy="150" r="4"/><circle cx="240" cy="820" r="4"/><circle cx="100" cy="930" r="4"/><circle cx="320" cy="930" r="4"/><circle cx="90" cy="700" r="4"/><circle cx="200" cy="330" r="4"/><circle cx="1100" cy="300" r="4"/><circle cx="1190" cy="420" r="4"/></g>
+<g style="filter:drop-shadow(0 0 3px rgba(23,162,200,.8))"><use href="#h1" class="pu"/><use href="#h2" class="pu"/><use href="#h3" class="pu"/></g>
+<defs><path id="h1" pathLength="100" d="M0 250H80L110 220V150"/><path id="h2" pathLength="100" d="M0 700H110L140 730V820H240"/><path id="h3" pathLength="100" d="M1280 180H1180L1150 210V300H1100"/></defs>
+<g><circle class="rg" cx="240" cy="820" r="4"/><circle class="rg" cx="1100" cy="300" r="4"/><circle class="rg" cx="200" cy="330" r="4"/></g>
+</svg>
+<div class="hero-in">
+<p class="eyebrow">Deep-tech systems &middot; Nairobi</p>
+<h1>Engineering permanence:<br>a founder&rsquo;s record</h1>
+<p class="sub">I&rsquo;m Stanley Masiga Mbinda, an independent builder in Nairobi. I build verification systems &mdash; software that checks its own work.</p>
 <a href="#deployed"><button class="btn">Learn more</button></a>
-</section>
-<section class="box" id="deployed" style="margin:28px 40px 0;display:flex;box-shadow:0 8px 24px rgba(20,90,160,.1)">
-<div style="width:40px;border-right:1px solid #DCE8EF;display:flex;flex-direction:column;align-items:center;gap:14px;padding-top:14px"><span class="ic" style="background:#0D7DA3"></span><span class="ic"></span><span class="ic"></span><span class="ic"></span><span class="ic"></span></div>
-<div style="flex:1;padding:14px;display:flex;flex-direction:column;gap:10px">
-<div style="display:flex;align-items:center;justify-content:space-between"><span class="t">Build record</span><div style="display:flex;gap:8px;align-items:center"><span style="width:110px;height:20px;border-radius:10px;background:#EEF4F8"></span><span style="width:20px;height:20px;border-radius:50%;background:#BFD3E0"></span></div></div>
-<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">
+</div>
+</header>
+<main>
+<section class="section" id="deployed" aria-label="Build record">
+<div class="panel">
+<div style="display:flex;align-items:center;justify-content:space-between"><span class="t">Build record</span><span class="t" style="color:#17A2C8">&#9679; Live</span></div>
+<div class="kpis">
 <div class="box k"><div class="kv">01</div><div class="kl">Systems live</div></div>
 <div class="box k"><div class="kv">0</div><div class="kl">False cleans on holdout</div></div>
 <div class="box k"><div class="kv">02</div><div class="kl">Press features</div></div>
 <div class="box k"><div class="kv">2026</div><div class="kl">First public deployment</div></div>
 </div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div class="charts">
 <div class="box k"><div class="t" style="margin-bottom:8px">Verification record</div>
 <svg viewBox="0 0 240 80" role="img" aria-label="Illustrative line chart trending upward" style="width:100%;height:auto"><path d="M0 62C30 58 45 40 80 44S130 20 160 28S210 8 240 6V80H0Z" fill="#CFEFF7"/><path d="M0 62C30 58 45 40 80 44S130 20 160 28S210 8 240 6" fill="none" stroke="#17A2C8" stroke-width="2.5"/></svg></div>
 <div class="box k"><div class="t" style="margin-bottom:8px">Deployment progress</div>
 <svg viewBox="0 0 240 80" role="img" aria-label="Illustrative bar chart trending upward" style="width:100%;height:auto"><rect x="0" y="60" width="26" height="20" rx="4" fill="#9ADCEB"/><rect x="36" y="52" width="26" height="28" rx="4" fill="#9ADCEB"/><rect x="72" y="54" width="26" height="26" rx="4" fill="#9ADCEB"/><rect x="108" y="40" width="26" height="40" rx="4" fill="#17A2C8"/><rect x="144" y="32" width="26" height="48" rx="4" fill="#17A2C8"/><rect x="180" y="22" width="26" height="58" rx="4" fill="#17A2C8"/><rect x="214" y="10" width="26" height="70" rx="4" fill="#0D7DA3"/></svg></div>
 </div>
+<div class="box k pressrow"><span class="t">Press</span><div class="lg" id="pressSlot" style="flex:1"><a href="https://www.theregister.com/ai-and-ml/2026/10/16/new-online-tool-will-check-lawyers-sloppy-ai-written-briefs-since-they-cant-seem-to-be-bothered/5303589" target="_blank" rel="noopener">The Register</a></div><button class="pressbtn" id="pressNext" aria-label="Next press link">&rsaquo;</button></div>
 </div>
 </section>
-<div style="display:flex;justify-content:center;gap:8px;padding:18px 0 0"><span style="width:8px;height:8px;border-radius:50%;background:#0D7DA3"></span><span style="width:8px;height:8px;border-radius:50%;background:#C9D8E3"></span><span style="width:8px;height:8px;border-radius:50%;background:#C9D8E3"></span></div>
-<section id="evidence" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 40px 0">
+<section class="section" id="evidence" aria-label="Evidence">
+<div class="evgrid">
 <div class="box" style="padding:18px"><div class="t" style="margin-bottom:12px">Deployed system</div><div style="display:flex;gap:10px"><div class="lg"><a href="https://getciteproof.com">CiteProof &rarr;</a></div><div class="lg"><a href="https://getciteproof.com/accuracy">Accuracy &rarr;</a></div></div></div>
 <div class="box" style="padding:18px"><div class="t" style="margin-bottom:12px">Case work</div><div style="display:flex;gap:10px"><div class="lg"><a href="https://getciteproof.com/sanctions-watch">Sanctions Watch &rarr;</a></div><div class="lg"><a href="mailto:contact@stanleymbinda.com?subject=Evidence%20request">Evidence on request &rarr;</a></div></div></div>
+</div>
 </section>
-<div style="text-align:center;padding:24px 0 8px"><a href="https://getciteproof.com"><button class="btn" style="letter-spacing:.06em;text-transform:uppercase;padding:0 28px">Try CiteProof</button></a></div>
-<div style="text-align:center;font-size:11px;color:#4A5B70;padding:0 0 32px">Replies within two business days.</div>
+<div class="cta" style="text-align:center;padding:36px 24px 8px"><a href="https://getciteproof.com"><button class="btn" style="letter-spacing:.06em;text-transform:uppercase;padding:0 28px">Try CiteProof</button></a></div>
+<div class="fine">Replies within two business days.</div>
+</main>
+<footer class="footer">
+<div class="footer-in">
+<span>&copy; 2026 Stanley Masiga Mbinda &middot; Nairobi, Kenya</span>
+<nav aria-label="Footer"><a href="#top">Home</a><a href="#deployed">Deployed</a><a href="#evidence">Evidence</a><a href="mailto:contact@stanleymbinda.com?subject=Introduction">Contact</a></nav>
 </div>
-</div>
-</div>
+</footer>
 <script>
-(function(){var s=document.getElementById('stage');function f(){s.style.zoom=Math.min(1,window.innerWidth/1280)}f();addEventListener('resize',f)})();
 (function(){
   var items=[
     {t:'The Register',h:'https://www.theregister.com/ai-and-ml/2026/10/16/new-online-tool-will-check-lawyers-sloppy-ai-written-briefs-since-they-cant-seem-to-be-bothered/5303589'},
@@ -109,8 +125,6 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #0D7D
   ];
   var i=0,slot=document.getElementById('pressSlot'),btn=document.getElementById('pressNext');
   if(!slot||!btn)return;
-  btn.style.cssText='width:44px;height:44px;border-radius:8px;border:1px solid #DCE8EF;background:#fff;color:#0B1F3A;font-size:18px;cursor:pointer';
-  btn.textContent='\u203A';
   btn.addEventListener('click',function(){
     i=(i+1)%items.length;
     slot.innerHTML='<a href="'+items[i].h+'" target="_blank" rel="noopener">'+items[i].t+'</a>';
