@@ -20,6 +20,9 @@ a:focus-visible,button:focus-visible{outline:3px solid #0D7DA3;outline-offset:2p
 .navlinks a:last-child{margin-top:auto;padding:0}
 .navlinks .btn{width:100%;padding:0 8px;font-size:12px}
 main{background-image:linear-gradient(#E4EDF3 1px,transparent 1px),linear-gradient(90deg,#E4EDF3 1px,transparent 1px);background-size:44px 44px;background-position:center top}
+.lbl{display:block;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#0B7599;margin:0 0 2px}
+.field{width:100%;max-width:520px;box-sizing:border-box;background:#fff;border:1px solid #DCE8EF;border-radius:8px;padding:12px 14px;font:400 14px Georgia,'Times New Roman',serif;color:#0B1F3A;margin:6px 0 14px}
+.field:focus{outline:3px solid #0D7DA3;outline-offset:2px;border-color:#0D7DA3}
 .foundry{position:relative}
 .page-net{position:absolute;top:0;left:0;right:0;height:340px;width:100%;pointer-events:none;opacity:.9}
 .foundry>*{position:relative}
