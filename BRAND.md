@@ -20,10 +20,10 @@ No company exists. No "Architect" title and no "Aeternum" name anywhere a visito
 - Founder signs lab notes personally. The funnel postmortem (Entry 002) stays published — owning failure is the brand.
 
 ## 4. Design system
-- `themes.css` = tokens + type + motion discipline + 11 per-page themes. `app.css` = components. Same class hooks everywhere; never rename a shared class.
-- Prose is serif at reading size. Mono is for labels/data/code only. Display stays Bebas.
-- No perpetual motion (no shimmer/sweep/pulse loops). Interaction may transition; content never animates in. `prefers-reduced-motion` kills everything.
-- Every class used in HTML must exist in CSS (see validate script). Every internal link must resolve. Sitemap lists every indexable page; lastmod = content era (today only for files actually rewritten).
+- Homepage: exact implemented design (fixed-width card system, network canvas, Plus Jakarta Sans). Subpages: shared `site.css` light system + shared topnav + shared footer.
+- Prose is readable at real sizes. Mono is for labels/data only.
+- No perpetual motion. Interaction may transition; content never animates in. `prefers-reduced-motion` kills everything.
+- Every internal link must resolve. Sitemap lists every indexable page; update it when pages are added or removed. Deleted pages stay deleted.
 
 ## 5. To do (owner)
 - [ ] Add the "expanded to ten" milestone with the REAL date (milestones.html keeps true history; don't backdate).
