@@ -3,9 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Terms of Use for stanleymbinda.com">
-<meta name="robots" content="index, follow">
-<title>Terms of Use | Stanley Masiga Mbinda</title>
+<meta name="description" content="Press kit and media resources for Stanley Masiga Mbinda">
+<title>Press Kit | Stanley Masiga Mbinda</title>
 <style>
 body{margin:0}
 a{color:#2B3F57;text-decoration:none}a:hover{color:#0D7DA3}
@@ -55,7 +54,9 @@ a:focus-visible,button:focus-visible{outline:3px solid #0D7DA3;outline-offset:2p
 .arch-list li:first-child{border-top:0}
 .arch-list .n{font-weight:800;color:#0D7DA3;min-width:30px;font-size:12px}
 .bio-card{margin-top:-26px;background:#fff;border:1px solid #DCE8EF;border-radius:16px;box-shadow:0 16px 48px rgba(20,90,160,.12);padding:22px}
-.bio-avatar{width:56px;height:56px;border-radius:50%;background:#0D7DA3;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;letter-spacing:.02em}
+.bio-avatar{position:relative;width:56px;height:56px;border-radius:50%;background:#0D7DA3;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;letter-spacing:.02em;overflow:hidden;cursor:pointer}
+.bio-avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.avatar-badge{position:absolute;right:0;bottom:0;width:20px;height:20px;border-radius:50%;background:#fff;border:1px solid #DCE8EF;color:#0D7DA3;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;line-height:1}
 .bio-name{margin:12px 0 2px;font-size:17px;font-weight:800}
 .bio-role{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#0B7599}
 .bio-loc{font-size:12px;color:#4A5B70;margin-top:2px}
@@ -94,14 +95,26 @@ main{background-image:linear-gradient(#E4EDF3 1px,transparent 1px),linear-gradie
 .footer{border-top:1px solid #DCE8EF;background:#fff}
 .footer-in{max-width:1120px;margin:0 auto;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:11px;color:#4A5B70}
 .footer-in nav{display:flex;gap:18px}
+.lbl{display:block;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#0B7599;margin:0 0 2px}
+.field{width:100%;max-width:520px;box-sizing:border-box;background:#fff;border:1px solid #DCE8EF;border-radius:8px;padding:12px 14px;font:400 16px Georgia,'Times New Roman',serif;color:#0B1F3A;margin:6px 0 14px}
+.field:focus{outline:3px solid #0D7DA3;outline-offset:2px;border-color:#0D7DA3}
+.field{transition:border-color .15s ease,box-shadow .15s ease}
+.field:hover{border-color:#9DB1C2}
+.field::placeholder{color:#8AA0B4}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:520px}
+.topic{display:flex;gap:10px;align-items:flex-start;border:1px solid #DCE8EF;border-radius:10px;background:#fff;padding:12px 14px;font-size:14px;line-height:1.5;color:#0B1F3A;cursor:pointer}
+.topic:has(input:checked){border-color:#0D7DA3;background:#F6FAFC;box-shadow:0 0 0 1px #0D7DA3}
+.topic:focus-within{outline:3px solid #0D7DA3;outline-offset:2px}
+.topic input{width:18px;height:18px;margin:1px 0 0;accent-color:#0D7DA3;flex:none}
+@media(max-width:760px){.frow{grid-template-columns:1fr}}
 @media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}.charts{grid-template-columns:1fr}.evgrid{grid-template-columns:1fr}.navlinks a{display:none}.hero-in{padding:56px 24px 48px}}
 </style>
 </head>
 <body>
 <nav class="topnav" aria-label="Primary">
 <div class="topnav-in">
-<a href="index.html" class="brand" aria-label="Home"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="10" fill="#0D7DA3"/><path d="M6 15C6 9 10 6 16 6C16 12 12 15 6 15Z" fill="#fff"/></svg><span>S. Mbinda</span></a>
-<div class="navlinks"><a href="index.html">Home</a><a href="milestones.html">Milestones</a><a href="contact.html#intro"><button class="btn">Get in touch</button></a></div>
+<a href="/" class="brand" aria-label="Home"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="10" fill="#0D7DA3"/><path d="M6 15C6 9 10 6 16 6C16 12 12 15 6 15Z" fill="#fff"/></svg><span>S. Mbinda</span></a>
+<div class="navlinks"><a href="/">Home</a><a href="/milestones/">Milestones</a><a href="/contact/#intro"><button class="btn">Get in touch</button></a></div>
 </div>
 </nav>
 <header class="hero">
@@ -114,42 +127,46 @@ main{background-image:linear-gradient(#E4EDF3 1px,transparent 1px),linear-gradie
 </svg>
 <div class="hero-in">
 <div>
-<p class="eyebrow">Legal &middot; Terms</p>
-<h1>Terms of Use</h1>
-<p class="sub">Effective 24 October 2026. Short, plain, and binding.</p>
+<p class="eyebrow">Press &middot; Media</p>
+<h1>Press Kit</h1>
+<p class="sub">Official bios, key facts, and media resources. For anything else, use the contact form.</p>
 </div>
 </div>
 </header>
 <main>
-<section class="section" aria-label="Terms of Use">
-<p class="eyebrow">1 &middot; Acceptance</p>
-<p class="sub">By accessing this website you agree to these terms. If you do not agree, please do not use the site.</p>
-<p class="eyebrow">2 &middot; Use license</p>
-<p class="sub">Permission is granted to view and print pages for personal, non-commercial use only. Reproduction, republication, or transmission of any content requires express written permission.</p>
-<p class="eyebrow">3 &middot; Intellectual property</p>
-<p class="sub">The design and text of this site are &copy; 2026 Stanley Masiga Mbinda. All architectural concepts, frameworks, and documentation referenced are proprietary and protected.</p>
-<p class="eyebrow">4 &middot; No warranties</p>
-<p class="sub">This site is provided &ldquo;as is&rdquo; without warranties of any kind. Accuracy, reliability, and completeness of content are not guaranteed.</p>
-<p class="eyebrow">5 &middot; Liability</p>
-<p class="sub">In no event shall Stanley Masiga Mbinda, operating as an independent practice, be liable for damages arising from use of this website or its content.</p>
-<p class="eyebrow">6 &middot; Access requests</p>
-<p class="sub">Design documents, evidence, and repository access are shared on request by email and reviewed individually. Granted access is non-transferable, revocable at any time, and limited to the materials approved. Redistribution without written consent is forbidden, and automated harvesting of this site is not permitted.</p>
-<p class="eyebrow">7 &middot; External links</p>
-<p class="sub">This site links to external websites whose content, accuracy, and practices are their own responsibility.</p>
-<p class="eyebrow">8 &middot; Changes</p>
-<p class="sub">These terms may be modified at any time; continued use constitutes acceptance of the changes.</p>
-<p class="eyebrow">9 &middot; Governing law</p>
-<p class="sub">These terms are governed by the laws of the Republic of Kenya.</p>
+<section class="section" aria-label="Official bios">
+<p class="eyebrow">Official bios</p>
+<p class="sub"><strong>100-word bio.</strong> Stanley Masiga Mbinda is an independent builder based in Nairobi, Kenya. His deployed system is CiteProof: deterministic citation verification for legal briefs &mdash; every finding traceable to evidence, every limit stated, including a published accuracy ledger (0 false cleans on 17 holdout items) and an October 2026 holdout measurement. He works on verification systems: software that checks its own work.</p>
+<p class="sub"><strong>50-word bio.</strong> Stanley Masiga Mbinda is an independent builder in Nairobi, Kenya. His deployed system is CiteProof: deterministic citation verification for legal briefs, with a published accuracy ledger and October 2026 holdout measurement.</p>
+<p class="sub"><strong>Short bio.</strong> Stanley Masiga Mbinda is an independent builder based in Nairobi, Kenya.</p>
+</section>
+<section class="section" aria-label="Key facts">
+<p class="eyebrow">Key facts</p>
+<ol class="arch-list">
+<li><span class="n">01</span><div><strong>Position.</strong> Independent Builder</div></li>
+<li><span class="n">02</span><div><strong>Practice.</strong> Independent research &amp; engineering, Nairobi</div></li>
+<li><span class="n">03</span><div><strong>Location.</strong> Nairobi, Kenya</div></li>
+<li><span class="n">04</span><div><strong>Focus area.</strong> Deep-Tech Architecture &amp; Long-Horizon Systems</div></li>
+<li><span class="n">05</span><div><strong>Deployed system.</strong> CiteProof &mdash; getciteproof.com</div></li>
+<li><span class="n">06</span><div><strong>Philosophy.</strong> Built to last forever, not to exit</div></li>
+</ol>
+</section>
+<section class="section" aria-label="Media resources">
+<p class="eyebrow">Media resources</p>
+<p class="sub"><strong>Photos, headshots, logos.</strong> Request via the <a href="/contact/#press">contact form</a>.</p>
+<p class="sub"><strong>Interview requests.</strong> Use the <a href="/contact/#press">contact form</a> with publication details and interview scope. Replies within two business days.</p>
+<p class="sub"><strong>Practice.</strong> Independent research &amp; engineering, Nairobi, Kenya. Working since 2023. Focus: closing the gap between what systems can process and what they genuinely understand.</p>
+<p class="sub"><strong>Elsewhere.</strong> Web: stanleymbinda.com &middot; GitHub: @Smasiga &middot; LinkedIn: stanley-masiga-mbinda. Media contact: <a href="/contact/#press">contact form</a>.</p>
 </section>
 <section class="section proof" aria-label="Links">
-<div class="proofline">Effective <strong>24 October 2026</strong> <span aria-hidden="true">&middot;</span> Governed by the laws of <strong>Kenya</strong></div>
-<div class="proofcta"><a href="index.html">Home &rarr;</a><a href="privacy-policy.html">Privacy Policy &rarr;</a><a href="contact.html#intro">Contact &rarr;</a></div>
+<div class="proofline">Press &amp; <strong>media</strong> <span aria-hidden="true">&middot;</span> Replies within <strong>two business days</strong></div>
+<div class="proofcta"><a href="/">Home &rarr;</a><a href="/homepage/">Homepage &rarr;</a><a href="/contact/#press">Contact form &rarr;</a></div>
 </section>
 </main>
 <footer class="footer">
 <div class="footer-in">
 <span>&copy; 2026 Stanley Masiga Mbinda &middot; Nairobi</span>
-<nav aria-label="Footer"><a href="milestones.html">Milestones</a><a href="press-kit.html">Press Kit</a><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a><a href="contact.html#intro">Contact</a></nav>
+<nav aria-label="Footer"><a href="/milestones/">Milestones</a><a href="/press-kit/">Press Kit</a><a href="/privacy-policy/">Privacy</a><a href="/terms/">Terms</a><a href="/contact/#intro">Contact</a></nav>
 </div>
 <div class="footer-in" style="padding-top:0"><span class="fine" style="padding:0">Replies within two business days.</span></div>
 </footer>

@@ -26,7 +26,7 @@ No company exists. No "Architect" title and no "Aeternum" name anywhere a visito
 - Every internal link must resolve. Sitemap lists every indexable page; update it when pages are added or removed. Deleted pages stay deleted.
 
 ## 5. To do (owner)
-- [ ] Add the "expanded to ten" milestone with the REAL date (milestones.html keeps true history; don't backdate).
+- [ ] Add the "expanded to ten" milestone with the REAL date (/milestones/ keeps true history; don't backdate).
 - [ ] Decide: portrait photo or text-only (see placement notes).
 - [ ] GitHub profile: bio + link + pins (profile README, 5 lines).
 - [ ] Phase 2: case-study pages filled from Drive/OneDrive evidence (summaries on-page; raw material gated, never hotlinked).
