@@ -3,15 +3,15 @@
 The rules that keep this site honest. Change the site only in ways that keep every line below true.
 
 ## 0. The honesty rule (highest law here)
-CRESPAN STANLEY TECH is the business behind CiteProof and getciteproof.com, recorded 2026-11-02. No "Architect" title and no "Aeternum" name anywhere a visitor can read — the words survive only in legacy asset filenames, never in text. "Architectures" (the ten projects) and "architectural" (technical adjective) stay; they name work, not rank. CiteProof is a deployed system operated by CRESPAN STANLEY TECH — never attach it to an architecture number. Nothing is backdated, ever.
+CRESPIAN STANLEY TECH is the business behind CiteProof and getciteproof.com, recorded 2026-11-02. No "Architect" title and no "Aeternum" name anywhere a visitor can read — the words survive only in legacy asset filenames, never in text. "Architectures" (the ten projects) and "architectural" (technical adjective) stay; they name work, not rank. CiteProof is a deployed system operated by CRESPIAN STANLEY TECH — never attach it to an architecture number. Nothing is backdated, ever.
 
 ## 1. Identity (canonical, no variants)
-- Human: **Stanley Masiga Mbinda**, independent builder, Nairobi — Founder, CRESPAN STANLEY TECH.
+- Human: **Stanley Masiga Mbinda**, independent builder, Nairobi — Founder, CRESPIAN STANLEY TECH.
 - Titles: Founder only for CiteProof operation. No other rank, no institution, no logotype words on-page.
 - Handles: `Smasiga` = code (GitHub), `stanleymbinda.com` = home, LinkedIn = professional. Every profile links the other two.
 
 ## 2. Numbers (dated or absent)
-- The public site claims ONE deployed system: CiteProof, operated by CRESPAN STANLEY TECH. No architecture counts, no roadmaps, no other project names anywhere a visitor can read. Undeployed work stays private until it ships with evidence.
+- The public site claims ONE deployed system: CiteProof, operated by CRESPIAN STANLEY TECH. No architecture counts, no roadmaps, no other project names anywhere a visitor can read. Undeployed work stays private until it ships with evidence.
 - Verifiable figures only, each traceable: 0 false cleans on 17 holdout items (October 2026 runs, bound reported), national press (The Register, BeSpacific, October 2026).
 
 ## 3. Voice
