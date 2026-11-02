@@ -8,7 +8,7 @@
 
 I build permanent systems at the edge of the possible. My life's work is closing the **Interpretive Intelligence gap** — the chasm between what systems can process and what they genuinely understand.
 
-Independent research and engineering practice in Nairobi, Kenya — ten founding architectures, one system serving the public. No company, no institution: just documented work, built without dilution.
+Independent research and engineering practice in Nairobi, Kenya — ten founding architectures, one system serving the public. Operated through CRESPAN STANLEY TECH: just documented work, built without dilution.
 
 ### Core Philosophy
 - **Architectures over products** — systems designed for centuries, not quarters
